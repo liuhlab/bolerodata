@@ -1,13 +1,20 @@
 import pandas as pd
-from .data import metadata
+from .data import metadata, STANDARD_CELL_METADATA_DIR
 
 
 class Dataset:
-    def __init__(self, name):
+    def __init__(self, name: str):
         self.name = name
         self._cache = {}
 
         self.metadata = metadata.DATASET_METADATA.loc[self.name].to_dict()
+
+        # dataset level metadata
+        self.study_group = self.metadata["study_group"]
+        self.species = self.metadata["species"]
+        self.technology = self.metadata["technology"]
+        self.genome = self.metadata["genome"]
+
         self.cell_metadata_path = self.metadata["cell_metadata"]
         self.sample_metadata_path = self.metadata["sample_metadata"]
         self.peak_bed_path = self.metadata["peaks"]
@@ -15,7 +22,30 @@ class Dataset:
         self.gene_adata_path = self.metadata["gene_adata"]
 
     @property
-    def cell_metadata(self):
+    def cell_metadata(self) -> pd.DataFrame:
+        """
+        Standard minimum cell metadata table.
+
+        Schema:
+        - Index: cell barcode in "{sample}+{cell barcode}" format.
+            For 10X experiments, barcode is in "GEX_BARCODE-1" format
+        - Columns:
+            1. sample  # link to sample metadata
+            2. cluster  # link to cluster metadata, deepest level of clustering
+            3. n_fragments  # From ATAC
+            4. tsse  # From ATAC
+            5. n_umi  # From RNA, if any
+            6. n_genes  # From RNA, if any
+        """
+        if "standard_cell_metadata" not in self._cache:
+            self._cache["standard_cell_metadata"] = pd.read_feather(
+                STANDARD_CELL_METADATA_DIR / f"{self.name}.cell_metadata.feather"
+            )
+        return self._cache["standard_cell_metadata"]
+
+    @property
+    def original_cell_metadata(self):
+        """Cell metadata table organized from original study, contain misc information."""
         if "cell_metadata" not in self._cache:
             self._cache["cell_metadata"] = pd.read_feather(self.cell_metadata_path)
         return self._cache["cell_metadata"]
@@ -42,13 +72,19 @@ class Datasets:
     def __getitem__(self, name):
         return getattr(self, name)
 
+    def __contains__(self, name):
+        name = self._dataset_alias.get(name, name)
+        return name in self.available_datasets
+
+    def __iter__(self):
+        for dataset in self.available_datasets:
+            yield dataset
+
 
 DATASETS = Datasets()
 
 
 """
-
-
 Snap file table
 Dataset
 Experiment ID

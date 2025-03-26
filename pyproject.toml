@@ -9,10 +9,9 @@ description = "sequence"
 readme = "README.md"
 requires-python = ">=3.6"
 license = { file = "LICENSE" }
-authors = [{ name = "Hanqing Liu" }, { name = "Hanchen Wang" }]
+authors = [{ name = "Hanqing Liu" }]
 maintainers = [
     { name = "Hanqing Liu", email = "hanqingliu@fas.harvard.edu" },
-    { name = "Hanchen Wang", email = "hanchenw.au@gmail.com" },
 ]
 urls.Documentation = "https://bolero.readthedocs.io/"
 urls.Source = "https://github.com/lhqing/bolerodata"
@@ -22,9 +21,6 @@ dependencies = [
     "tqdm",
     "pandas"
 ]
-
-[project.scripts]
-mysbatch = "sbatch.main:submitter"
 
 [project.optional-dependencies]
 dev = ["pre-commit", "twine>=4.0.2"]
