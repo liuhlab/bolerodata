@@ -1,3 +1,1 @@
-from importlib.metadata import version
-
-__version__ = version("bolerodata")
+from .dataset import DATASETS

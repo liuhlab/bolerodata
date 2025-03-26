@@ -19,36 +19,8 @@ urls.Source = "https://github.com/lhqing/bolerodata"
 urls.Home-page = "https://github.com/lhqing/bolerodata"
 dependencies = [
     "anndata",
-    "beartype",
-    "biopython",
-    "bolero_process",
-    "cooler",
-    "click",
-    "deeptools",
-    "einops",
-    "gensim",
-    "geosketch",
-    "gffutils",
-    "joblib",
-    "openTSNE",
-    "pyfaidx",
-    "pynndescent",
-    "pyranges",
-    "seaborn",
-    "session-info",
-    "tangermeme",
-    "tmtoolkit",
     "tqdm",
-    "torchinfo",
-    "torchmetrics",
-    "torchscale",
-    "transformers",
-    "scvi-tools",
-    "wandb",
-    "vector_quantize_pytorch",
-    "xarray",
-    # "ray", # do not add ray as a dependency, install it separately otherwise skypilot will have issue
-    "zarr",
+    "pandas"
 ]
 
 [project.scripts]
