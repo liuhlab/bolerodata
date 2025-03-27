@@ -47,6 +47,20 @@ class Dataset:
         return self._cache["standard_cell_metadata"]
 
     @property
+    def n_cells(self) -> int:
+        """
+        Number of cells in the dataset.
+        """
+        return self.cell_metadata.shape[0]
+
+    @property
+    def n_samples(self) -> int:
+        """
+        Number of samples in the dataset.
+        """
+        return self.sample_metadata.shape[0]
+
+    @property
     def sample_metadata(self) -> pd.DataFrame:
         """
         Standard sample metadata table.
@@ -74,6 +88,28 @@ class Dataset:
                 STANDARD_SAMPLE_METADATA_DIR / f"{self.name}.sample_metadata.feather"
             )
         return self._cache["sample_metadata"]
+
+    @property
+    def cluster_metadata(self) -> pd.DataFrame:
+        """
+        Standard cluster metadata table.
+
+        Schema:
+        - Index: cluster_id
+            - This id match the cluster column in all cell_metadata.
+            - This correspond to the deepest level of clustering
+        - Columns:
+            - Columns:
+            1. subclass: Most meaningful detail cell annotation level
+            2. class: Most meaningful major cell annotation level
+        - Additional Columns:
+            - **Other cluster levels
+        """
+        if "cluster_metadata" not in self._cache:
+            self._cache["cluster_metadata"] = pd.read_feather(
+                STANDARD_CLUSTER_METADATA_DIR / f"{self.name}.cluster_metadata.feather"
+            )
+        return self._cache["cluster_metadata"]
 
     @property
     def original_cell_metadata(self):
