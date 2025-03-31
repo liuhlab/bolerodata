@@ -1,10 +1,5 @@
 import pandas as pd
-from .data import (
-    metadata,
-    STANDARD_CELL_METADATA_DIR,
-    STANDARD_CLUSTER_METADATA_DIR,
-    STANDARD_SAMPLE_METADATA_DIR,
-)
+from .data import metadata
 
 
 class Dataset:
@@ -42,9 +37,21 @@ class Dataset:
         """
         if "standard_cell_metadata" not in self._cache:
             self._cache["standard_cell_metadata"] = pd.read_feather(
-                STANDARD_CELL_METADATA_DIR / f"{self.name}.cell_metadata.feather"
+                metadata.STANDARD_CELL_METADATA_DIR
+                / f"{self.name}.cell_metadata.feather"
             )
         return self._cache["standard_cell_metadata"]
+    
+    def make_cell_metadata(self, sample_meta=True, cluster_meta=True):
+        """
+        Make cell metadata table with sample and cluster metadata.
+        """
+        cell_meta = self.cell_metadata.copy()
+        if sample_meta:
+            cell_meta = cell_meta.join(self.sample_metadata, on="sample", how="left")
+        if cluster_meta:
+            cell_meta = cell_meta.join(self.cluster_metadata, on="cluster", how="left")
+        return cell_meta
 
     @property
     def n_cells(self) -> int:
@@ -85,7 +92,8 @@ class Dataset:
         """
         if "sample_metadata" not in self._cache:
             self._cache["sample_metadata"] = pd.read_feather(
-                STANDARD_SAMPLE_METADATA_DIR / f"{self.name}.sample_metadata.feather"
+                metadata.STANDARD_SAMPLE_METADATA_DIR
+                / f"{self.name}.sample_metadata.feather"
             )
         return self._cache["sample_metadata"]
 
@@ -107,9 +115,24 @@ class Dataset:
         """
         if "cluster_metadata" not in self._cache:
             self._cache["cluster_metadata"] = pd.read_feather(
-                STANDARD_CLUSTER_METADATA_DIR / f"{self.name}.cluster_metadata.feather"
+                metadata.STANDARD_CLUSTER_METADATA_DIR
+                / f"{self.name}.cluster_metadata.feather"
             )
         return self._cache["cluster_metadata"]
+
+    @property
+    def snap_file_table(self) -> pd.DataFrame:
+        """
+        Standard snap file table.
+
+        Columns:
+        - sample: Sample ID
+            - EXCEPT Li2023Science, which is using cell type to group snap
+        - dataset: Dataset Name
+        - snap_path: Path to the snap file
+            - Contains nan, some snap files might be missing.
+        """
+        return metadata.get_sample_snap_files(self.name)
 
     @property
     def original_cell_metadata(self):
