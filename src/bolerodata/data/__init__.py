@@ -41,9 +41,18 @@ class Metadata:
     @property
     def DATASET_METADATA(self):
         if "DATASET_METADATA" not in self._cache:
-            self._cache["DATASET_METADATA"] = pd.read_table(
+            _metadata_df = pd.read_table(
                 self._cwd / "dataset_metadata.tsv", index_col=0
             )
+            _emb_and_meta_cell_df = pd.read_table(
+                self._cwd / "embedding_and_meta_cell.tsv", index_col=0
+            )
+            _metadata_df = _metadata_df.join(
+                _emb_and_meta_cell_df.loc[:, ~_emb_and_meta_cell_df.columns.isin(_metadata_df.columns)],
+                how="left",
+                on="dataset",
+            )
+            self._cache["DATASET_METADATA"] = _metadata_df
         return self._cache["DATASET_METADATA"]
 
     def get_sample_snap_files(self, dataset_name):
