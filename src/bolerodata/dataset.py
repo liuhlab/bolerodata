@@ -19,6 +19,10 @@ class Dataset:
         self.peak_adata_path = self.metadata["peak_adata"]
         self.gene_adata_path = self.metadata["gene_adata"]
 
+        # meta cell 
+        _gs = self.metadata["meta_cell_groups"]
+        self.meta_cell_groups = _gs.split(",") if isinstance(_gs, str) else []
+
     @property
     def cell_metadata(self) -> pd.DataFrame:
         """
@@ -41,7 +45,7 @@ class Dataset:
                 / f"{self.name}.cell_metadata.feather"
             )
         return self._cache["standard_cell_metadata"]
-    
+
     def make_cell_metadata(self, sample_meta=True, cluster_meta=True):
         """
         Make cell metadata table with sample and cluster metadata.
@@ -144,6 +148,49 @@ class Dataset:
                 self.metadata["cell_metadata"]
             )
         return self._cache["cell_metadata"]
+
+    @property
+    def cell_embedding(self):
+        """
+        Cell embedding table organized from original study, contain misc information.
+        """
+        if "within_dataset_cell_embedding" not in self._cache:
+            self._cache["within_dataset_cell_embedding"] = pd.read_feather(
+                self.metadata["within_dataset_cell_embedding"]
+            )
+        return self._cache["within_dataset_cell_embedding"]
+
+    def get_meta_cell_adata_path(self, kind: str = "metadata", subset_name: str = None):
+        """
+        Get the path to the meta cell adata file.
+
+        Parameters
+        ----------
+        kind: str
+            The kind of meta cell adata file to get:
+            - "metadata": metadata and embedding only
+            - "gene": gene expression data
+            - "peak": peak count data
+            - "cell": cell level metadata and embedding only
+        subset_name: str
+            The name of the subset to get. If None, return the full dataset.
+
+        Returns
+        -------
+        str
+            The path to the meta cell adata file.
+        """
+        assert kind in [
+            "metadata",
+            "gene",
+            "peak",
+            "cell",
+        ], "kind must be one of ['metadata', 'gene', 'peak', 'cell']"
+        key = [kind, self.name]
+        if subset_name:
+            key.append(subset_name)
+        key = ",".join(key)
+        return metadata.get_metacell_adata_path(key)
 
 
 class Datasets:
