@@ -2,6 +2,7 @@
 import pandas as pd
 from bolerodata import DATASETS
 
+
 # %%
 def test_datasets():
     for dataset in DATASETS:
@@ -14,7 +15,9 @@ def test_datasets():
             not sample_metadata.index.duplicated().all()
         ), f"Sample metadata for {name} has duplicate indices"
         assert (
-            pd.Index(cell_metadata["sample"].dropna().unique()).isin(sample_metadata.index).all()
+            pd.Index(cell_metadata["sample"].dropna().unique())
+            .isin(sample_metadata.index)
+            .all()
         ), f"Sample metadata for {name} does not match cell metadata"
 
         cluster_metadata = dataset.cluster_metadata
@@ -22,8 +25,9 @@ def test_datasets():
             not cluster_metadata.index.duplicated().all()
         ), f"Cluster metadata for {name} has duplicate indices"
         assert (
-            pd.Index(cell_metadata["cluster"].dropna().unique()).isin(cluster_metadata.index).all()
+            pd.Index(cell_metadata["cluster"].dropna().unique())
+            .isin(cluster_metadata.index)
+            .all()
         ), f"Cluster metadata for {name} does not match cell metadata"
 
         DATASETS._cache.clear()
-

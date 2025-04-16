@@ -1,3 +1,4 @@
+import anndata
 import pandas as pd
 from .data import metadata
 
@@ -19,7 +20,7 @@ class Dataset:
         self.peak_adata_path = self.metadata["peak_adata"]
         self.gene_adata_path = self.metadata["gene_adata"]
 
-        # meta cell 
+        # meta cell
         _gs = self.metadata["meta_cell_groups"]
         self.meta_cell_groups = _gs.split(",") if isinstance(_gs, str) else []
 
@@ -191,6 +192,18 @@ class Dataset:
             key.append(subset_name)
         key = ",".join(key)
         return metadata.get_metacell_adata_path(key)
+
+    def get_meta_cell_adata(
+        self, kind: str = "metadata", subset_name: str = None, backed=None
+    ):
+        """
+        Get the meta cell adata object.
+
+        See `get_meta_cell_adata_path` for more details.
+        """
+        path = self.get_meta_cell_adata_path(kind, subset_name)
+        adata = anndata.read_h5ad(path, backed=backed)
+        return adata
 
 
 class Datasets:
