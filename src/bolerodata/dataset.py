@@ -186,7 +186,7 @@ class Dataset:
             "gene",
             "peak",
             "cell",
-        ], "kind must be one of ['metadata', 'gene', 'peak', 'cell']"
+        ], f"kind must be one of ['metadata', 'gene', 'peak', 'cell'], got {kind}"
         key = [kind, self.name]
         if subset_name:
             key.append(subset_name)
@@ -205,6 +205,56 @@ class Dataset:
         adata = anndata.read_h5ad(path, backed=backed)
         return adata
 
+    def get_meta_cell_parquet_path(self, kind: str, subset_name: str = None):
+        """
+        Get the path to the meta cell parquet dataset dir.
+
+        Parameters
+        ----------
+        kind: str
+            The kind of meta cell parquet dataset to get:
+            - "1bp": parquet dataset with 1bp resolution, 100kb window, 90kb step
+            - "32bp": parquet dataset with 32bp resolution, 600kb window, 200kb step
+        subset_name: str
+            The name of the subset to get. If None, return the full dataset.
+
+        Returns
+        -------
+        str
+            The path to the meta cell parquet file.
+        """
+        assert kind in ["1bp", "32bp"], f"kind must be one of ['1bp', '32bp'], got {kind}"
+        key = [kind, self.name]
+        if subset_name:
+            key.append(subset_name)
+        key = ",".join(key)
+        return metadata.get_metacell_parquet_path(key)
+
+    def get_meta_cell_pseudobulk_records_path(self, kind: str, subset_name: str = None):
+        """
+        Get the path to the meta cell pseudobulk records file.
+
+        Parameters
+        ----------
+        kind: str
+            The kind of meta cell pseudobulk records file to get:
+            - 5000000: pseudobulk records with 5000000 target coverage
+            - 25000000: pseudobulk records with 25000000 target coverage
+        subset_name: str
+            The name of the subset to get. If None, return the full dataset.
+
+        Returns
+        -------
+        str
+            The path to the meta cell pseudobulk records file.
+        """
+        kind = str(int(kind))
+        assert kind in ["5000000", "25000000"], f"kind must be one of [5000000, 25000000], got {kind}"
+        key = [kind, self.name]
+        if subset_name:
+            key.append(subset_name)
+        key = ",".join(key)
+        return metadata.get_metacell_pseudobulk_records_path(key)
 
 class Datasets:
     def __init__(self):

@@ -29,6 +29,12 @@ STANDARD_CLUSTER_METADATA_DIR = STANDARD_DIR / "cluster_metadata"
 # columns: [sample, dataset, snap_path]
 SAMPLE_SNAP_TABLE_PATH = STANDARD_DIR / "file_path_table/sample_snap_file_path.csv"
 META_CELL_ADATA_PATH_DICT = STANDARD_DIR / "file_path_table/meta_cell.adata_path.joblib"
+META_CELL_PARQUET_PATH_DICT = (
+    STANDARD_DIR / "file_path_table/meta_cell.parquet_dataset_path.joblib"
+)
+META_CELL_PSEUDOBULK_RECORDS_PATH_DICT = (
+    STANDARD_DIR / "file_path_table/meta_cell.pseudobulk_records_path.joblib"
+)
 
 
 class Metadata:
@@ -41,6 +47,10 @@ class Metadata:
         self.STANDARD_CLUSTER_METADATA_DIR = STANDARD_CLUSTER_METADATA_DIR
         self.SAMPLE_SNAP_TABLE_PATH = SAMPLE_SNAP_TABLE_PATH
         self.META_CELL_ADATA_PATH_DICT = META_CELL_ADATA_PATH_DICT
+        self.META_CELL_PARQUET_PATH_DICT = META_CELL_PARQUET_PATH_DICT
+        self.META_CELL_PSEUDOBULK_RECORDS_PATH_DICT = (
+            META_CELL_PSEUDOBULK_RECORDS_PATH_DICT
+        )
 
     @property
     def DATASET_METADATA(self):
@@ -68,19 +78,20 @@ class Metadata:
         use_snap_table = snap_table[snap_table["dataset"] == dataset_name].copy()
         return use_snap_table
 
-    def get_metacell_adata_path(self, key):
+    def get_misc_data_path(self, key, path_attr):
         """
-        Get the metacell adata path from the dictionary.
+        Get the misc data path from the dictionary.
         """
         if isinstance(key, tuple):
             key = ",".join(key)
-        if "metacell_adata_path_dict" not in self._cache:
-            d = joblib.load(self.META_CELL_ADATA_PATH_DICT)
-            self._cache["metacell_adata_path_dict"] = {
-                ",".join(k): v for k, v in d.items()
-            }
 
-        path_dict = self._cache["metacell_adata_path_dict"]
+        try:
+            path_dict = self._cache[path_attr]
+        except KeyError:
+            d = joblib.load(getattr(self, path_attr))
+            self._cache[path_attr] = {",".join(k): v for k, v in d.items()}
+            path_dict = self._cache[path_attr]
+
         try:
             return path_dict[key]
         except KeyError:
@@ -89,6 +100,24 @@ class Metadata:
                 f"Key {key} not found in the dictionary."
                 + (f" Possible keys are {startswith}" if len(startswith) > 0 else "")
             ) from None
+
+    def get_metacell_adata_path(self, key):
+        """
+        Get the metacell adata path from the dictionary.
+        """
+        return self.get_misc_data_path(key, "META_CELL_ADATA_PATH_DICT")
+
+    def get_metacell_parquet_path(self, key):
+        """
+        Get the metacell parquet path from the dictionary.
+        """
+        return self.get_misc_data_path(key, "META_CELL_PARQUET_PATH_DICT")
+
+    def get_metacell_pseudobulk_records_path(self, key):
+        """
+        Get the metacell pseudobulk records path from the dictionary.
+        """
+        return self.get_misc_data_path(key, "META_CELL_PSEUDOBULK_RECORDS_PATH_DICT")
 
 
 metadata = Metadata()
