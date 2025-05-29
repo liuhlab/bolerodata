@@ -164,22 +164,6 @@ class Dataset:
     def get_meta_cell_adata_path(self, kind: str = "metadata", subset_name: str = None):
         """
         Get the path to the meta cell adata file.
-
-        Parameters
-        ----------
-        kind: str
-            The kind of meta cell adata file to get:
-            - "metadata": metadata and embedding only
-            - "gene": gene expression data
-            - "peak": peak count data
-            - "cell": cell level metadata and embedding only
-        subset_name: str
-            The name of the subset to get. If None, return the full dataset.
-
-        Returns
-        -------
-        str
-            The path to the meta cell adata file.
         """
         assert kind in [
             "metadata",
@@ -199,7 +183,23 @@ class Dataset:
         """
         Get the meta cell adata object.
 
-        See `get_meta_cell_adata_path` for more details.
+        Parameters
+        ----------
+        kind: str
+            The kind of meta cell adata file to get:
+            - "metadata": metadata and embedding only
+            - "gene": gene expression data
+            - "peak": peak count data
+            - "cell": cell level metadata and embedding only
+        subset_name: str
+            The name of the subset to get. If None, return the full dataset.
+        backed: str or None
+            If not None, load the adata in backed mode. This is useful for large datasets.
+
+        Returns
+        -------
+        anndata.AnnData
+            The meta cell adata object.
         """
         path = self.get_meta_cell_adata_path(kind, subset_name)
         adata = anndata.read_h5ad(path, backed=backed)
@@ -208,20 +208,6 @@ class Dataset:
     def get_meta_cell_parquet_path(self, kind: str, subset_name: str = None):
         """
         Get the path to the meta cell parquet dataset dir.
-
-        Parameters
-        ----------
-        kind: str
-            The kind of meta cell parquet dataset to get:
-            - "1bp": parquet dataset with 1bp resolution, 100kb window, 90kb step
-            - "32bp": parquet dataset with 32bp resolution, 600kb window, 200kb step
-        subset_name: str
-            The name of the subset to get. If None, return the full dataset.
-
-        Returns
-        -------
-        str
-            The path to the meta cell parquet file.
         """
         assert kind in ["1bp", "32bp"], f"kind must be one of ['1bp', '32bp'], got {kind}"
         key = [kind, self.name]
