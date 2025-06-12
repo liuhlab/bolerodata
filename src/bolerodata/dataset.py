@@ -25,6 +25,18 @@ class Dataset:
         self.meta_cell_groups = _gs.split(",") if isinstance(_gs, str) else []
 
     @property
+    def Genome(self):
+        """
+        Return a bolero.Genome object for the dataset genome.
+        """
+        genome_obj = self._cache.get('_genome_obj', None)
+        if genome_obj is None:
+            from bolero import Genome
+
+            self._cache['_genome_obj'] = Genome(self.genome)
+        return self._cache['_genome_obj']
+
+    @property
     def cell_metadata(self) -> pd.DataFrame:
         """
         Standard minimum cell metadata table.
@@ -161,6 +173,29 @@ class Dataset:
             )
         return self._cache["within_dataset_cell_embedding"]
 
+    @property
+    def chromvar_adata(self):
+        adata = self._cache.get("chromvar_adata", None)
+        if adata is None:
+            chromvar_path = self.metadata.get("chromvar_within_dataset", None)
+            if chromvar_path is None:
+                raise ValueError(
+                    f"Dataset {self.name} does not have chromvar data. "
+                    "Please check the dataset metadata."
+                )
+
+            genome = self.Genome
+            motif_db = genome.get_motif_db()
+            motif_names = pd.Series(
+                {mid: motif.name for mid, motif in motif_db.motif_id_dict.items()}
+            )
+
+            adata = anndata.read_h5ad(chromvar_path)
+            adata.var["motif_name"] = motif_names
+
+            self._cache["chromvar_adata"] = adata
+        return adata
+
     def get_meta_cell_adata_path(self, kind: str = "metadata", subset_name: str = None):
         """
         Get the path to the meta cell adata file.
@@ -209,7 +244,10 @@ class Dataset:
         """
         Get the path to the meta cell parquet dataset dir.
         """
-        assert kind in ["1bp", "32bp"], f"kind must be one of ['1bp', '32bp'], got {kind}"
+        assert kind in [
+            "1bp",
+            "32bp",
+        ], f"kind must be one of ['1bp', '32bp'], got {kind}"
         key = [kind, self.name]
         if subset_name:
             key.append(subset_name)
@@ -235,12 +273,16 @@ class Dataset:
             The path to the meta cell pseudobulk records file.
         """
         kind = str(int(kind))
-        assert kind in ["5000000", "25000000"], f"kind must be one of [5000000, 25000000], got {kind}"
+        assert kind in [
+            "5000000",
+            "25000000",
+        ], f"kind must be one of [5000000, 25000000], got {kind}"
         key = [kind, self.name]
         if subset_name:
             key.append(subset_name)
         key = ",".join(key)
         return metadata.get_metacell_pseudobulk_records_path(key)
+
 
 class Datasets:
     def __init__(self):
