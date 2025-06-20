@@ -35,6 +35,39 @@ META_CELL_PARQUET_PATH_DICT = (
 META_CELL_PSEUDOBULK_RECORDS_PATH_DICT = (
     STANDARD_DIR / "file_path_table/meta_cell.pseudobulk_records_path.joblib"
 )
+# dataset files patch
+CTXGlutBenchmarkDir = "/large_storage/zhoulab/hanliu/250618-MouseBrainGeneralization"
+PATH_PATCH_DICT = {
+    "META_CELL_ADATA_PATH_DICT": {
+        (
+            "peak",
+            "Zu2023Nature",
+            "CTXGlutBenchmark",
+        ): f"{CTXGlutBenchmarkDir}/metacell_dataset/adata/Zu2023Nature+CTXGlut.meta_cell.peak_count.h5ad",
+        (
+            "cell",
+            "Zu2023Nature",
+            "CTXGlutBenchmark",
+        ): f"{CTXGlutBenchmarkDir}/metacell_dataset/adata/Zu2023Nature+CTXGlut.cell.h5ad",
+        (
+            "metadata",
+            "Zu2023Nature",
+            "CTXGlutBenchmark",
+        ): f"{CTXGlutBenchmarkDir}/metacell_dataset/adata/Zu2023Nature+CTXGlut.metacell.h5ad",
+    },
+    "META_CELL_PARQUET_PATH_DICT": {
+        (
+            "1bp",
+            "Zu2023Nature",
+            "CTXGlutBenchmark",
+        ): f"{CTXGlutBenchmarkDir}/metacell_dataset/parquet/Zu2023Nature-MetaCell-1bp",
+        (
+            "32bp",
+            "Zu2023Nature",
+            "CTXGlutBenchmark",
+        ): f"{CTXGlutBenchmarkDir}/metacell_dataset/parquet/Zu2023Nature-MetaCell-32bp",
+    },
+}
 
 
 class Metadata:
@@ -89,6 +122,11 @@ class Metadata:
             path_dict = self._cache[path_attr]
         except KeyError:
             d = joblib.load(getattr(self, path_attr))
+
+            # any spatial patch for non-standard datasets
+            patch = PATH_PATCH_DICT.get(path_attr, {})
+            d.update(patch)
+
             self._cache[path_attr] = {",".join(k): v for k, v in d.items()}
             path_dict = self._cache[path_attr]
 
