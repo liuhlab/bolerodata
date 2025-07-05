@@ -35,6 +35,9 @@ META_CELL_PARQUET_PATH_DICT = (
 META_CELL_PSEUDOBULK_RECORDS_PATH_DICT = (
     STANDARD_DIR / "file_path_table/meta_cell.pseudobulk_records_path.joblib"
 )
+META_CELL_COND_PSEUDOBULK_RECORDS_PATH_DICT = (
+    STANDARD_DIR / "file_path_table/meta_cell.condition_pseudobulk_records_path.joblib"
+) 
 # dataset files patch
 CTXGlutBenchmarkDir = "/large_storage/zhoulab/hanliu/250618-MouseBrainGeneralization"
 PATH_PATCH_DICT = {
@@ -83,6 +86,9 @@ class Metadata:
         self.META_CELL_PARQUET_PATH_DICT = META_CELL_PARQUET_PATH_DICT
         self.META_CELL_PSEUDOBULK_RECORDS_PATH_DICT = (
             META_CELL_PSEUDOBULK_RECORDS_PATH_DICT
+        )
+        self.META_CELL_COND_PSEUDOBULK_RECORDS_PATH_DICT = (
+            META_CELL_COND_PSEUDOBULK_RECORDS_PATH_DICT
         )
 
     @property
@@ -157,6 +163,11 @@ class Metadata:
         """
         return self.get_misc_data_path(key, "META_CELL_PSEUDOBULK_RECORDS_PATH_DICT")
 
+    def get_metacell_cond_pseudobulk_records_path(self, key):
+        """
+        Get the metacell condition pseudobulk records path from the dictionary.
+        """
+        return self.get_misc_data_path(key, "META_CELL_COND_PSEUDOBULK_RECORDS_PATH_DICT")
 
 metadata = Metadata()
 

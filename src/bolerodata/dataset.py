@@ -254,7 +254,7 @@ class Dataset:
         key = ",".join(key)
         return metadata.get_metacell_parquet_path(key)
 
-    def get_meta_cell_pseudobulk_records_path(self, kind: str, subset_name: str = None):
+    def get_meta_cell_pseudobulk_records_path(self, kind: str, subset_name: str = None, cond=False):
         """
         Get the path to the meta cell pseudobulk records file.
 
@@ -281,8 +281,16 @@ class Dataset:
         if subset_name:
             key.append(subset_name)
         key = ",".join(key)
-        return metadata.get_metacell_pseudobulk_records_path(key)
+        if cond:
+            return metadata.get_metacell_cond_pseudobulk_records_path(key)
+        else:
+            return metadata.get_metacell_pseudobulk_records_path(key)
 
+    def get_meta_cell_cond_pseudobulk_records_path(self, kind: str, subset_name: str = None):
+        """
+        Get the path to the meta cell condition pseudobulk records file.
+        """
+        return self.get_meta_cell_pseudobulk_records_path(kind, subset_name, cond=True)
 
 class Datasets:
     def __init__(self):
