@@ -2,6 +2,7 @@ import pandas as pd
 import pathlib
 import os
 import joblib
+from _path_patch import PATH_PATCH_DICT
 
 DEFAULT_STANDARD_DIR = "/large_storage/zhoulab/hanliu/wmb/standard"
 
@@ -37,40 +38,7 @@ META_CELL_PSEUDOBULK_RECORDS_PATH_DICT = (
 )
 META_CELL_COND_PSEUDOBULK_RECORDS_PATH_DICT = (
     STANDARD_DIR / "file_path_table/meta_cell.condition_pseudobulk_records_path.joblib"
-) 
-# dataset files patch
-CTXGlutBenchmarkDir = "/large_storage/zhoulab/hanliu/250618-MouseBrainGeneralization"
-PATH_PATCH_DICT = {
-    "META_CELL_ADATA_PATH_DICT": {
-        (
-            "peak",
-            "Zu2023Nature",
-            "CTXGlutBenchmark",
-        ): f"{CTXGlutBenchmarkDir}/metacell_dataset/adata/Zu2023Nature+CTXGlut.meta_cell.peak_count.h5ad",
-        (
-            "cell",
-            "Zu2023Nature",
-            "CTXGlutBenchmark",
-        ): f"{CTXGlutBenchmarkDir}/metacell_dataset/adata/Zu2023Nature+CTXGlut.cell.h5ad",
-        (
-            "metadata",
-            "Zu2023Nature",
-            "CTXGlutBenchmark",
-        ): f"{CTXGlutBenchmarkDir}/metacell_dataset/adata/Zu2023Nature+CTXGlut.metacell.h5ad",
-    },
-    "META_CELL_PARQUET_PATH_DICT": {
-        (
-            "1bp",
-            "Zu2023Nature",
-            "CTXGlutBenchmark",
-        ): f"{CTXGlutBenchmarkDir}/metacell_dataset/parquet/Zu2023Nature-MetaCell-1bp",
-        (
-            "32bp",
-            "Zu2023Nature",
-            "CTXGlutBenchmark",
-        ): f"{CTXGlutBenchmarkDir}/metacell_dataset/parquet/Zu2023Nature-MetaCell-32bp",
-    },
-}
+)
 
 
 class Metadata:
@@ -167,7 +135,10 @@ class Metadata:
         """
         Get the metacell condition pseudobulk records path from the dictionary.
         """
-        return self.get_misc_data_path(key, "META_CELL_COND_PSEUDOBULK_RECORDS_PATH_DICT")
+        return self.get_misc_data_path(
+            key, "META_CELL_COND_PSEUDOBULK_RECORDS_PATH_DICT"
+        )
+
 
 metadata = Metadata()
 
