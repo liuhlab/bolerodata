@@ -2,7 +2,7 @@ import pandas as pd
 import pathlib
 import os
 import joblib
-from _path_patch import PATH_PATCH_DICT
+from ._path_patch import PATH_PATCH_DICT
 
 DEFAULT_STANDARD_DIR = "/large_storage/zhoulab/hanliu/wmb/standard"
 

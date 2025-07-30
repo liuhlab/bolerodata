@@ -30,7 +30,7 @@ for emb_type in ["PVI", "PANVI", "SCVI", "SCANVI", "STATE"]:
             "32bp",
             "HumanBrainDev",
             emb_type,
-        ): f"{EmbeddingBenchmarkDir}/metacell_dataset/parquet/HumanBrainDev+{emb_type}/HumanBrainDev-MetaCell-32bp",
+        ): f"{EmbeddingBenchmarkDir}/parquet/HumanBrainDev+{emb_type}/HumanBrainDev-MetaCell-32bp",
     }
     human_brain_dev_parquet_paths.update(_d)
 
@@ -83,7 +83,7 @@ PATH_PATCH_DICT = {
             "32bp",
             "Zu2023Nature",
             "CTXGlutPVI",
-        ): f"{EmbeddingBenchmarkDir}/metacell_dataset/parquet/Zu2023Nature+CTXGlutPVI/Zu2023Nature-MetaCell-32bp",
+        ): f"{EmbeddingBenchmarkDir}/parquet/Zu2023Nature+CTXGlutPVI/Zu2023Nature-MetaCell-32bp",
         **human_brain_dev_parquet_paths,
     },
 }
