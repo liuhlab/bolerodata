@@ -39,6 +39,9 @@ META_CELL_PSEUDOBULK_RECORDS_PATH_DICT = (
 META_CELL_COND_PSEUDOBULK_RECORDS_PATH_DICT = (
     STANDARD_DIR / "file_path_table/meta_cell.condition_pseudobulk_records_path.joblib"
 )
+META_CELL_METADATA_PSEUDOBULK_RECORDS_PATH_DICT = (
+    STANDARD_DIR / "file_path_table/meta_cell.metadata_pseudobulk_records_path.joblib"
+)
 
 
 class Metadata:
@@ -57,6 +60,9 @@ class Metadata:
         )
         self.META_CELL_COND_PSEUDOBULK_RECORDS_PATH_DICT = (
             META_CELL_COND_PSEUDOBULK_RECORDS_PATH_DICT
+        )
+        self.META_CELL_METADATA_PSEUDOBULK_RECORDS_PATH_DICT = (
+            META_CELL_METADATA_PSEUDOBULK_RECORDS_PATH_DICT
         )
 
     @property
@@ -137,6 +143,14 @@ class Metadata:
         """
         return self.get_misc_data_path(
             key, "META_CELL_COND_PSEUDOBULK_RECORDS_PATH_DICT"
+        )
+
+    def get_metacell_metadata_pseudobulk_records_path(self, key):
+        """
+        Get the metacell metadata pseudobulk records path from the dictionary.
+        """
+        return self.get_misc_data_path(
+            key, "META_CELL_METADATA_PSEUDOBULK_RECORDS_PATH_DICT"
         )
 
 

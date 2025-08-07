@@ -29,12 +29,12 @@ class Dataset:
         """
         Return a bolero.Genome object for the dataset genome.
         """
-        genome_obj = self._cache.get('_genome_obj', None)
+        genome_obj = self._cache.get("_genome_obj", None)
         if genome_obj is None:
             from bolero import Genome
 
-            self._cache['_genome_obj'] = Genome(self.genome)
-        return self._cache['_genome_obj']
+            self._cache["_genome_obj"] = Genome(self.genome)
+        return self._cache["_genome_obj"]
 
     @property
     def cell_metadata(self) -> pd.DataFrame:
@@ -254,43 +254,71 @@ class Dataset:
         key = ",".join(key)
         return metadata.get_metacell_parquet_path(key)
 
-    def get_meta_cell_pseudobulk_records_path(self, kind: str, subset_name: str = None, cond=False):
+    def get_meta_cell_pseudobulk_records_path(
+        self, target_coverage, subset_name: str = None, pseudobulk_type="condition"
+    ):
         """
         Get the path to the meta cell pseudobulk records file.
 
         Parameters
         ----------
-        kind: str
-            The kind of meta cell pseudobulk records file to get:
+        target_coverage: int
+            The target_coverage of meta cell pseudobulk records file to get:
             - 5000000: pseudobulk records with 5000000 target coverage
             - 25000000: pseudobulk records with 25000000 target coverage
         subset_name: str
             The name of the subset to get. If None, return the full dataset.
+        pseudobulk_type: str or None
+            The type of pseudobulk to get. Must be one of ['embedding', 'condition', 'metadata'].
+            Embedding: pseudobulk grouped based on embedding, containing embedding information only.
+            Condition: pseudobulk grouped based on embedding, containing embedding and condition information.
+            Metadata: pseudobulk grouped based on metadata, containing embedding and condition information.
 
         Returns
         -------
         str
             The path to the meta cell pseudobulk records file.
         """
-        kind = str(int(kind))
-        assert kind in [
+        target_coverage = str(int(target_coverage))
+        assert target_coverage in [
             "5000000",
             "25000000",
-        ], f"kind must be one of [5000000, 25000000], got {kind}"
-        key = [kind, self.name]
+        ], f"target_coverage must be one of [5000000, 25000000], got {target_coverage}"
+        key = [target_coverage, self.name]
         if subset_name:
             key.append(subset_name)
         key = ",".join(key)
-        if cond:
+        if pseudobulk_type == "condition":
             return metadata.get_metacell_cond_pseudobulk_records_path(key)
-        else:
+        elif pseudobulk_type == "metadata":
+            return metadata.get_metacell_metadata_pseudobulk_records_path(key)
+        elif pseudobulk_type == "embedding":
             return metadata.get_metacell_pseudobulk_records_path(key)
+        else:
+            raise ValueError(
+                f"pseudobulk_type must be one of ['embedding', 'condition', 'metadata'], got {pseudobulk_type}"
+            )
 
-    def get_meta_cell_cond_pseudobulk_records_path(self, kind: str, subset_name: str = None):
+    def get_meta_cell_cond_pseudobulk_records_path(
+        self, target_coverage, subset_name: str = None
+    ):
         """
         Get the path to the meta cell condition pseudobulk records file.
         """
-        return self.get_meta_cell_pseudobulk_records_path(kind, subset_name, cond=True)
+        return self.get_meta_cell_pseudobulk_records_path(
+            target_coverage, subset_name, pseudobulk_type="condition"
+        )
+
+    def get_meta_cell_metadata_pseudobulk_records_path(
+        self, target_coverage, subset_name: str = None
+    ):
+        """
+        Get the path to the meta cell metadata pseudobulk records file.
+        """
+        return self.get_meta_cell_pseudobulk_records_path(
+            target_coverage, subset_name, pseudobulk_type="metadata"
+        )
+
 
 class Datasets:
     def __init__(self):
