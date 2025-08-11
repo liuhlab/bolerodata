@@ -96,7 +96,7 @@ class Metadata:
         Get the misc data path from the dictionary.
         """
         if isinstance(key, tuple):
-            key = ",".join(key)
+            key = ",".join(map(str, key))
 
         try:
             path_dict = self._cache[path_attr]
@@ -107,7 +107,7 @@ class Metadata:
             patch = PATH_PATCH_DICT.get(path_attr, {})
             d.update(patch)
 
-            self._cache[path_attr] = {",".join(k): v for k, v in d.items()}
+            self._cache[path_attr] = {",".join(map(str, k)): v for k, v in d.items()}
             path_dict = self._cache[path_attr]
 
         try:
