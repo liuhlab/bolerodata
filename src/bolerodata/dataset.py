@@ -350,6 +350,29 @@ class Datasets:
             dataset = Dataset(name)
             yield dataset
 
+    def get_datasets(self, species=None, genome=None) -> list[Dataset]:
+        datasets = []
+        for dataset in self:
+            if species is not None and dataset.species != species:
+                continue
+            if genome is not None and dataset.genome != genome:
+                continue
+            datasets.append(dataset)
+        return datasets
+
+    def get_datasets_and_subset_names(
+        self, species=None, genome=None
+    ) -> list[tuple[str, str]]:
+        datasets = self.get_datasets(species=species, genome=genome)
+        recs = []
+        for dataset in datasets:
+            subset_list = dataset.meta_cell_groups
+            if len(subset_list) == 0:
+                subset_list = [None]
+            for subset in subset_list:
+                recs.append((dataset.name, subset))
+        return recs
+
 
 DATASETS = Datasets()
 
