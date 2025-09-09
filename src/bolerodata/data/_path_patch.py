@@ -54,6 +54,18 @@ for dataset in ["HumanBrainDev", "AIBSDev"]:
         }
         embedding_benchmark_metadata_pseudobulk_paths.update(_d)
 
+# perturb dataset control group
+_ctrl_dir = "/large_storage/zhoulab/hanliu/wmb/standard/embedding/coverage_pseudobulk_with_condition/control_only"
+control_benchmark_cond_pseudobulk_paths = {
+    (
+        5000000,
+        dataset,
+        "Control",
+    ): f"{_ctrl_dir}/{dataset}.pseudobulk_records_and_cond.cov5000000.joblib"
+    for dataset in ["EE", "KA", "Torpor", "Fear", "Stress", "MultipleSclerosis"]
+}
+
+
 PATH_PATCH_DICT = {
     "META_CELL_ADATA_PATH_DICT": {
         (
@@ -113,6 +125,7 @@ PATH_PATCH_DICT = {
             "CTXGlutPVI",
         ): f"{EmbeddingBenchmarkDir}/pseudobulk/Zu2023Nature+CTXGlutPVI/pseudobulk_records_and_cond.cov5000000.joblib",
         **embedding_benchmark_cond_pseudobulk_paths,
+        **control_benchmark_cond_pseudobulk_paths,
     },
     "META_CELL_METADATA_PSEUDOBULK_RECORDS_PATH_DICT": {
         (
