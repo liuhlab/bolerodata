@@ -1,9 +1,11 @@
 import anndata
 import pandas as pd
+
 from .data import metadata
+from .model_mixin import BorzoiModelMixin
 
 
-class Dataset:
+class Dataset(BorzoiModelMixin):
     def __init__(self, name: str):
         self.name = name
         self._cache = {}
@@ -175,6 +177,7 @@ class Dataset:
 
     @property
     def chromvar_adata(self):
+        """Chromvar adata object."""
         adata = self._cache.get("chromvar_adata", None)
         if adata is None:
             chromvar_path = self.metadata.get("chromvar_within_dataset", None)
@@ -299,6 +302,16 @@ class Dataset:
                 f"pseudobulk_type must be one of ['embedding', 'condition', 'metadata'], got {pseudobulk_type}"
             )
 
+    def get_reference_bigwig_path(self, subset_name: str = None):
+        """
+        Get the path to the reference bigwig file.
+        """
+        key = [self.name]
+        if subset_name:
+            key.append(subset_name)
+        key = ",".join(key)
+        return metadata.get_reference_bigwig_path(key)
+
     def get_meta_cell_cond_pseudobulk_records_path(
         self, target_coverage, subset_name: str = None
     ):
@@ -318,6 +331,15 @@ class Dataset:
         return self.get_meta_cell_pseudobulk_records_path(
             target_coverage, subset_name, pseudobulk_type="metadata"
         )
+
+    def get_borzoi_signal_model_path(
+        self, subset_name: str = None, model_type: str = "SingleDataset.ATAC"
+    ):
+        """
+        Get the path to the borzoi signal model file.
+        """
+        key = (self.name, subset_name, model_type)
+        return metadata.get_borzoi_signal_model_path(key)
 
 
 class Datasets:
@@ -351,11 +373,12 @@ class Datasets:
             yield dataset
 
     def get_datasets(self, species=None, genome=None) -> list[Dataset]:
+        """Get the datasets with the given species and genome."""
         datasets = []
         for dataset in self:
-            if species is not None and dataset.species != species:
+            if species is not None and dataset.species.lower() != species.lower():
                 continue
-            if genome is not None and dataset.genome != genome:
+            if genome is not None and dataset.genome.lower() != genome.lower():
                 continue
             datasets.append(dataset)
         return datasets
@@ -363,6 +386,7 @@ class Datasets:
     def get_datasets_and_subset_names(
         self, species=None, genome=None
     ) -> list[tuple[str, str]]:
+        """Get the datasets and subset names with the given species and genome."""
         datasets = self.get_datasets(species=species, genome=genome)
         recs = []
         for dataset in datasets:

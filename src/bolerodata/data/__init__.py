@@ -1,7 +1,9 @@
-import pandas as pd
-import pathlib
 import os
+import pathlib
+
 import joblib
+import pandas as pd
+
 from ._path_patch import PATH_PATCH_DICT
 
 DEFAULT_STANDARD_DIR = "/large_storage/zhoulab/hanliu/wmb/standard"
@@ -17,8 +19,8 @@ except KeyError:
     # and check if it exists.
     STANDARD_DIR = pathlib.Path(DEFAULT_STANDARD_DIR)
     assert STANDARD_DIR.exists(), (
-        f"Standard directory does not exist. ",
-        f"Please set environment variable STANDARD_DIR to a valid path.",
+        "Standard directory does not exist. ",
+        "Please set environment variable STANDARD_DIR to a valid path.",
     )
 
 
@@ -39,8 +41,16 @@ META_CELL_PSEUDOBULK_RECORDS_PATH_DICT = (
 META_CELL_COND_PSEUDOBULK_RECORDS_PATH_DICT = (
     STANDARD_DIR / "file_path_table/meta_cell.condition_pseudobulk_records_path.joblib"
 )
+META_CELL_REFERENCE_BIGWIG_PATH_DICT = (
+    STANDARD_DIR / "file_path_table/meta_cell.reference_bigwig_path.joblib"
+)
 META_CELL_METADATA_PSEUDOBULK_RECORDS_PATH_DICT = (
     STANDARD_DIR / "file_path_table/meta_cell.metadata_pseudobulk_records_path.joblib"
+)
+
+# Trained Model files
+BORZOI_SIGNAL_MODEL_PATH = (
+    STANDARD_DIR / "file_path_table/250823_borzoi_signal_model_paths.joblib"
 )
 
 
@@ -61,12 +71,15 @@ class Metadata:
         self.META_CELL_COND_PSEUDOBULK_RECORDS_PATH_DICT = (
             META_CELL_COND_PSEUDOBULK_RECORDS_PATH_DICT
         )
+        self.META_CELL_REFERENCE_BIGWIG_PATH_DICT = META_CELL_REFERENCE_BIGWIG_PATH_DICT
         self.META_CELL_METADATA_PSEUDOBULK_RECORDS_PATH_DICT = (
             META_CELL_METADATA_PSEUDOBULK_RECORDS_PATH_DICT
         )
+        self.BORZOI_SIGNAL_MODEL_PATH = BORZOI_SIGNAL_MODEL_PATH
 
     @property
     def DATASET_METADATA(self):
+        """Misc dataset metadata."""
         if "DATASET_METADATA" not in self._cache:
             _metadata_df = pd.read_table(
                 self._cwd / "dataset_metadata.tsv", index_col=0
@@ -85,6 +98,7 @@ class Metadata:
         return self._cache["DATASET_METADATA"]
 
     def get_sample_snap_files(self, dataset_name):
+        """Get the sample snap files table."""
         if "sample_snap_table" not in self._cache:
             self._cache["sample_snap_table"] = pd.read_csv(self.SAMPLE_SNAP_TABLE_PATH)
         snap_table = self._cache["sample_snap_table"]
@@ -145,6 +159,12 @@ class Metadata:
             key, "META_CELL_COND_PSEUDOBULK_RECORDS_PATH_DICT"
         )
 
+    def get_reference_bigwig_path(self, key):
+        """
+        Get the reference bigwig path from the dictionary.
+        """
+        return self.get_misc_data_path(key, "META_CELL_REFERENCE_BIGWIG_PATH_DICT")
+
     def get_metacell_metadata_pseudobulk_records_path(self, key):
         """
         Get the metacell metadata pseudobulk records path from the dictionary.
@@ -152,6 +172,12 @@ class Metadata:
         return self.get_misc_data_path(
             key, "META_CELL_METADATA_PSEUDOBULK_RECORDS_PATH_DICT"
         )
+
+    def get_borzoi_signal_model_path(self, key):
+        """
+        Get the borzoi signal model path from the dictionary.
+        """
+        return self.get_misc_data_path(key, "BORZOI_SIGNAL_MODEL_PATH")
 
 
 metadata = Metadata()
