@@ -48,9 +48,8 @@ META_CELL_METADATA_PSEUDOBULK_RECORDS_PATH_DICT = (
     STANDARD_DIR / "file_path_table/meta_cell.metadata_pseudobulk_records_path.joblib"
 )
 
-# Trained Model files
-BORZOI_SIGNAL_MODEL_PATH = (
-    STANDARD_DIR / "file_path_table/250823_borzoi_signal_model_paths.joblib"
+PSEUDOBULK_GENE_AND_HVG_PATH_DICT = (
+    STANDARD_DIR / "file_path_table/pseudobulk.gene_and_hvg_data.joblib"
 )
 
 
@@ -75,7 +74,7 @@ class Metadata:
         self.META_CELL_METADATA_PSEUDOBULK_RECORDS_PATH_DICT = (
             META_CELL_METADATA_PSEUDOBULK_RECORDS_PATH_DICT
         )
-        self.BORZOI_SIGNAL_MODEL_PATH = BORZOI_SIGNAL_MODEL_PATH
+        self.PSEUDOBULK_GENE_AND_HVG_PATH_DICT = PSEUDOBULK_GENE_AND_HVG_PATH_DICT
 
     @property
     def DATASET_METADATA(self):
@@ -96,6 +95,18 @@ class Metadata:
             )
             self._cache["DATASET_METADATA"] = _metadata_df
         return self._cache["DATASET_METADATA"]
+
+    @property
+    def MODEL_ZOO(self):
+        """Model zoo."""
+        if "MODEL_ZOO" not in self._cache:
+            self._cache["MODEL_ZOO"] = pd.read_table(
+                self._cwd / "model_zoo.tsv", index_col=0
+            )
+            assert (
+                self._cache["MODEL_ZOO"].index.duplicated().sum() == 0
+            ), "Model zoo table has duplicated index."
+        return self._cache["MODEL_ZOO"]
 
     def get_sample_snap_files(self, dataset_name):
         """Get the sample snap files table."""
@@ -173,11 +184,11 @@ class Metadata:
             key, "META_CELL_METADATA_PSEUDOBULK_RECORDS_PATH_DICT"
         )
 
-    def get_borzoi_signal_model_path(self, key):
+    def get_pseudobulk_gene_and_hvg_path(self, key):
         """
-        Get the borzoi signal model path from the dictionary.
+        Get the pseudobulk gene and hvg path from the dictionary.
         """
-        return self.get_misc_data_path(key, "BORZOI_SIGNAL_MODEL_PATH")
+        return self.get_misc_data_path(key, "PSEUDOBULK_GENE_AND_HVG_PATH_DICT")
 
 
 metadata = Metadata()

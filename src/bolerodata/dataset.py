@@ -2,10 +2,9 @@ import anndata
 import pandas as pd
 
 from .data import metadata
-from .model_mixin import BorzoiModelMixin
 
 
-class Dataset(BorzoiModelMixin):
+class Dataset:
     def __init__(self, name: str):
         self.name = name
         self._cache = {}
@@ -332,14 +331,25 @@ class Dataset(BorzoiModelMixin):
             target_coverage, subset_name, pseudobulk_type="metadata"
         )
 
-    def get_borzoi_signal_model_path(
-        self, subset_name: str = None, model_type: str = "SingleDataset.ATAC"
-    ):
+    def get_pseudobulk_gene_data_path(self, subset_name: str = None):
         """
-        Get the path to the borzoi signal model file.
+        Get the path to the pseudobulk gene data file.
         """
-        key = (self.name, subset_name, model_type)
-        return metadata.get_borzoi_signal_model_path(key)
+        key = ["gene_count", self.name]
+        if subset_name:
+            key.append(subset_name)
+        key = ",".join(key)
+        return metadata.get_pseudobulk_gene_and_hvg_path(key)
+
+    def get_pseudobulk_hvg_list_path(self, subset_name: str = None):
+        """
+        Get the path to the pseudobulk hvg list file.
+        """
+        key = ["hvg_list", self.name]
+        if subset_name:
+            key.append(subset_name)
+        key = ",".join(key)
+        return metadata.get_pseudobulk_gene_and_hvg_path(key)
 
 
 class Datasets:
