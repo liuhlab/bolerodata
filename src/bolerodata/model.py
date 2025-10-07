@@ -63,7 +63,7 @@ class BoleroModel:
     model_config: dict
     ckpt_path: pathlib.Path
     _has_gene_count_head: bool
-    _motif_score_input: bool
+    _tf_score_input: bool
     model_group: str
     default_dataset: str
     _current_dataset: "Dataset | None"
@@ -80,7 +80,7 @@ class BoleroModel:
             pathlib.Path(self.model_metadata["CkptPath"]).absolute().resolve()
         )
         self._has_gene_count_head = self.model_metadata["Gene Count Head"]
-        self._motif_score_input = self.model_metadata["Motif Score Input"]
+        self._tf_score_input = self.model_metadata["TF Score Input"]
 
         self.model_group = self.model_metadata["ModelGroup"]
 
@@ -286,7 +286,7 @@ class BoleroModel:
             f"BoleroModel(model_key={self.model_key})\n"
             f"  - Model group: {self.model_group}\n"
             f"  - Has gene count head: {self._has_gene_count_head}\n"
-            f"  - Motif score input: {self._motif_score_input}\n"
+            f"  - TF score input: {self._tf_score_input}\n"
             f"  - Current Dataset: {_ds}\n"
         )
         return doc
