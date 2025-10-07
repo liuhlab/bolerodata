@@ -85,14 +85,13 @@ class BoleroModel:
         self.model_group = self.model_metadata["ModelGroup"]
 
         self.default_dataset = self.model_metadata["DefaultDataset"]
-        if isinstance(self.default_dataset, str):
-            self._current_dataset = DATASETS[self.default_dataset]
-        else:
-            self._current_dataset = None
+        self._current_dataset = None
 
     @property
     def dataset(self) -> "Dataset":
         """Get the dataset for the model."""
+        if self._current_dataset is None and isinstance(self.default_dataset, str):
+            self._current_dataset = DATASETS[self.default_dataset]
         assert self._current_dataset is not None, "Dataset is not set"
         return self._current_dataset
 
