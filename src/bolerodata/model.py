@@ -130,6 +130,7 @@ class BoleroModel:
         self,
         subset_name: str = None,
         pseudobulk_records_path: str = None,
+        pseudobulk_ids: list[str] = None,
         target_cov: int = 5000000,
         pseudobulk_type: str = "condition",
         sample_n_pseudobulks: int = 100,
@@ -147,6 +148,8 @@ class BoleroModel:
             The name of the subset to create the predictor for.
         pseudobulk_records_path: str
             The path to the pseudobulk records file, if None, will use the dataset's default pseudobulk records file.
+        pseudobulk_ids: list[str]
+            The list of pseudobulk ids to use. If None, will use all pseudobulk ids in the pseudobulk records file.
         peak_bed_path: str
             The path to the peak bed file. If None, will use the dataset's default peak bed file.
         pseudobulk_type: str
@@ -179,7 +182,8 @@ class BoleroModel:
             )
         kwargs["pseudobulk_records_path"] = pseudobulk_records_path
         pseudobulk_records = joblib.load(pseudobulk_records_path)
-        pseudobulk_ids = list(pseudobulk_records["pseudobulk_records"].keys())
+        if pseudobulk_ids is None:
+            pseudobulk_ids = list(pseudobulk_records["pseudobulk_records"].keys())
         if len(pseudobulk_ids) > sample_n_pseudobulks:
             pseudobulk_ids = sorted(
                 pd.Series(pseudobulk_ids)
