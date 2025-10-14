@@ -18,17 +18,30 @@ class QTLCollection:
         """Tissue list."""
         return self._path_table["BioType"].unique().tolist()
 
-    def get_qtl_path(self, tissue: str, gene_sel: str = "protein_coding") -> str:
+    def get_qtl_path(self, key: str) -> str:
         """Get the QTL path."""
-        key = f"GTEx.{tissue}.{gene_sel}"
         return self._path_table.loc[key, "FilePath"]
 
-    def get_qtl_table(
+    def get_qtl_table(self, *args, **kwargs) -> pd.DataFrame:
+        """Get the QTL data."""
+        return pd.read_feather(self.get_qtl_path(*args, **kwargs))
+
+
+class GTExQTLCollection(QTLCollection):
+    def get_qtl_path(
         self, tissue: str, gene_sel: str = "protein_coding"
     ) -> pd.DataFrame:
-        """Get the QTL data."""
-        return pd.read_feather(self.get_qtl_path(tissue, gene_sel))
+        """Get the QTL path."""
+        key = f"GTEx.{tissue}.{gene_sel}"
+        return super().get_qtl_path(key)
 
 
-GTEx = QTLCollection("GTEx")
-Zeng2024 = QTLCollection("Zeng2024")
+class Zeng2024QTLCollection(QTLCollection):
+    def get_qtl_path(self, cell_type: str) -> pd.DataFrame:
+        """Get the QTL path."""
+        key = f"Zeng2024Science.{cell_type}"
+        return super().get_qtl_path(key)
+
+
+GTEx = GTExQTLCollection("GTEx")
+Zeng2024 = Zeng2024QTLCollection("Zeng2024Science")

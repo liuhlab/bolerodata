@@ -1,4 +1,4 @@
-DatasetKey	Source	QTLType	BioType	SuSiEPIPFilter	PvalFilter	GeneSel	FilePath
+DatasetKey	Source	QTLType	TissueORCellType	SuSiEPIPFilter	PvalFilter	GeneSel	FilePath
 GTEx.Adipose_Subcutaneous.all_gene	GTEx	eQTL	Adipose_Subcutaneous	TRUE	TRUE	all_gene	/large_storage/zhoulab/hanliu/wmb/GTEx/GTEx_v10_eQTL_borzoi_region/Adipose_Subcutaneous.BorzoiGeneRegion.hg38.GTEx_v10_eQTL.sig_pairs.fine_mapped.all_gene.snp_only.feather
 GTEx.Adipose_Subcutaneous.protein_coding	GTEx	eQTL	Adipose_Subcutaneous	TRUE	TRUE	protein_coding	/large_storage/zhoulab/hanliu/wmb/GTEx/GTEx_v10_eQTL_borzoi_region/Adipose_Subcutaneous.BorzoiGeneRegion.hg38.GTEx_v10_eQTL.sig_pairs.fine_mapped.protein_coding.snp_only.feather
 GTEx.Adipose_Visceral_Omentum.all_gene	GTEx	eQTL	Adipose_Visceral_Omentum	TRUE	TRUE	all_gene	/large_storage/zhoulab/hanliu/wmb/GTEx/GTEx_v10_eQTL_borzoi_region/Adipose_Visceral_Omentum.BorzoiGeneRegion.hg38.GTEx_v10_eQTL.sig_pairs.fine_mapped.all_gene.snp_only.feather
@@ -99,5 +99,5 @@ GTEx.Vagina.all_gene	GTEx	eQTL	Vagina	TRUE	TRUE	all_gene	/large_storage/zhoulab/
 GTEx.Vagina.protein_coding	GTEx	eQTL	Vagina	TRUE	TRUE	protein_coding	/large_storage/zhoulab/hanliu/wmb/GTEx/GTEx_v10_eQTL_borzoi_region/Vagina.BorzoiGeneRegion.hg38.GTEx_v10_eQTL.sig_pairs.fine_mapped.protein_coding.snp_only.feather
 GTEx.Whole_Blood.all_gene	GTEx	eQTL	Whole_Blood	TRUE	TRUE	all_gene	/large_storage/zhoulab/hanliu/wmb/GTEx/GTEx_v10_eQTL_borzoi_region/Whole_Blood.BorzoiGeneRegion.hg38.GTEx_v10_eQTL.sig_pairs.fine_mapped.all_gene.snp_only.feather
 GTEx.Whole_Blood.protein_coding	GTEx	eQTL	Whole_Blood	TRUE	TRUE	protein_coding	/large_storage/zhoulab/hanliu/wmb/GTEx/GTEx_v10_eQTL_borzoi_region/Whole_Blood.BorzoiGeneRegion.hg38.GTEx_v10_eQTL.sig_pairs.fine_mapped.protein_coding.snp_only.feather
-Zeng2024.Neuron	Zeng2024Science	caQTL	Neuron	TRUE	TRUE
-Zeng2024.Glia	Zeng2024Science	caQTL	Glia	TRUE	TRUE
+Zeng2024Science.Neuron	Zeng2024Science	caQTL	Neuron	TRUE	TRUE		/large_storage/zhoulab/hanliu/wmb/Zeng2024Science/Zeng2024Science.Neuron.sig_caqtl.fine_mapped.feather
+Zeng2024Science.Glia	Zeng2024Science	caQTL	Glia	TRUE	TRUE		/large_storage/zhoulab/hanliu/wmb/Zeng2024Science/Zeng2024Science.Glia.sig_caqtl.fine_mapped.feather
