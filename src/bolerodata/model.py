@@ -76,6 +76,7 @@ class BoleroModel:
         )
         with open(self.config_path) as f:
             self.model_config = json.load(f)
+
         self.ckpt_path = (
             pathlib.Path(self.model_metadata["CkptPath"]).absolute().resolve()
         )
@@ -235,7 +236,7 @@ class BoleroModel:
         config = {
             "checkpoint_path": str(self.ckpt_path),
             "genome": self.dataset.genome,
-            "train_config": str(self.config_path),
+            "train_config": self.model_config,
             "pseudobulk_records_path": pseudobulk_records_path,
             "dataset_path": db_path,
             "peak_path": peak_bed_path,
@@ -267,7 +268,7 @@ class BoleroModel:
 
         config = {
             "checkpoint_path": str(self.ckpt_path),
-            "train_config": str(self.config_path),
+            "train_config": self.model_config,
             "peak_path": peak_bed_path,
             "designs": pseudobulk_ids,
             "pseudobulk_records_path": pseudobulk_records_path,

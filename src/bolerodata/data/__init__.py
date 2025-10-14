@@ -108,6 +108,15 @@ class Metadata:
             ), "Model zoo table has duplicated index."
         return self._cache["MODEL_ZOO"]
 
+    @property
+    def QTL_COLLECTION(self):
+        """QTL collection."""
+        if "QTL_COLLECTION" not in self._cache:
+            self._cache["QTL_COLLECTION"] = pd.read_table(
+                self._cwd / "qtl_collection.tsv", index_col=0
+            )
+        return self._cache["QTL_COLLECTION"]
+
     def get_sample_snap_files(self, dataset_name):
         """Get the sample snap files table."""
         if "sample_snap_table" not in self._cache:
