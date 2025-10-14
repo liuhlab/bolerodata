@@ -3,9 +3,10 @@ import pandas as pd
 from .data import metadata
 
 
-class GTExCollection:
-    def __init__(self):
-        self._path_table = metadata.QTL_COLLECTION.query("Source == 'GTEx'")
+class QTLCollection:
+    def __init__(self, source: str):
+        self.source: str = source
+        self._path_table = metadata.QTL_COLLECTION.query(f"Source == '{source}'")
 
     @property
     def qtl_path_table(self) -> pd.DataFrame:
@@ -29,4 +30,5 @@ class GTExCollection:
         return pd.read_feather(self.get_qtl_path(tissue, gene_sel))
 
 
-GTEx = GTExCollection()
+GTEx = QTLCollection("GTEx")
+Zeng2024 = QTLCollection("Zeng2024")
