@@ -100,4 +100,6 @@ GTEx.Vagina.protein_coding	GTEx	eQTL	Vagina	TRUE	TRUE	protein_coding	/large_stor
 GTEx.Whole_Blood.all_gene	GTEx	eQTL	Whole_Blood	TRUE	TRUE	all_gene	/large_storage/zhoulab/hanliu/wmb/GTEx/GTEx_v10_eQTL_borzoi_region/Whole_Blood.BorzoiGeneRegion.hg38.GTEx_v10_eQTL.sig_pairs.fine_mapped.all_gene.snp_only.feather
 GTEx.Whole_Blood.protein_coding	GTEx	eQTL	Whole_Blood	TRUE	TRUE	protein_coding	/large_storage/zhoulab/hanliu/wmb/GTEx/GTEx_v10_eQTL_borzoi_region/Whole_Blood.BorzoiGeneRegion.hg38.GTEx_v10_eQTL.sig_pairs.fine_mapped.protein_coding.snp_only.feather
 Zeng2024Science.Neuron	Zeng2024Science	caQTL	Neuron	TRUE	TRUE		/large_storage/zhoulab/hanliu/wmb/Zeng2024Science/Zeng2024Science.Neuron.sig_caqtl.fine_mapped.feather
+Zeng2024Science.Neuron.all_pair	Zeng2024Science	caQTL	Neuron	FALSE	TRUE		/large_storage/zhoulab/hanliu/wmb/Zeng2024Science/Zeng2024Science.Neuron.all_caqtl.fine_mapped.feather
 Zeng2024Science.Glia	Zeng2024Science	caQTL	Glia	TRUE	TRUE		/large_storage/zhoulab/hanliu/wmb/Zeng2024Science/Zeng2024Science.Glia.sig_caqtl.fine_mapped.feather
+Zeng2024Science.Neuron.all_pair	Zeng2024Science	caQTL	Glia	FALSE	TRUE		/large_storage/zhoulab/hanliu/wmb/Zeng2024Science/Zeng2024Science.Glia.all_caqtl.fine_mapped.feather

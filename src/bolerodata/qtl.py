@@ -16,7 +16,7 @@ class QTLCollection:
     @property
     def tissue_list(self) -> list[str]:
         """Tissue list."""
-        return self._path_table["BioType"].unique().tolist()
+        return self._path_table["TissueORCellType"].unique().tolist()
 
     def get_qtl_path(self, key: str) -> str:
         """Get the QTL path."""
@@ -37,9 +37,11 @@ class GTExQTLCollection(QTLCollection):
 
 
 class Zeng2024QTLCollection(QTLCollection):
-    def get_qtl_path(self, cell_type: str) -> pd.DataFrame:
+    def get_qtl_path(self, cell_type: str, all_pair: bool = False) -> pd.DataFrame:
         """Get the QTL path."""
         key = f"Zeng2024Science.{cell_type}"
+        if all_pair:
+            key += ".all_pair"
         return super().get_qtl_path(key)
 
 
