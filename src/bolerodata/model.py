@@ -215,6 +215,8 @@ class BoleroModel:
             return self._create_multi_dataset_model_predictor(**kwargs)
         elif self.model_group == "BorzoiSignalSingleDS":
             return self._create_single_dataset_model_predictor(**kwargs)
+        elif self.model_group == "Scooby":
+            return self._create_single_dataset_model_predictor(**kwargs)
         else:
             raise ValueError(f"Unknown model group: {self.model_group}")
 
