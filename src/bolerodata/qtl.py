@@ -2,6 +2,10 @@ import pandas as pd
 
 from .data import metadata
 
+QTL_TRAINING_PATH_DIR = (
+    "/large_storage/zhoulab/hanliu/wmb/GTEx/QTLModelTrainingFile/borzoi_regions/"
+)
+
 
 class QTLCollection:
     def __init__(self, source: str):
@@ -34,6 +38,11 @@ class GTExQTLCollection(QTLCollection):
         """Get the QTL path."""
         key = f"GTEx.{tissue}.{gene_sel}"
         return super().get_qtl_path(key)
+
+    def get_qtl_training_path(self, tissue: str) -> str:
+        """Get the QTL path for training QTL models."""
+        path = f"{QTL_TRAINING_PATH_DIR}/{tissue}.qtl_model_regions.feather"
+        return path
 
 
 class Zeng2024QTLCollection(QTLCollection):

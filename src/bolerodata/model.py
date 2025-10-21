@@ -38,6 +38,8 @@ def _get_predictor_class(model_type: str) -> type:
 
 def get_model_dict(model_key: str) -> dict:
     """Get the model record dictionary."""
+    if model_key not in MODEL_ZOO.index:
+        return {}
     data = MODEL_ZOO.loc[model_key].to_dict()
     return data
 
@@ -68,9 +70,12 @@ class BoleroModel:
     default_dataset: str
     _current_dataset: "Dataset | None"
 
-    def __init__(self, model_key: str):
+    def __init__(self, model_key: str, **additional_model_metadata: dict):
         self.model_key = model_key
-        self.model_metadata = get_model_dict(model_key)
+        _model_dict = get_model_dict(model_key)
+        _model_dict.update(additional_model_metadata)
+
+        self.model_metadata = _model_dict
         self.config_path = (
             pathlib.Path(self.model_metadata["ConfigPath"]).absolute().resolve()
         )
@@ -146,8 +151,9 @@ class BoleroModel:
         ----------
         subset_name: str
             The name of the subset to create the predictor for.
-        pseudobulk_records_path: str
+        pseudobulk_records_path: str or dict
             The path to the pseudobulk records file, if None, will use the dataset's default pseudobulk records file.
+            If a dict, will use the pseudobulk records from the dict.
         pseudobulk_ids: list[str]
             The list of pseudobulk ids to use. If None, will use all pseudobulk ids in the pseudobulk records file.
         peak_bed_path: str
@@ -180,8 +186,12 @@ class BoleroModel:
                     pseudobulk_type=pseudobulk_type,
                 )
             )
+
         kwargs["pseudobulk_records_path"] = pseudobulk_records_path
-        pseudobulk_records = joblib.load(pseudobulk_records_path)
+        if not isinstance(pseudobulk_records_path, dict):
+            pseudobulk_records = joblib.load(pseudobulk_records_path)
+        else:
+            pseudobulk_records = pseudobulk_records_path
         if pseudobulk_ids is None:
             pseudobulk_ids = list(pseudobulk_records["pseudobulk_records"].keys())
         if len(pseudobulk_ids) > sample_n_pseudobulks:
