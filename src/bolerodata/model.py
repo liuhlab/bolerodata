@@ -194,7 +194,10 @@ class BoleroModel:
             pseudobulk_records = pseudobulk_records_path
         if pseudobulk_ids is None:
             pseudobulk_ids = list(pseudobulk_records["pseudobulk_records"].keys())
-        if len(pseudobulk_ids) > sample_n_pseudobulks:
+        if (
+            sample_n_pseudobulks is not None
+            and len(pseudobulk_ids) > sample_n_pseudobulks
+        ):
             pseudobulk_ids = sorted(
                 pd.Series(pseudobulk_ids)
                 .sample(sample_n_pseudobulks, random_state=0)
