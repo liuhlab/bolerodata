@@ -142,6 +142,7 @@ class BoleroModel:
         peak_bed_path: str = None,
         nosignal: bool = False,
         use_ref_bw: bool = True,
+        embedding_only_mode: bool = False,
         **kwargs,
     ) -> "GenericPredictor":
         """
@@ -168,6 +169,9 @@ class BoleroModel:
             Whether to use the DNA only (no signal) model.
         use_ref_bw: bool
             Whether to use the reference bigwig file to represent the reference signal.
+        embedding_only_mode: bool
+            Whether to use the embedding only mode to create the predictor.
+            If True, will skip ytrue data preparation and skip all the metrics calculation.
 
         Returns
         -------
@@ -225,6 +229,7 @@ class BoleroModel:
         kwargs["subset_name"] = subset_name
 
         if self.model_group == "BorzoiSignalMultiDS":
+            kwargs["embedding_only_mode"] = embedding_only_mode
             return self._create_multi_dataset_model_predictor(**kwargs)
         elif self.model_group == "BorzoiSignalSingleDS":
             return self._create_single_dataset_model_predictor(**kwargs)
@@ -277,6 +282,7 @@ class BoleroModel:
         nosignal: bool,
         bigwig_paths: dict,
         fixed_p0_meta_cells: list[str],
+        embedding_only_mode: bool,
     ) -> "GenericPredictor":
         if subset_name is None:
             dataset_key = self.dataset.name
@@ -291,6 +297,7 @@ class BoleroModel:
             "pseudobulk_records_path": pseudobulk_records_path,
             "fixed_p0_meta_cells": fixed_p0_meta_cells,
             "nosignal": nosignal,
+            "embedding_only_mode": embedding_only_mode,
             **bigwig_paths,
         }
 
