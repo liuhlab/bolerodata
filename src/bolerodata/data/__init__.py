@@ -117,6 +117,24 @@ class Metadata:
             )
         return self._cache["QTL_COLLECTION"]
 
+    @property
+    def JASPAR_MOTIF_CLUSTER_INFO(self):
+        """JASPAR motif cluster info."""
+        if "JASPAR_MOTIF_CLUSTER_INFO" not in self._cache:
+            self._cache["JASPAR_MOTIF_CLUSTER_INFO"] = pd.read_table(
+                self._cwd / "JASPAR_motif_cluster_info.tsv", index_col=0
+            )
+        return self._cache["JASPAR_MOTIF_CLUSTER_INFO"]
+
+    @property
+    def JASPAR_MOTIF_CLUSTER(self):
+        """JASPAR motif cluster."""
+        if "JASPAR_MOTIF_CLUSTER" not in self._cache:
+            self._cache["JASPAR_MOTIF_CLUSTER"] = pd.read_table(
+                self._cwd / "JASPAR_motif_cluster.tsv", index_col=0
+            )
+        return self._cache["JASPAR_MOTIF_CLUSTER"]
+
     def get_sample_snap_files(self, dataset_name):
         """Get the sample snap files table."""
         if "sample_snap_table" not in self._cache:

@@ -1,0 +1,82 @@
+ClusterID	ClusterName	ClusterDescription
+0	HOX / Homeobox	Homeodomain-containing transcription factors (homeobox family) that bind short TAAT/ATTA-like motifs; key regulators of embryonic patterning, regional identity and organogenesis.
+1	SOX	HMG-box DNA-binding proteins (SOX family) that bend DNA and regulate chromatin accessibility; involved in development and cell fate decisions (neural, gonadal, stem cell maintenance).
+2	TALE Homeobox (MEIS/PKNOX/TGIF)	TALE (three–amino-acid-loop-extension) homeodomain TFs (MEIS, PKNOX, TGIF) that often act as cofactors with HOX proteins to control developmental patterning and transcriptional specificity.
+3	Sensory / Cranial Homeobox	OTX/CRX/PITX family homeodomain TFs involved in cranial, retinal and sensory organ development and differentiation; bind homeodomain motifs and control tissue-specific gene programs.
+4	POU domain TFs	POU-domain transcription factors (POU family: class I–V) that combine POU-specific and POU-homeodomain DNA binding to control cell identity (pluripotency, neural, pituitary).
+5	FOX (Forkhead)	Forkhead (FOX) winged-helix DNA-binding TFs that recognize core TGTTT/G motifs; regulate development, metabolism, and cell fate, including pioneer factors (FOXA) and lineage regulators (FOXP, FOXO).
+6	TFAP2 (AP-2)	AP-2 family transcription factors with a helix-span-helix DNA-binding domain; regulate neural crest, epidermal and developmental gene expression programs.
+7	EBF-group1	EBF family (helix-loop-helix / atypical zinc-finger architecture) transcription factors that bind palindromic motifs and direct B-cell, neuronal and olfactory differentiation.
+8	RFX	RFX family winged-helix TFs that bind X-box motifs; important for ciliogenesis, immune regulation and tissue-specific gene expression.
+9	TFAP2 (extended)	Expanded AP-2 family cluster (including TFAP2E); similar DNA-binding and developmental roles as TFAP2A/B/C with tissue-specific activities.
+10	ETS	ETS-domain TFs that recognize a core GGA(A/T) motif; regulate proliferation, differentiation and vascular / immune programs and frequently act with other TFs (e.g., AP-1, RUNX).
+11	AP-1 / bZIP with 2bp gap	bZIP family AP-1 components (Fos, Jun, ATF, CREB-related) that form homo/heterodimers binding TRE/CRE motifs to regulate stress responses, proliferation and differentiation.
+12	Neuro-bHLH	Class II bHLH neurogenic TFs (e.g., ATOH, NEUROG, OLIG) that bind E-box motifs and drive neuronal and lineage-specific differentiation programs.
+13	RAR / NR2F	Nuclear receptors (RARs and NR2F/COUP-TF) that bind retinoic acid response elements and heterodimerize with RXR to regulate development and differentiation.
+14	ZNF / SP / MAZ	Zinc-finger and SP family TFs (SP/MAZ) that bind GC-rich/GC-box elements; regulate housekeeping, growth and promoter-proximal transcription.
+15	Nuclear Receptors (NR super)	Large nuclear receptor group (ROR, RAR, RXR, PPAR, ERR, REV-ERB etc.) that bind hormone/response elements to control metabolism, circadian rhythm, development and differentiation.
+16	HOX (Late)	Posterior/late-expressed HOX homeodomain TFs involved in distal/late developmental patterning and tissue specification.
+17	bHLH (Clock / Myc family)	bHLH and bHLH-ZIP TFs (CLOCK, ARNT/HIF, MYC/MAX, bHLH-PER/HEY family) that bind E-box motifs and regulate circadian rhythm, hypoxia, proliferation and metabolism.
+18	AP-1 / bZIP with 1bp gap	Extended AP-1 / bZIP family including BATF/MAF/NRF modules that heterodimerize with Jun/Fos and modulate immune, oxidative stress and differentiation responses.
+19	E2F (Cell cycle)	E2F family transcription factors that bind E2F motifs and control cell-cycle entry, DNA replication and S-phase gene expression.
+20	Muscle / Neurogenesis bHLH	Myogenic and neurogenic bHLH TFs (MYF family, ASCL, NEUROD, TCFs) that bind E-box sites to regulate muscle and neuronal lineage commitment and differentiation.
+21	ZBTB7	ZBTB7 (POK family) zinc-finger TFs that combine BTB/POZ and C2H2 zinc-finger domains; function as transcriptional repressors in development and oncogenesis.
+22	KLF / SP (GC-box)	KLF zinc-finger and SP family TFs binding GC/GT boxes; regulate proliferation, differentiation, and housekeeping gene expression.
+23	TBX (T-box)	T-box DNA-binding domain TFs (TBX family) that control mesodermal, cardiac and developmental programs through T-element binding.
+24	NF-κB / REL	REL/NF-κB family Rel-homology domain TFs that bind κB sites to regulate immune, inflammatory and stress response genes.
+25	E2F / DP (Cell cycle)	E2F6/E2F8 and DP family members — atypical E2Fs and DP partners that regulate cell-cycle transcription and transcriptional repression complexes.
+26	GATA	GATA zinc-finger TF family binding WGATAR motifs; master regulators of hematopoiesis, endoderm and cardiac development.
+27	HSF (Heat shock)	Heat shock factor family (HSF) with helix-turn-helix and oligomerization domains; activate heat-shock/chaperone gene expression in stress responses.
+28	EMT / bHLH-Zinc-finger mix	Mixed cluster with EMT zinc-finger TFs (SNAI, ZEB) and bHLH factors (TCFs, ASCL) — regulators of epithelial-to-mesenchymal transition and lineage plasticity.
+29	MEF2	MADS-box/MEF2 family TFs that bind MEF2 sites and regulate muscle, neuronal and developmental gene programs.
+30	ATF / CEBP	ATF (bZIP) and C/EBP (bZIP) family mix — transcription factors binding CRE/CAAT motifs to regulate stress responses, metabolism and differentiation.
+31	ETV/ETS-FIGLA combos	ETS/ETV factors fused or paired with FIGLA/other partners — likely reflect composite motifs where ETS and oocyte/FIGLA-type factors co-occur (developmental/germline contexts).
+32	CREB / ATF family	CREB/ATF family bZIP TFs (CREB3, ATF6, XBP1) that bind CRE/XBP motifs and regulate unfolded protein response, stress and metabolic programs.
+33	IRF	IRF family (Interferon Regulatory Factors) with helix-turn-helix/DBD that bind ISRE/IRF motifs to control antiviral, immune differentiation and interferon signaling.
+34	TEAD	TEAD (TEA/ATTS) family transcription factors that bind MCAT/TEAD motifs and function with YAP/TAZ to regulate growth, organ size and mechanotransduction.
+35	GLIS / VEZF	Krüppel-like/GLIS zinc-finger family and VEZF1 — zinc-finger TFs implicated in vascular development, kidney function and transcriptional regulation.
+36	EGR	EGR (early growth response) zinc-finger TFs that bind GC-rich EGR sites and mediate immediate early responses in growth, differentiation and neuronal activity.
+37	Neuro / mesenchymal bHLH & Twist	bHLH TFs (NEUROD, ATOH, TAL1) and TWIST family basic helix-loop-helix regulators that control neuronal differentiation and mesenchymal/EMT programs.
+38	BARHL homeobox	BARHL family homeodomain TFs important in neuronal differentiation and survival (homeobox DNA-binding, cerebellar/retinal development).
+39	GRHL / TFCP2 (epithelial)	Grainyhead-like (GRHL) and TFCP2 family TFs that regulate epithelial differentiation, barrier function and morphogenesis.
+40	SREBF (lipogenesis)	SREBP (SREBF) bHLH-ZIP transcription factors that bind sterol regulatory elements to control lipid biosynthesis and cholesterol homeostasis.
+41	HNF4 (NR)	HNF4 nuclear receptor family with zinc-finger DNA-binding domain; master regulators of liver, intestinal gene expression and metabolism.
+42	CTCF	CTCF zinc-finger insulator protein that binds diverse motifs to organize chromatin looping, insulation and higher-order genome architecture.
+43	PBX / PKNOX (TALE)	PBX and PKNOX TALE homeodomain cofactors that heterodimerize with MEIS/HOX and modulate developmental transcriptional specificity.
+44	OVOL (epithelial switch)	OVOL C2H2 zinc-finger TFs that repress mesenchymal programs and promote epithelial differentiation / MET during development and tumorigenesis.
+45	NFAT	NFAT family (Rel-like/Calcineurin-regulated) transcription factors that translocate to nucleus following calcium signaling to control immune activation and development.
+46	p53 family	p53/p63/p73 tumor suppressor family with sequence-specific DNA-binding domain; regulate DNA damage response, apoptosis, development and differentiation.
+47	CDX / HOX (developmental)	CDX homeobox TFs with posterior axial patterning roles together with specific HOX members; control intestinal fate and anterior–posterior patterning.
+48	PAR-bZip (DBP/TEF)	PAR-bZIP family (DBP, TEF) bZIP TFs involved in circadian regulation and rhythmic transcriptional programs.
+49	STAT	STAT family (SH2-mediated cytokine signaling) transcription factors that bind GAS elements to mediate cytokine responses, immune differentiation and growth signaling.
+50	SIX (homeobox)	SIX homeobox TFs (SIX1/2/4) that bind homeodomain-related motifs and regulate craniofacial, muscle and sensory organ development.
+51	SCRT (neural zinc-finger)	SCRT (Scratch) zinc-finger TFs expressed in neural contexts; involved in neuronal differentiation and migration.
+52	HNF1 (homeobox/Pou-like)	HNF1 homeodomain-related TFs with a unique POU-like dimerization domain that regulate liver, kidney and pancreatic gene programs.
+53	ZNF / SP5	Zinc-finger (ZNF) and SP-family like cluster including SP5 — GC-box binding regulators involved in developmental and promoter-proximal gene control.
+54	C/EBP bZIP	C/EBP family bZIP TFs that bind CCAAT/enhancer elements to regulate adipogenesis, myelopoiesis and inflammatory responses.
+55	TALE (MEIS/PBX)	TALE homeodomain cofactors (MEIS, PBX) that form complexes with HOX proteins to specify developmental transcriptional outputs.
+56	NKX2 homeobox	NKX2 family homeodomain TFs that regulate tissue-specific programs in heart, neural and endodermal development.
+57	NF-κB (alternative)	NFKB family members (NFKB1/NFKB2) central to canonical and noncanonical NF-κB signaling controlling immunity, inflammation and cell survival.
+58	NR4A (orphan NR)	NR4A orphan nuclear receptors (immediate-early response NRs) that bind NBRE elements to regulate metabolism, apoptosis and stress responses.
+59	PAX (paired-box)	PAX family paired-box/homeodomain TFs that combine paired and homeobox modules to control organogenesis, kidney and sensory development.
+60	NF-I	Nuclear Factor I family (NFIA/B/C/X) with unique DBD that bind the CCAAT-like NF-I motif and regulate brain, lung and developmental gene expression.
+61	GLI (Hedgehog)	GLI zinc-finger TFs that mediate Hedgehog signaling by binding GACCACCCA-like motifs to control patterning and proliferation.
+62	MAF / NRL (bZIP)	Large MAF family and NRL bZIP TFs that bind MAF-recognition elements to regulate differentiation in liver, lens and photoreceptors.
+63	NKX3 homeobox	NKX3 family homeodomain TFs with roles in prostate and developmental patterning; act as transcriptional regulators of differentiation.
+64	RUNX / BCL	RUNX family (Runt domain) and BCL11 TFs — DNA-binding factors involved in hematopoiesis, neurodevelopment and chromatin regulation.
+65	TCF/LEF (β-catenin)	TCF/LEF HMG-box TFs that bind Wnt/β-catenin responsive elements to mediate Wnt signaling and control stem cell and developmental programs.
+66	ZIC (zinc-finger homeobox)	ZIC family zinc-finger/homeodomain-related TFs that regulate neural development, patterning and cerebellar differentiation.
+67	C/EBP (α/δ)	C/EBPα and C/EBPδ bZIP TFs that regulate differentiation, metabolism and inflammatory gene programs; C/EBPα is a key myeloid/adipogenic regulator.
+68	TFAP2 (AP-2)	AP-2 family transcription factors (TFAP2A/B/C) controlling neural crest, epidermal and developmental transcription programs.
+69	bZIP circadian (HLF/NFIL3)	bZIP family regulators HLF and NFIL3 that contribute to circadian and immune-related transcriptional rhythms.
+70	NF-Y (CCAAT)	NF-Y trimeric CCAAT-box binding complex (NFYA/NFYC etc.) that recognizes CCAAT motifs and acts as a general transcriptional regulator.
+71	RFX4/6	RFX family members (RFX4/6) — winged-helix TFs implicated in brain and pancreatic development and ciliogenesis-associated transcription.
+72	HOX13 (posterior HOX)	HOX13 paralogs (HOXB13, HOXA13, HOXD13) that specify distal/posterior identities during development and control limb/genital patterning.
+73	SMAD	SMAD family mediators of TGF-β/BMP signaling that bind GC-rich Smad-binding elements to regulate development, differentiation and cell-cycle responses.
+74	EBF-group2	The Early B-cell Factor (EBF) family of transcription factors.
+75	CUT / ONECUT	CUT/ONECUT homeodomain TFs (CUX, ONECUT) that control epithelial differentiation, liver and pancreas development and chromatin architecture.
+76	ZIC2/3	ZIC family members (ZIC2/3) involved in neural tube and forebrain development; zinc-finger/homeodomain-related DNA binding.
+77	PITX / DMBX	PITX homeobox TFs (and DMBX1) involved in left-right asymmetry, ocular/forebrain development and organogenesis.
+78	GMEB (modulator)	GMEB family transcriptional modulators that interact with other TFs and may influence glucocorticoid receptor / chromatin responses.
+79	Steroid receptors (NR3C)	Steroid hormone nuclear receptors (AR, GR/Nr3c1, MR/NR3C2, PR) with zinc-finger DBDs controlling endocrine, metabolic and reproductive gene programs.
+80	NKX2 (homeobox)	NKX2 family homeodomain TFs (NKX2-2, NKX2-5) that regulate neural and cardiac development and tissue-specific differentiation.
