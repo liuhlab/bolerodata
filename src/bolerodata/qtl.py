@@ -43,7 +43,22 @@ class GTExQTLCollection(QTLCollection):
         """Get the QTL path for training QTL models."""
         path = f"{QTL_TRAINING_PATH_DIR}/{tissue}.qtl_model_regions.feather"
         return path
-
+    
+class GTExEQTLCatalogCollection(QTLCollection):
+    def get_qtl_path(self, tissue: str) -> str:
+        """Get the QTL path for GTEx eQTL catalog data.
+        
+        Args:
+            tissue: Tissue identifier (e.g., 'uterus', 'muscle', 'prostate')
+            
+        Returns:
+            Path to the QTL data file
+            
+        Note:
+            All GTEx eQTL catalog data uses 'all_gene' gene selection.
+        """
+        key = f"GTEx.{tissue}"
+        return super().get_qtl_path(key)
 
 class Zeng2024QTLCollection(QTLCollection):
     def get_qtl_path(self, cell_type: str, all_pair: bool = False) -> pd.DataFrame:
@@ -52,7 +67,23 @@ class Zeng2024QTLCollection(QTLCollection):
         if all_pair:
             key += ".all_pair"
         return super().get_qtl_path(key)
+    
+class Onek1kQTLCollection(QTLCollection):
+    def get_qtl_path(self, cell_type: str) -> str:
+        """Get the QTL path for OneK1K eQTL catalog data.
+        
+        Args:
+            cell_type: Cell type identifier (e.g., 'CD16+_monocyte', 'NK_cell', 'B_cell')
+            
+        Returns:
+            Path to the QTL data file
+        """
+        key = f"Onek1k.{cell_type}"
+        return super().get_qtl_path(key)
+
 
 
 GTEx = GTExQTLCollection("GTEx")
 Zeng2024 = Zeng2024QTLCollection("Zeng2024Science")
+GTEx_eqtl_catalog = GTExEQTLCatalogCollection("GTEx_eqtl_catalog")
+Onek1k = Onek1kQTLCollection("Onek1k_eqtl_catalog")

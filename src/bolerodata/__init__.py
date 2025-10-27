@@ -1,4 +1,4 @@
 from .data import metadata
 from .dataset import DATASETS
 from .model import MODELS
-from .qtl import GTEx, Zeng2024
+from .qtl import GTEx, Zeng2024, GTEx_eqtl_catalog, Onek1k
