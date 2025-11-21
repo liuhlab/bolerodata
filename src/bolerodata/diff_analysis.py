@@ -102,14 +102,18 @@ class DiffRecords:
         )
 
         sign = diff_table["log2FoldChange"] > self.lfc_cutoff
-        g1_high_bed_path = self._dump_regions(
-            diff_table[sign]["gene"], g1_high_bed_path
-        )
+        regions = diff_table[sign]["gene"]
+        if len(regions) > 0:
+            g1_high_bed_path = self._dump_regions(regions, g1_high_bed_path)
+        else:
+            g1_high_bed_path = None
 
         sign = diff_table["log2FoldChange"] < -self.lfc_cutoff
-        g2_high_bed_path = self._dump_regions(
-            diff_table[sign]["gene"], g2_high_bed_path
-        )
+        regions = diff_table[sign]["gene"]
+        if len(regions) > 0:
+            g2_high_bed_path = self._dump_regions(regions, g2_high_bed_path)
+        else:
+            g2_high_bed_path = None
         return g1_high_bed_path, g2_high_bed_path
 
     def setup_igv_tracks(self):
@@ -143,20 +147,22 @@ class DiffRecords:
         ]
         if self.peak_diff_path is not None:
             g1_high_bed_path, g2_high_bed_path = self.dump_sig_peak_bed(self.igv_dir)
-            tracks.extend(
-                [
+            if g1_high_bed_path is not None:
+                tracks.append(
                     {
                         "name": f"{self.group1}.high",
                         "url": g1_high_bed_path,
                         "indexURL": f"{g1_high_bed_path}.tbi",
-                    },
+                    }
+                )
+            if g2_high_bed_path is not None:
+                tracks.append(
                     {
                         "name": f"{self.group2}.high",
                         "url": g2_high_bed_path,
                         "indexURL": f"{g2_high_bed_path}.tbi",
-                    },
-                ]
-            )
+                    }
+                )
         tracks = pd.DataFrame(tracks)
         tracks.to_csv(self.igv_dir / "tracks.csv", index=None)
         return tracks
