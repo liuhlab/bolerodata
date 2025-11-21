@@ -135,6 +135,15 @@ class Metadata:
             )
         return self._cache["JASPAR_MOTIF_CLUSTER"]
 
+    @property
+    def DA_COLLECTION(self):
+        """Differential analysis collection."""
+        if "DA_COLLECTION" not in self._cache:
+            self._cache["DA_COLLECTION"] = pd.read_csv(
+                self._cwd / "DA.TotalRecords.csv.gz", index_col=("DAKey", "DAType")
+            )
+        return self._cache["DA_COLLECTION"]
+
     def get_sample_snap_files(self, dataset_name):
         """Get the sample snap files table."""
         if "sample_snap_table" not in self._cache:
