@@ -198,6 +198,21 @@ class Dataset:
             self._cache["chromvar_adata"] = adata
         return adata
 
+    @property
+    def cross_dataset_chromvar_adata(self):
+        """Cross dataset chromvar adata object."""
+        adata = self._cache.get("cross_dataset_chromvar_adata", None)
+        if adata is None:
+            chromvar_path = self.metadata.get("chromvar_cross_dataset", None)
+            if chromvar_path is None:
+                raise ValueError(
+                    f"Dataset {self.name} does not have cross dataset chromvar data. "
+                    "Please check the dataset metadata."
+                )
+            adata = anndata.read_h5ad(chromvar_path)
+            self._cache["cross_dataset_chromvar_adata"] = adata
+        return adata
+
     def get_meta_cell_adata_path(self, kind: str = "metadata", subset_name: str = None):
         """
         Get the path to the meta cell adata file.
