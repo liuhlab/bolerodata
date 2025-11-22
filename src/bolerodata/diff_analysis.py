@@ -185,3 +185,6 @@ class DiffAnalysisCollection:
         gene_rec = self.da_table.loc[(key, "Gene")]
         peak_rec = self.da_table.loc[(key, "Peak")]
         return DiffRecords(gene_rec=gene_rec, peak_rec=peak_rec)
+
+
+DA = DiffAnalysisCollection()
