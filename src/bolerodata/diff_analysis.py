@@ -1,7 +1,9 @@
 import os
 import pathlib
 
+import numpy as np
 import pandas as pd
+import pyBigWig
 import pyranges as pr
 import pysam
 from bolero.pl.igv import Browser
@@ -9,6 +11,16 @@ from bolero.utils import understand_regions
 
 from bolerodata import DATASETS
 from bolerodata.data import metadata
+
+
+def _parse_region(region: str | tuple[str, int, int]):
+    if isinstance(region, str):
+        # convert to chromosome, start, end
+        chrom, coords = region.replace(",", "").split(":")
+        start, end = map(int, coords.split("-"))
+    else:
+        chrom, start, end = region
+    return chrom, start, end
 
 
 class DiffRecords:
@@ -39,11 +51,11 @@ class DiffRecords:
         self.group2_bw_path = pathlib.Path(_rec["Group2BigWig"])
 
         self.gene_diff_path = None if gene_rec is None else gene_rec["DiffPath"]
-        self._gene_diff_table = None
         self.peak_diff_path = None if peak_rec is None else peak_rec["DiffPath"]
-        self._peak_diff_table = None
         self.igv_base_dir = pathlib.Path(igv_base_dir)
         self.igv_base_dir.mkdir(parents=True, exist_ok=True)
+
+        self._caches = {}
 
     def _filter_by_lfc_cutoff(self, diff_table):
         """
@@ -58,10 +70,11 @@ class DiffRecords:
         """
         if self.gene_diff_path is None:
             return None
-        if self._gene_diff_table is None:
+        if "gene_diff_table" not in self._caches:
             table = pd.read_feather(self.gene_diff_path)
-            self._gene_diff_table = self._filter_by_lfc_cutoff(table)
-        return self._gene_diff_table
+            table.index = table.pop("gene").astype(str)
+            self._caches["gene_diff_table"] = self._filter_by_lfc_cutoff(table)
+        return self._caches["gene_diff_table"]
 
     @property
     def peak_diff_table(self):
@@ -70,10 +83,96 @@ class DiffRecords:
         """
         if self.peak_diff_path is None:
             return None
-        if self._peak_diff_table is None:
+        if "peak_diff_table" not in self._caches:
             table = pd.read_feather(self.peak_diff_path)
-            self._peak_diff_table = self._filter_by_lfc_cutoff(table)
-        return self._peak_diff_table
+            table.index = table.pop("gene").astype(str)
+            self._caches["peak_diff_table"] = self._filter_by_lfc_cutoff(table)
+        return self._caches["peak_diff_table"]
+
+    @property
+    def group1_bw_handle(self):
+        """
+        BigWig file handle for group 1.
+        """
+        if "bw1_handle" not in self._caches:
+            self._caches["bw1_handle"] = pyBigWig.open(self.group1_bw_path)
+        return self._caches["bw1_handle"]
+
+    @property
+    def group2_bw_handle(self):
+        """
+        BigWig file handle for group 2.
+        """
+        if "bw2_handle" not in self._caches:
+            self._caches["bw2_handle"] = pyBigWig.open(self.group2_bw_path)
+        return self._caches["bw2_handle"]
+
+    def get_bw_values(self, region: str | tuple[str, int, int]):
+        """
+        Get Group1 and Group2 bigwig values for a given region.
+        """
+        chrom, start, end = _parse_region(region)
+        values = pd.DataFrame(
+            {
+                self.group1: self.group1_bw_handle.values(
+                    chrom, start, end, numpy=True
+                ),
+                self.group2: self.group2_bw_handle.values(
+                    chrom, start, end, numpy=True
+                ),
+            }
+        )
+        return values
+
+    def get_bw_stats(self, region: str | tuple[str, int, int], stat_type: str = "mean"):
+        """
+        Get Group1 and Group2 bigwig stats for a given region.
+        """
+        chrom, start, end = _parse_region(region)
+        values = pd.Series(
+            {
+                self.group1: self.group1_bw_handle.stats(
+                    chrom, start, end, type=stat_type
+                )[0],
+                self.group2: self.group2_bw_handle.stats(
+                    chrom, start, end, type=stat_type
+                )[0],
+            }
+        )
+        values.index.name = "group"
+        values.name = f"{chrom}:{start}-{end}"
+        return values
+
+    @property
+    def dataset_peak_scan(self):
+        """
+        Get dataset peak scan values for Group1 and Group2.
+        """
+        g1_bw_path = self.group1_bw_path
+        g2_bw_path = self.group2_bw_path
+        peaks_path = str(g1_bw_path.parent / "peaks/peaks.bed")
+        if peaks_path not in self._caches:
+            peaks_bed = pr.read_bed(peaks_path, as_df=True)
+            self._caches[peaks_path] = peaks_bed
+        else:
+            peaks_bed = self._caches[peaks_path]
+
+        peak_scan_path = g1_bw_path.parent / f"peaks/{g1_bw_path.name[:-3]}.npz"
+        g1_values = np.load(peak_scan_path)["data"]
+        g1_values = pd.Series(g1_values, index=peaks_bed["Name"].values)
+        g2_values = np.load(g2_bw_path.parent / f"peaks/{g2_bw_path.name[:-3]}.npz")[
+            "data"
+        ]
+        g2_values = pd.Series(g2_values, index=peaks_bed["Name"].values)
+        values = pd.DataFrame(
+            {
+                self.group1: g1_values,
+                self.group2: g2_values,
+            }
+        )
+        values.index.name = "peak"
+        values.columns.name = "group"
+        return values
 
     def _dump_regions(self, regions, output_bed_path):
         bed = pr.PyRanges(understand_regions(regions)).sort()
@@ -182,8 +281,14 @@ class DiffAnalysisCollection:
         self.da_table = metadata.DA_COLLECTION
 
     def __getitem__(self, key):
-        gene_rec = self.da_table.loc[(key, "Gene")]
-        peak_rec = self.da_table.loc[(key, "Peak")]
+        try:
+            gene_rec = self.da_table.loc[(key, "Gene")]
+        except KeyError:
+            gene_rec = None
+        try:
+            peak_rec = self.da_table.loc[(key, "Peak")]
+        except KeyError:
+            peak_rec = None
         return DiffRecords(gene_rec=gene_rec, peak_rec=peak_rec)
 
 

@@ -175,6 +175,20 @@ class Dataset:
         return self._cache["within_dataset_cell_embedding"]
 
     @property
+    def peak_motif_scan_path(self):
+        """
+        Get the path to the peak motif scan table.
+        """
+        return metadata.get_peak_motif_scan_path(self.name)
+
+    @property
+    def peak_motif_scan_table(self):
+        """
+        Peak motif scan binary table.
+        """
+        return pd.read_feather(self.peak_motif_scan_path)
+
+    @property
     def chromvar_adata(self):
         """Chromvar adata object."""
         adata = self._cache.get("chromvar_adata", None)

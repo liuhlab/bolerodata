@@ -226,6 +226,12 @@ class Metadata:
         """
         return self.get_misc_data_path(key, "PSEUDOBULK_GENE_AND_HVG_PATH_DICT")
 
+    def get_peak_motif_scan_path(self, dataset_name):
+        """
+        Get the peak motif scan path.
+        """
+        return STANDARD_DIR / f"motif_scan/{dataset_name}.JASPAR_motif_hit.feather"
+
 
 metadata = Metadata()
 

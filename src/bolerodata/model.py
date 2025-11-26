@@ -73,6 +73,11 @@ class BoleroModel:
     def __init__(self, model_key: str, **additional_model_metadata: dict):
         self.model_key = model_key
         _model_dict = get_model_dict(model_key)
+        for k in additional_model_metadata:
+            if k not in _model_dict:
+                print(
+                    f"Warning: {k} is not in the model metadata keys: {_model_dict.keys()}"
+                )
         _model_dict.update(additional_model_metadata)
 
         self.model_metadata = _model_dict
@@ -86,7 +91,7 @@ class BoleroModel:
             pathlib.Path(self.model_metadata["CkptPath"]).absolute().resolve()
         )
         self._has_gene_count_head = self.model_metadata["Gene Count Head"]
-        self._tf_score_input = self.model_metadata["TF Score Input"]
+        self._tf_score_input = self.model_metadata["Score Input"]
 
         self.model_group = self.model_metadata["ModelGroup"]
 
@@ -310,7 +315,7 @@ class BoleroModel:
             f"BoleroModel(model_key={self.model_key})\n"
             f"  - Model group: {self.model_group}\n"
             f"  - Has gene count head: {self._has_gene_count_head}\n"
-            f"  - TF score input: {self._tf_score_input}\n"
+            f"  - Score input: {self._tf_score_input}\n"
             f"  - Current Dataset: {_ds}\n"
         )
         return doc
