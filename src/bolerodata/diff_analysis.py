@@ -95,7 +95,7 @@ class DiffRecords:
         BigWig file handle for group 1.
         """
         if "bw1_handle" not in self._caches:
-            self._caches["bw1_handle"] = pyBigWig.open(self.group1_bw_path)
+            self._caches["bw1_handle"] = pyBigWig.open(str(self.group1_bw_path))
         return self._caches["bw1_handle"]
 
     @property
@@ -104,7 +104,7 @@ class DiffRecords:
         BigWig file handle for group 2.
         """
         if "bw2_handle" not in self._caches:
-            self._caches["bw2_handle"] = pyBigWig.open(self.group2_bw_path)
+            self._caches["bw2_handle"] = pyBigWig.open(str(self.group2_bw_path))
         return self._caches["bw2_handle"]
 
     def get_bw_values(self, region: str | tuple[str, int, int]):
@@ -112,15 +112,19 @@ class DiffRecords:
         Get Group1 and Group2 bigwig values for a given region.
         """
         chrom, start, end = _parse_region(region)
-        values = pd.DataFrame(
-            {
-                self.group1: self.group1_bw_handle.values(
-                    chrom, start, end, numpy=True
-                ),
-                self.group2: self.group2_bw_handle.values(
-                    chrom, start, end, numpy=True
-                ),
-            }
+        values = (
+            pd.DataFrame(
+                {
+                    self.group1: self.group1_bw_handle.values(
+                        chrom, start, end, numpy=True
+                    ),
+                    self.group2: self.group2_bw_handle.values(
+                        chrom, start, end, numpy=True
+                    ),
+                }
+            )
+            .fillna(0)
+            .astype("float32")
         )
         return values
 
@@ -141,6 +145,28 @@ class DiffRecords:
         )
         values.index.name = "group"
         values.name = f"{chrom}:{start}-{end}"
+        return values
+
+    def scan_peaks(self, regions):
+        """
+        Scan peaks on Group1 and Group2 bigwig files.
+        """
+        regions = understand_regions(regions, as_df=True)
+        if "Name" not in regions.columns:
+            regions["Name"] = (
+                regions.iloc[:, 0].astype(str)
+                + ":"
+                + regions.iloc[:, 1].astype(str)
+                + "-"
+                + regions.iloc[:, 2].astype(str)
+            )
+        value_col = []
+        for _, (chrom, start, end, *_) in regions.iterrows():
+            stats = self.get_bw_stats((chrom, start, end))
+            value_col.append(stats)
+        values = (
+            pd.DataFrame(value_col, index=regions["Name"]).fillna(0).astype("float32")
+        )
         return values
 
     @property
