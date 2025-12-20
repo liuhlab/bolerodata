@@ -233,6 +233,18 @@ class BoleroModel:
         kwargs["nosignal"] = nosignal
         kwargs["subset_name"] = subset_name
 
+        if "genome" in kwargs:
+            if isinstance(kwargs["genome"], dict):
+                # set embedding_only_mode to True if genome is a dict (DNASynthesisFactory)
+                # because we don't have true signal for that case
+                embedding_only_mode = True
+                kwargs["bigwig_paths"] = {}
+                print(
+                    "Detected genome as a dict, predictor.datamanager.genome will be DNASynthesisFactory class. "
+                    "Setting embedding_only_mode to True and bigwig_paths to empty dict. "
+                    "Predictions will be in no-signal mode."
+                )
+
         if self.model_group == "BorzoiSignalMultiDS":
             kwargs["embedding_only_mode"] = embedding_only_mode
             return self._create_multi_dataset_model_predictor(**kwargs)
@@ -255,6 +267,7 @@ class BoleroModel:
         fixed_p0_meta_cells: list[str],
         nosignal: bool,
         bigwig_paths: dict,
+        **kwargs,
     ) -> "GenericPredictor":
         db_path = self.dataset.get_meta_cell_parquet_path(
             "32bp", subset_name=subset_name
@@ -272,6 +285,7 @@ class BoleroModel:
             **bigwig_paths,
             # For no signal model inference, uncomment this:
             "nosignal": nosignal,
+            **kwargs,
         }
 
         predictor = _predictor_class(config)
@@ -288,6 +302,7 @@ class BoleroModel:
         bigwig_paths: dict,
         fixed_p0_meta_cells: list[str],
         embedding_only_mode: bool,
+        **kwargs,
     ) -> "GenericPredictor":
         if subset_name is None:
             dataset_key = self.dataset.name
@@ -304,6 +319,7 @@ class BoleroModel:
             "nosignal": nosignal,
             "embedding_only_mode": embedding_only_mode,
             **bigwig_paths,
+            **kwargs,
         }
 
         predictor = _predictor_class(dataset_key, config)
