@@ -380,6 +380,16 @@ class Dataset:
         key = ",".join(key)
         return metadata.get_pseudobulk_gene_and_hvg_path(key)
 
+    def get_dataset_reference_gene_log1pcpm_path(self, subset_name: str = None):
+        """
+        Get the path to the dataset reference gene log1pcpm file.
+        """
+        key = ["ref_gene_log1pcpm", self.name]
+        if subset_name:
+            key.append(subset_name)
+        key = ",".join(key)
+        return metadata.get_pseudobulk_gene_and_hvg_path(key)
+
 
 class Datasets:
     def __init__(self):
