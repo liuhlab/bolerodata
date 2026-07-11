@@ -1,0 +1,16 @@
+site_name: bolerodata
+site_url: https://liuhlab.github.io/bolerodata/
+repo_url: https://github.com/liuhlab/bolerodata
+
+theme:
+  name: material
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+
+nav:
+  - Home: index.md

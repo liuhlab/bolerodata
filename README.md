@@ -1,42 +1,46 @@
-# bolero data
+# bolerodata
 
 [![Tests][badge-tests]][link-tests]
 [![Documentation][badge-docs]][link-docs]
 
-[badge-tests]: https://img.shields.io/github/actions/workflow/status/lhqing/bolerodata/test.yaml?branch=main
-[link-tests]: https://github.com/lhqing/bolerodata/actions/workflows/test.yml
-[badge-docs]: https://img.shields.io/readthedocs/bolerodata
+[badge-tests]: https://img.shields.io/github/actions/workflow/status/liuhlab/bolerodata/test.yaml?branch=main
+[link-tests]: https://github.com/liuhlab/bolerodata/actions/workflows/test.yaml
+[badge-docs]: https://img.shields.io/github/deployments/liuhlab/bolerodata/github-pages?label=docs
+
+`bolerodata` is the **dataset, model-zoo and metadata registry** for
+[Bolero](https://github.com/liuhlab/bolero) — the cell-state-conditioned
+sequence-to-function model. It provides a thin, uniform Python API over the
+single-cell datasets, trained model checkpoints, QTL collections and
+differential-accessibility records used to train Bolero and to produce the
+paper's results.
+
+It is meant to be used **together with `bolero`** (it imports `bolero` lazily and
+is normally installed as a git dependency of `bolero`), and most functionality
+relies on the lab's local data lake (`$STANDARD_DIR`) — so it is primarily a
+reproducibility/registry layer rather than a portable, standalone package.
 
 ## Getting started
 
-Please refer to the [documentation][link-docs]. In particular, the
-
--   [API documentation][link-api].
+Please refer to the [documentation][link-docs].
 
 ## Installation
 
-You need to have Python 3.10 or newer installed on your system. If you don't have
-Python installed, we recommend installing [Miniforge](https://github.com/conda-forge/miniforge).
+You normally get `bolerodata` for free by installing `bolero`, which lists it as a
+git dependency. To work on `bolerodata` itself, use [pixi](https://pixi.sh):
 
 ```bash
-# 1. Create a environment named bolerodata
-mamba env create -f environment.yaml
-# OR if you use conda
-# conda env create -f environment.yaml
-# Note that conda can be very slow in solving complex dependencies
-
-# 2. Install this package
-pip install bolerodata
-
-# or install the package with dev mode
-git clone https://github.com/lhqing/bolerodata.git
+git clone https://github.com/liuhlab/bolerodata.git
 cd bolerodata
-pip install -e ".[dev,test]"
+pixi install            # lean runtime env; or `pixi install -e dev` for tests/lint
 ```
+
+Unlike `bolero`, this environment is intentionally lightweight — it carries no
+PyTorch/CUDA/`ray` stack. To exercise the full API, run `bolerodata` inside a
+`bolero` environment.
 
 ## Release notes
 
-See the [changelog][changelog].
+See the [changelog](CHANGELOG.md).
 
 ## Contact
 
@@ -46,8 +50,5 @@ If you found a bug, please use the [issue tracker][issue-tracker].
 
 > t.b.a
 
-[scverse-discourse]: https://discourse.scverse.org/
-[issue-tracker]: https://github.com/lhqing/bolerodata/issues
-[changelog]: https://bolerodata.readthedocs.io/latest/changelog.html
-[link-docs]: https://bolerodata.readthedocs.io
-[link-api]: https://bolerodata.readthedocs.io/latest/api.html
+[issue-tracker]: https://github.com/liuhlab/bolerodata/issues
+[link-docs]: https://liuhlab.github.io/bolerodata/

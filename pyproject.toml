@@ -5,39 +5,35 @@ requires = ["hatchling", "hatch-vcs"]
 [project]
 name = "bolerodata"
 dynamic = ["version"]
-description = "sequence"
+description = "Dataset, model-zoo and metadata registry for the Bolero model"
 readme = "README.md"
-requires-python = ">=3.6"
+requires-python = ">=3.10"
 license = { file = "LICENSE" }
 authors = [{ name = "Hanqing Liu" }]
 maintainers = [
     { name = "Hanqing Liu", email = "hanqingliu@fas.harvard.edu" },
 ]
-urls.Documentation = "https://bolero.readthedocs.io/"
-urls.Source = "https://github.com/lhqing/bolerodata"
-urls.Home-page = "https://github.com/lhqing/bolerodata"
+urls.Documentation = "https://liuhlab.github.io/bolerodata/"
+urls.Source = "https://github.com/liuhlab/bolerodata"
+urls.Home-page = "https://github.com/liuhlab/bolerodata"
+# Kept deliberately minimal: bolerodata is a thin registry layer that is meant to
+# run *inside* the `bolero` environment (it imports `bolero` lazily). It does not
+# declare `bolero` (that would be circular) nor bolero's heavy GPU stack.
 dependencies = [
     "anndata",
+    "joblib",
+    "pandas",
     "tqdm",
-    "pandas"
 ]
 
 [project.optional-dependencies]
 dev = ["pre-commit", "twine>=4.0.2"]
 doc = [
-    "docutils>=0.8,!=0.18.*,!=0.19.*",
-    "sphinx>=4",
-    "sphinx-book-theme>=1.0.0",
-    "myst-nb",
-    "sphinxcontrib-bibtex>=1.0.0",
-    "sphinx-autodoc-typehints",
-    "sphinxext-opengraph",
-    # For notebooks
-    "ipykernel",
-    "ipython",
-    "sphinx-copybutton",
-    "pandas",
-    "jupyterlab",
+    "mkdocs",
+    "mkdocs-material",
+    "mkdocstrings[python]",       # API docs from numpy-style docstrings
+    "mkdocs-jupyter",             # render notebooks
+    "pymdown-extensions",
 ]
 test = ["pytest", "coverage"]
 
@@ -51,23 +47,6 @@ xfail_strict = true
 addopts = [
     "--import-mode=importlib", # allow using test files with same name
 ]
-
-[tool.black]
-line-length = 88
-include = '\.pyi?$'
-exclude = '''
-/(
-    \.git
-  | \.hg
-  | \.mypy_cache
-  | \.tox
-  | \.venv
-  | _build
-  | buck-out
-  | build
-  | dist
-)/
-'''
 
 [tool.ruff]
 src = ["src"]
@@ -132,17 +111,54 @@ convention = "numpy"
 "tests/*" = ["D"]
 "*/__init__.py" = ["F401"]
 
-[tool.cruft]
-skip = [
-    "tests",
-    "src/**/__init__.py",
-    "src/**/basic.py",
-    "docs/api.md",
-    "docs/changelog.md",
-    "docs/references.bib",
-    "docs/references.md",
-    "docs/notebooks/example.ipynb",
-]
-
 [tool.hatch.version]
+# This package uses Calendar Versioning (CalVer): tag releases as vYYYY.MM.DD
+# (e.g. v2026.07.10), matching the `bolero` package it ships with. The version is
+# derived from the latest git tag by hatch-vcs, so the scheme is set by how
+# releases are tagged.
 source = "vcs"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/bolerodata"]
+
+# ---------------------------------------------------------------------------
+# pixi
+# ---------------------------------------------------------------------------
+# bolerodata mirrors bolero's pixi setup but stays lean: it carries NO GPU stack
+# (no torch/CUDA/flash-attn/ray). It is normally consumed as a git dependency of
+# `bolero` and runs inside bolero's environment; this pixi workspace exists mainly
+# so the repo's own docs, lint and CI use the same tooling as bolero.
+[tool.pixi.workspace]
+channels = ["conda-forge", "bioconda"]
+platforms = ["linux-64"]
+
+[tool.pixi.pypi-dependencies]
+bolerodata = { path = ".", editable = true }
+
+[tool.pixi.dependencies]
+python = "3.11.*"
+pip = "*"
+anndata = "*"
+joblib = "*"
+pandas = "*"
+tqdm = "*"
+
+# Standalone `docs` env (the doc feature is pypi-only), kept CUDA-free.
+[tool.pixi.feature.doc.dependencies]
+python = "3.11.*"
+
+[tool.pixi.feature.doc.tasks]
+docs-serve = "mkdocs serve"
+docs-build = "mkdocs build --strict"
+docs-deploy = "mkdocs gh-deploy --force" # build & push to the gh-pages branch
+
+[tool.pixi.feature.dev.tasks]
+lint = "pre-commit run --all-files"
+
+[tool.pixi.feature.test.tasks]
+test = "coverage run -m pytest -v --color=yes"
+
+[tool.pixi.environments]
+default = { solve-group = "default" }
+dev = { features = ["dev", "test"], solve-group = "default" }
+docs = { features = ["doc"], no-default-feature = true } # lightweight: docs only

@@ -23,8 +23,11 @@ __pycache__/
 /data/
 
 # docs
-/docs/generated/
-/docs/_build/
+# mkdocs build output
+site/
+
+# pixi
+.pixi/
 
 # IDEs
 /.idea/
