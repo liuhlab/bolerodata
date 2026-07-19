@@ -1,0 +1,56 @@
+name: Claude
+
+# Lets maintainers hand a task to Claude Code from GitHub.
+#
+# Trigger: mention `@claude` in an issue, an issue comment, or a PR review
+# comment. Claude reads the thread, works in the runner, and either replies
+# or pushes a branch / opens a PR. Any PR it opens is validated by the
+# repo's own CI (test.yaml).
+#
+# Setup (one-off, by a maintainer):
+#   1. Install the Claude GitHub App:  https://github.com/apps/claude
+#      (or run `/install-github-app` from the Claude Code terminal).
+#   2. Settings -> Secrets and variables -> Actions -> add secret
+#      `ANTHROPIC_API_KEY`.
+
+on:
+  issue_comment:
+    types: [created]
+  pull_request_review_comment:
+    types: [created]
+  issues:
+    types: [opened]
+
+concurrency:
+  group: claude-${{ github.event.issue.number || github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  claude:
+    if: |
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'pull_request_review_comment' && contains(github.event.comment.body, '@claude')) ||
+      (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      id-token: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 1
+
+      # `dev` env bundles the dev + test features so Claude can run the suite.
+      - uses: prefix-dev/setup-pixi@v0.10.0
+        with:
+          environments: dev
+          locked: true
+
+      - uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          claude_args: |
+            --allowedTools "Edit,Write,Read,Bash(pixi run -e dev test)"
