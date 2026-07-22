@@ -394,33 +394,6 @@
   
   
     <li class="md-nav__item">
-      <a href="sharing/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Sharing (maintainers)
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="api/" class="md-nav__link">
         
   
@@ -582,12 +555,11 @@ model = MODELS[&quot;&lt;model_key&gt;&quot;]             # cheap; the checkpoin
 <p><code>bolerodata</code> ships only small registry tables. The large artifacts (checkpoints,
 metadata feathers, QTL tables, …) are <strong>downloaded on demand from HuggingFace</strong> the
 first time you touch them and cached locally — see <a href="data-setup/">Data setup &amp; caching</a>.
-The curated subset that is published is decided by
-<a href="sharing/"><code>huggingface_digest.md</code></a>; anything withheld raises a friendly error
-rather than a broken path.</p>
+The curated subset that is published is decided by <code>huggingface_digest.md</code>;
+anything withheld raises a friendly error rather than a broken path.</p>
 <ul>
-<li>HuggingFace: <strong><a href="https://huggingface.co/bolero/bolero-models"><code>bolero/bolero-models</code></a></strong>
-  (checkpoints) · <strong><a href="https://huggingface.co/datasets/bolero/bolero-data"><code>bolero/bolero-data</code></a></strong> (everything else)</li>
+<li>HuggingFace: <strong><a href="https://huggingface.co/arcinstitute/bolero-models"><code>arcinstitute/bolero-models</code></a></strong>
+  (checkpoints) · <strong><a href="https://huggingface.co/datasets/arcinstitute/bolero-data"><code>arcinstitute/bolero-data</code></a></strong> (everything else)</li>
 </ul>
 <h2 id="relationship-to-bolero">Relationship to <code>bolero</code></h2>
 <p><code>bolerodata</code> is the data/registry half of the project; the modelling code lives in
@@ -599,7 +571,6 @@ stack) installed — <code>bolerodata</code> imports it lazily. See <a href="ins
 <ul>
 <li><a href="install/">Installation</a></li>
 <li><a href="data-setup/">Data setup &amp; caching</a></li>
-<li><a href="sharing/">What is shared (for maintainers)</a></li>
 <li><a href="api/">API reference</a></li>
 </ul>
 
