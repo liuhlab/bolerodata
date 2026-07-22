@@ -56,8 +56,8 @@ huggingface-cli login          # once, from a machine with the data
 bash dist/hf_upload.sh         # uploads only approved files
 ```
 
-Checkpoints go to `bolero/bolero-models` (clean `<ModelGroup>/<model_key>/…` names);
-everything else to `bolero/bolero-data`. Enable `HF_HUB_ENABLE_HF_TRANSFER=1` (the
+Checkpoints go to `arcinstitute/bolero-models` (clean `<ModelGroup>/<model_key>/…` names);
+everything else to `arcinstitute/bolero-data`. Enable `HF_HUB_ENABLE_HF_TRANSFER=1` (the
 script does) for the ~1.3 TB of checkpoints.
 
 ## Publishing the package

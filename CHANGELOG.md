@@ -11,11 +11,17 @@ it ships with.
 
 ## [Unreleased]
 
+## [2026.07.22]
+
+First public release — `pip install bolerodata`, with the curated data/model
+subset published to `arcinstitute/bolero-data` and `arcinstitute/bolero-models`
+on HuggingFace.
+
 ### Added
 
 -   Dataset, model-zoo, QTL and differential-analysis registries for Bolero
 -   **HuggingFace auto-download + cache layer** (`bolerodata._sync`): artifacts are
-    fetched on demand from `bolero/bolero-models` and `bolero/bolero-data` and cached
+    fetched on demand from `arcinstitute/bolero-models` and `arcinstitute/bolero-data` and cached
     under `$BOLERODATA_HOME` / `$BOLERO_HOME` / the platform cache dir. `localize()`
     serves lab files directly and downloads shared ones otherwise;
     `prefetch()` / `sync()` warm the cache.

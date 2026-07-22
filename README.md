@@ -30,8 +30,8 @@ Building / running a model predictor, resolving a `Genome`, or using
 [`bolero`](https://github.com/liuhlab/bolero) package (GPU stack); `bolerodata`
 imports it lazily. See the [installation guide](https://liuhlab.github.io/bolerodata/install/).
 
-Data is fetched from **[`bolero/bolero-models`](https://huggingface.co/bolero/bolero-models)**
-(checkpoints) and **[`bolero/bolero-data`](https://huggingface.co/datasets/bolero/bolero-data)**
+Data is fetched from **[`arcinstitute/bolero-models`](https://huggingface.co/arcinstitute/bolero-models)**
+(checkpoints) and **[`arcinstitute/bolero-data`](https://huggingface.co/datasets/arcinstitute/bolero-data)**
 into `$BOLERODATA_HOME` (default: the platform cache dir). See
 [Data setup & caching](https://liuhlab.github.io/bolerodata/data-setup/).
 

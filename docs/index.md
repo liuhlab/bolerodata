@@ -33,12 +33,11 @@ model = MODELS["<model_key>"]             # cheap; the checkpoint downloads lazi
 `bolerodata` ships only small registry tables. The large artifacts (checkpoints,
 metadata feathers, QTL tables, …) are **downloaded on demand from HuggingFace** the
 first time you touch them and cached locally — see [Data setup & caching](data-setup.md).
-The curated subset that is published is decided by
-[`huggingface_digest.md`](sharing.md); anything withheld raises a friendly error
-rather than a broken path.
+The curated subset that is published is decided by `huggingface_digest.md`;
+anything withheld raises a friendly error rather than a broken path.
 
-- HuggingFace: **[`bolero/bolero-models`](https://huggingface.co/bolero/bolero-models)**
-  (checkpoints) · **[`bolero/bolero-data`](https://huggingface.co/datasets/bolero/bolero-data)** (everything else)
+- HuggingFace: **[`arcinstitute/bolero-models`](https://huggingface.co/arcinstitute/bolero-models)**
+  (checkpoints) · **[`arcinstitute/bolero-data`](https://huggingface.co/datasets/arcinstitute/bolero-data)** (everything else)
 
 ## Relationship to `bolero`
 
@@ -52,5 +51,4 @@ stack) installed — `bolerodata` imports it lazily. See [Installation](install.
 
 - [Installation](install.md)
 - [Data setup & caching](data-setup.md)
-- [What is shared (for maintainers)](sharing.md)
 - [API reference](api.md)

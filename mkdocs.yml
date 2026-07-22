@@ -15,9 +15,13 @@ plugins:
             docstring_style: numpy
             show_source: false
 
+# sharing.md is a maintainer-only note (share/noshare model); keep it in the repo
+# but do not publish it to the public docs site.
+exclude_docs: |
+  sharing.md
+
 nav:
   - Home: index.md
   - Installation: install.md
   - Data setup & caching: data-setup.md
-  - Sharing (maintainers): sharing.md
   - API reference: api.md
