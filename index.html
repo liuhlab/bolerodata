@@ -12,6 +12,8 @@
       
       
       
+        <link rel="next" href="install/">
+      
       
         
       
@@ -229,6 +231,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="." class="md-nav__link md-nav__link--active">
         
   
@@ -246,6 +266,177 @@
 
       </a>
       
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-it-provides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it provides
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-the-data-reaches-you" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the data reaches you
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relationship-to-bolero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship to bolero
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data setup & caching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sharing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sharing (maintainers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -270,6 +461,58 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-it-provides" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it provides
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-the-data-reaches-you" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How the data reaches you
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relationship-to-bolero" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relationship to bolero
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Next steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -290,16 +533,75 @@
 
 <h1 id="bolerodata">bolerodata</h1>
 <p><code>bolerodata</code> is the <strong>dataset, model-zoo and metadata registry</strong> for
-<a href="https://github.com/liuhlab/bolero">Bolero</a> — the cell-state-conditioned
-sequence-to-function model. It provides a thin, uniform Python API over the
-single-cell datasets, trained model checkpoints, QTL collections and
-differential-accessibility records used to train Bolero and produce the paper's
-results.</p>
-<p><code>bolerodata</code> is designed to be used <strong>together with <code>bolero</code></strong>: it imports <code>bolero</code>
-lazily and is normally installed as a dependency of <code>bolero</code>. Most functionality
-also relies on the lab's local data lake (<code>$STANDARD_DIR</code>), so it is primarily a
-reproducibility/registry layer rather than a standalone, portable package.</p>
-<p>Documentation is under construction — more to come.</p>
+<a href="https://github.com/liuhlab/bolero">Bolero</a> — a model that predicts
+cell-state-specific gene regulation from DNA sequence. It is a thin, uniform
+Python API that maps short keys (dataset names, model keys, tissue / cell-type
+names) to the artifacts behind the paper — single-cell ATAC/RNA datasets, trained
+model checkpoints, QTL collections and differential-accessibility records — and
+returns them as pandas / AnnData objects and ready-to-use file paths.</p>
+<h2 id="what-it-provides">What it provides</h2>
+<table>
+<thead>
+<tr>
+<th>Object</th>
+<th>What it gives you</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>metadata</code></td>
+<td>Curated tables: dataset metadata, the model zoo, QTL collection, JASPAR motif clusters, DA records</td>
+</tr>
+<tr>
+<td><code>DATASETS</code></td>
+<td>Per-dataset accessor (<code>DATASETS.HumanBrainDev</code>): cell/sample/cluster metadata, meta-cell AnnData, pseudobulks, reference bigwigs, motif scans</td>
+</tr>
+<tr>
+<td><code>MODELS</code></td>
+<td>The model zoo (<code>MODELS["&lt;key&gt;"]</code>): resolves checkpoints + configs and builds a <code>bolero</code> predictor</td>
+</tr>
+<tr>
+<td><code>GTEx</code>, <code>Zeng2024</code>, <code>GTEx_eqtl_catalog</code>, <code>Onek1k</code></td>
+<td>QTL evaluation collections (variant-effect eval sets)</td>
+</tr>
+<tr>
+<td><code>diff_analysis.DA</code></td>
+<td>Differential-accessibility records + IGV browsing (optional <code>diff</code> extra)</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-python">import bolerodata
+from bolerodata import DATASETS, MODELS, metadata, GTEx
+
+metadata.MODEL_ZOO.head()                 # browse the model zoo (no downloads)
+ds = DATASETS[&quot;HumanBrainDev&quot;]
+ds.cell_metadata                          # auto-downloads the feather on first use
+model = MODELS[&quot;&lt;model_key&gt;&quot;]             # cheap; the checkpoint downloads lazily
+</code></pre>
+<h2 id="how-the-data-reaches-you">How the data reaches you</h2>
+<p><code>bolerodata</code> ships only small registry tables. The large artifacts (checkpoints,
+metadata feathers, QTL tables, …) are <strong>downloaded on demand from HuggingFace</strong> the
+first time you touch them and cached locally — see <a href="data-setup/">Data setup &amp; caching</a>.
+The curated subset that is published is decided by
+<a href="sharing/"><code>huggingface_digest.md</code></a>; anything withheld raises a friendly error
+rather than a broken path.</p>
+<ul>
+<li>HuggingFace: <strong><a href="https://huggingface.co/bolero/bolero-models"><code>bolero/bolero-models</code></a></strong>
+  (checkpoints) · <strong><a href="https://huggingface.co/datasets/bolero/bolero-data"><code>bolero/bolero-data</code></a></strong> (everything else)</li>
+</ul>
+<h2 id="relationship-to-bolero">Relationship to <code>bolero</code></h2>
+<p><code>bolerodata</code> is the data/registry half of the project; the modelling code lives in
+<a href="https://github.com/liuhlab/bolero"><code>bolero</code></a>. Browsing the registry and downloading
+data needs only <code>bolerodata</code>. <strong>Building and running a predictor</strong> (<code>MODELS[...].create_predictor()</code>),
+resolving a <code>Genome</code>, or using <code>diff_analysis</code> additionally needs <code>bolero</code> (and a GPU
+stack) installed — <code>bolerodata</code> imports it lazily. See <a href="install/">Installation</a>.</p>
+<h2 id="next-steps">Next steps</h2>
+<ul>
+<li><a href="install/">Installation</a></li>
+<li><a href="data-setup/">Data setup &amp; caching</a></li>
+<li><a href="sharing/">What is shared (for maintainers)</a></li>
+<li><a href="api/">API reference</a></li>
+</ul>
 
 
 

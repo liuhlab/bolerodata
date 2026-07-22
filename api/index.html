@@ -1,0 +1,5503 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://liuhlab.github.io/bolerodata/api/">
+      
+      
+        <link rel="prev" href="../sharing/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>API reference - bolerodata</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="bolerodata" class="md-header__button md-logo" aria-label="bolerodata" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            bolerodata
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/liuhlab/bolerodata" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="bolerodata" class="md-nav__button md-logo" aria-label="bolerodata" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    bolerodata
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/liuhlab/bolerodata" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../install/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data setup & caching
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sharing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sharing (maintainers)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API reference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#metadata-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata registry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Metadata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.DATASET_METADATA" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DATASET_METADATA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.MODEL_ZOO" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MODEL_ZOO
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.QTL_COLLECTION" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QTL_COLLECTION
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.JASPAR_MOTIF_CLUSTER_INFO" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JASPAR_MOTIF_CLUSTER_INFO
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.JASPAR_MOTIF_CLUSTER" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JASPAR_MOTIF_CLUSTER
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.DA_COLLECTION" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DA_COLLECTION
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.get_sample_snap_files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_sample_snap_files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.get_misc_data_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_misc_data_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.get_metacell_adata_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_metacell_adata_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.get_metacell_parquet_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_metacell_parquet_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.get_metacell_pseudobulk_records_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_metacell_pseudobulk_records_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.get_metacell_cond_pseudobulk_records_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_metacell_cond_pseudobulk_records_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.get_reference_bigwig_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_reference_bigwig_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.get_metacell_metadata_pseudobulk_records_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_metacell_metadata_pseudobulk_records_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.get_pseudobulk_gene_and_hvg_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_pseudobulk_gene_and_hvg_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.get_peak_motif_scan_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_peak_motif_scan_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Datasets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataset
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.Genome" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Genome
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.cell_metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cell_metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.n_cells" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        n_cells
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.n_samples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        n_samples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.sample_metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sample_metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.cluster_metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cluster_metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.snap_file_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        snap_file_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.original_cell_metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        original_cell_metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.cell_embedding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cell_embedding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.peak_motif_scan_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        peak_motif_scan_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.peak_motif_scan_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        peak_motif_scan_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.chromvar_adata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        chromvar_adata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.cross_dataset_chromvar_adata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cross_dataset_chromvar_adata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.make_cell_metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        make_cell_metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.get_meta_cell_adata_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_meta_cell_adata_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.get_meta_cell_adata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_meta_cell_adata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.get_meta_cell_parquet_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_meta_cell_parquet_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.get_meta_cell_pseudobulk_records_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_meta_cell_pseudobulk_records_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.get_reference_bigwig_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_reference_bigwig_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.get_meta_cell_cond_pseudobulk_records_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_meta_cell_cond_pseudobulk_records_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.get_meta_cell_metadata_pseudobulk_records_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_meta_cell_metadata_pseudobulk_records_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.get_pseudobulk_gene_data_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_pseudobulk_gene_data_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.get_pseudobulk_hvg_list_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_pseudobulk_hvg_list_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.get_dataset_reference_gene_log1pcpm_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_dataset_reference_gene_log1pcpm_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Datasets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Datasets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Datasets.get_datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_datasets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Datasets.get_datasets_and_subset_names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_datasets_and_subset_names
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata.model.BoleroModel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BoleroModel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BoleroModel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.model.BoleroModel.ckpt_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ckpt_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.model.BoleroModel.dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.model.BoleroModel.pred_batch_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pred_batch_size
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.model.BoleroModel.attr_batch_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        attr_batch_size
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.model.BoleroModel.get_default_p0_meta_cells" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_default_p0_meta_cells
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.model.BoleroModel.create_predictor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_predictor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata.model.Models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.model.Models.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __init__
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qtl-collections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QTL collections
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata.qtl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        qtl
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="qtl">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.QTLCollection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QTLCollection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="QTLCollection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.QTLCollection.qtl_path_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        qtl_path_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.QTLCollection.tissue_list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tissue_list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.QTLCollection.get_qtl_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_qtl_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.QTLCollection.get_qtl_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_qtl_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.GTExQTLCollection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GTExQTLCollection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GTExQTLCollection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.GTExQTLCollection.get_qtl_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_qtl_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.GTExQTLCollection.get_qtl_training_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_qtl_training_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.GTExEQTLCatalogCollection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GTExEQTLCatalogCollection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GTExEQTLCatalogCollection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.GTExEQTLCatalogCollection.get_qtl_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_qtl_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.Zeng2024QTLCollection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zeng2024QTLCollection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Zeng2024QTLCollection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.Zeng2024QTLCollection.get_qtl_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_qtl_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.Onek1kQTLCollection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Onek1kQTLCollection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Onek1kQTLCollection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.Onek1kQTLCollection.get_qtl_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_qtl_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-resolution-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data resolution &amp; caching
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata._sync.localize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        localize
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata._sync.prefetch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        prefetch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata._sync.sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sync
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata._sync.cache_root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cache_root
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata._sync.manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        manifest
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata._sync.FileNotAvailableError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FileNotAvailableError
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#differential-analysis-optional-diff-extra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Differential analysis (optional diff extra)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DiffRecords
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DiffRecords">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords.gene_diff_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gene_diff_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords.peak_diff_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        peak_diff_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords.group1_bw_handle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        group1_bw_handle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords.group2_bw_handle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        group2_bw_handle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords.dataset_peak_scan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dataset_peak_scan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __init__
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords.get_bw_values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_bw_values
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords.get_bw_stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_bw_stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords.scan_peaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scan_peaks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords.dump_sig_peak_bed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dump_sig_peak_bed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords.setup_igv_tracks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        setup_igv_tracks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords.igv_browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        igv_browser
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#metadata-registry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata registry
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Metadata">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.DATASET_METADATA" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DATASET_METADATA
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.MODEL_ZOO" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MODEL_ZOO
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.QTL_COLLECTION" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QTL_COLLECTION
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.JASPAR_MOTIF_CLUSTER_INFO" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JASPAR_MOTIF_CLUSTER_INFO
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.JASPAR_MOTIF_CLUSTER" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        JASPAR_MOTIF_CLUSTER
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.DA_COLLECTION" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DA_COLLECTION
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.get_sample_snap_files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_sample_snap_files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.get_misc_data_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_misc_data_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.get_metacell_adata_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_metacell_adata_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.get_metacell_parquet_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_metacell_parquet_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.get_metacell_pseudobulk_records_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_metacell_pseudobulk_records_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.get_metacell_cond_pseudobulk_records_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_metacell_cond_pseudobulk_records_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.get_reference_bigwig_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_reference_bigwig_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.get_metacell_metadata_pseudobulk_records_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_metacell_metadata_pseudobulk_records_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.get_pseudobulk_gene_and_hvg_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_pseudobulk_gene_and_hvg_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.get_peak_motif_scan_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_peak_motif_scan_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Datasets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dataset
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dataset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.Genome" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Genome
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.cell_metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cell_metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.n_cells" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        n_cells
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.n_samples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        n_samples
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.sample_metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sample_metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.cluster_metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cluster_metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.snap_file_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        snap_file_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.original_cell_metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        original_cell_metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.cell_embedding" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cell_embedding
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.peak_motif_scan_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        peak_motif_scan_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.peak_motif_scan_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        peak_motif_scan_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.chromvar_adata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        chromvar_adata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.cross_dataset_chromvar_adata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cross_dataset_chromvar_adata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.make_cell_metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        make_cell_metadata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.get_meta_cell_adata_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_meta_cell_adata_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.get_meta_cell_adata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_meta_cell_adata
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.get_meta_cell_parquet_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_meta_cell_parquet_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.get_meta_cell_pseudobulk_records_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_meta_cell_pseudobulk_records_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.get_reference_bigwig_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_reference_bigwig_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.get_meta_cell_cond_pseudobulk_records_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_meta_cell_cond_pseudobulk_records_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.get_meta_cell_metadata_pseudobulk_records_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_meta_cell_metadata_pseudobulk_records_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.get_pseudobulk_gene_data_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_pseudobulk_gene_data_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.get_pseudobulk_hvg_list_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_pseudobulk_hvg_list_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Dataset.get_dataset_reference_gene_log1pcpm_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_dataset_reference_gene_log1pcpm_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Datasets
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Datasets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Datasets.get_datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_datasets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.dataset.Datasets.get_datasets_and_subset_names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_datasets_and_subset_names
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata.model.BoleroModel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        BoleroModel
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="BoleroModel">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.model.BoleroModel.ckpt_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ckpt_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.model.BoleroModel.dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dataset
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.model.BoleroModel.pred_batch_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        pred_batch_size
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.model.BoleroModel.attr_batch_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        attr_batch_size
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.model.BoleroModel.get_default_p0_meta_cells" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_default_p0_meta_cells
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.model.BoleroModel.create_predictor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        create_predictor
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata.model.Models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.model.Models.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __init__
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#qtl-collections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QTL collections
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata.qtl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        qtl
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="qtl">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.QTLCollection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        QTLCollection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="QTLCollection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.QTLCollection.qtl_path_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        qtl_path_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.QTLCollection.tissue_list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        tissue_list
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.QTLCollection.get_qtl_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_qtl_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.QTLCollection.get_qtl_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_qtl_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.GTExQTLCollection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GTExQTLCollection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GTExQTLCollection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.GTExQTLCollection.get_qtl_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_qtl_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.GTExQTLCollection.get_qtl_training_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_qtl_training_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.GTExEQTLCatalogCollection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GTExEQTLCatalogCollection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GTExEQTLCatalogCollection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.GTExEQTLCatalogCollection.get_qtl_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_qtl_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.Zeng2024QTLCollection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Zeng2024QTLCollection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Zeng2024QTLCollection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.Zeng2024QTLCollection.get_qtl_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_qtl_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.Onek1kQTLCollection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Onek1kQTLCollection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Onek1kQTLCollection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.qtl.Onek1kQTLCollection.get_qtl_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_qtl_path
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data-resolution-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data resolution &amp; caching
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata._sync.localize" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        localize
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata._sync.prefetch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        prefetch
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata._sync.sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sync
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata._sync.cache_root" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        cache_root
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata._sync.manifest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        manifest
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata._sync.FileNotAvailableError" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FileNotAvailableError
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#differential-analysis-optional-diff-extra" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Differential analysis (optional diff extra)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DiffRecords
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DiffRecords">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords.gene_diff_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        gene_diff_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords.peak_diff_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        peak_diff_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords.group1_bw_handle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        group1_bw_handle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords.group2_bw_handle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        group2_bw_handle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords.dataset_peak_scan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dataset_peak_scan
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        __init__
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords.get_bw_values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_bw_values
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords.get_bw_stats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_bw_stats
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords.scan_peaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        scan_peaks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords.dump_sig_peak_bed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dump_sig_peak_bed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords.setup_igv_tracks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        setup_igv_tracks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bolerodata.diff_analysis.DiffRecords.igv_browser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        igv_browser
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="api-reference">API reference</h1>
+<h2 id="metadata-registry">Metadata registry</h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="bolerodata.data.Metadata" class="doc doc-heading">
+            <code>bolerodata.data.Metadata</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.data.Metadata.DATASET_METADATA" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">DATASET_METADATA</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Misc dataset metadata.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.data.Metadata.MODEL_ZOO" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">MODEL_ZOO</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Model zoo.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.data.Metadata.QTL_COLLECTION" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">QTL_COLLECTION</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>QTL collection.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.data.Metadata.JASPAR_MOTIF_CLUSTER_INFO" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">JASPAR_MOTIF_CLUSTER_INFO</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>JASPAR motif cluster info.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.data.Metadata.JASPAR_MOTIF_CLUSTER" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">JASPAR_MOTIF_CLUSTER</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>JASPAR motif cluster.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.data.Metadata.DA_COLLECTION" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">DA_COLLECTION</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Differential analysis collection.</p>
+
+    </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.data.Metadata.get_sample_snap_files" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_sample_snap_files</span><span class="p">(</span><span class="n">dataset_name</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the sample snap files table.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.data.Metadata.get_misc_data_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_misc_data_path</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">path_attr</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the misc data path from the dictionary.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.data.Metadata.get_metacell_adata_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_metacell_adata_path</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the metacell adata path from the dictionary.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.data.Metadata.get_metacell_parquet_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_metacell_parquet_path</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the metacell parquet path from the dictionary.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.data.Metadata.get_metacell_pseudobulk_records_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_metacell_pseudobulk_records_path</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the metacell pseudobulk records path from the dictionary.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.data.Metadata.get_metacell_cond_pseudobulk_records_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_metacell_cond_pseudobulk_records_path</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the metacell condition pseudobulk records path from the dictionary.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.data.Metadata.get_reference_bigwig_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_reference_bigwig_path</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the reference bigwig path from the dictionary.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.data.Metadata.get_metacell_metadata_pseudobulk_records_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_metacell_metadata_pseudobulk_records_path</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the metacell metadata pseudobulk records path from the dictionary.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.data.Metadata.get_pseudobulk_gene_and_hvg_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_pseudobulk_gene_and_hvg_path</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the pseudobulk gene and hvg path from the dictionary.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.data.Metadata.get_peak_motif_scan_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_peak_motif_scan_path</span><span class="p">(</span><span class="n">dataset_name</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the peak motif scan path.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="datasets">Datasets</h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="bolerodata.dataset.Dataset" class="doc doc-heading">
+            <code>bolerodata.dataset.Dataset</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.dataset.Dataset.Genome" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">Genome</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return a bolero.Genome object for the dataset genome.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.dataset.Dataset.cell_metadata" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">cell_metadata</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Standard minimum cell metadata table.</p>
+<p>Schema:
+- Index: cell barcode in "{sample}+{cell barcode}" format.
+    For 10X experiments, barcode is in "GEX_BARCODE-1" format
+- Columns:
+    1. sample  # link to sample metadata
+    2. cluster  # link to cluster metadata, deepest level of clustering
+    3. n_fragments  # From ATAC
+    4. tsse  # From ATAC
+    5. n_umi  # From RNA, if any
+    6. n_genes  # From RNA, if any</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.dataset.Dataset.n_cells" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">n_cells</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Number of cells in the dataset.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.dataset.Dataset.n_samples" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">n_samples</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Number of samples in the dataset.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.dataset.Dataset.sample_metadata" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">sample_metadata</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Standard sample metadata table.</p>
+<p>Schema:
+- Index: sample_id
+    - This id match the sample column in all cell_metadata.
+    - This correspond to technical sample (e.g., one 10X experiments)
+      the same barcode within sample should come from a single cell.
+    - For biological sample, record in donor column
+- Columns:
+    1. age  # time, standard age group
+    2. age_int  # Estimated postconceptional age in days, standard age group int
+    3. tissue  # space, experiment tissue source information
+    4. DissectionRegion  # space, anatomical descriptive vocabulary of the tissue
+    5. sex  # exp design
+    6. donor  # exp design
+- Additional Columns:
+    - <strong>age_details
+    - </strong>tissue_details
+    - **exp_details</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.dataset.Dataset.cluster_metadata" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">cluster_metadata</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Standard cluster metadata table.</p>
+<p>Schema:
+- Index: cluster_id
+    - This id match the cluster column in all cell_metadata.
+    - This correspond to the deepest level of clustering
+- Columns:
+    - Columns:
+    1. subclass: Most meaningful detail cell annotation level
+    2. class: Most meaningful major cell annotation level
+- Additional Columns:
+    - **Other cluster levels</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.dataset.Dataset.snap_file_table" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">snap_file_table</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Standard snap file table.</p>
+<p>Columns:
+- sample: Sample ID
+    - EXCEPT Li2023Science, which is using cell type to group snap
+- dataset: Dataset Name
+- snap_path: Path to the snap file
+    - Contains nan, some snap files might be missing.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.dataset.Dataset.original_cell_metadata" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">original_cell_metadata</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Cell metadata table organized from original study, contain misc information.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.dataset.Dataset.cell_embedding" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">cell_embedding</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Cell embedding table organized from original study, contain misc information.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.dataset.Dataset.peak_motif_scan_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">peak_motif_scan_path</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the path to the peak motif scan table.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.dataset.Dataset.peak_motif_scan_table" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">peak_motif_scan_table</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Peak motif scan binary table.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.dataset.Dataset.chromvar_adata" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">chromvar_adata</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Chromvar adata object.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.dataset.Dataset.cross_dataset_chromvar_adata" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">cross_dataset_chromvar_adata</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Cross dataset chromvar adata object.</p>
+
+    </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.dataset.Dataset.make_cell_metadata" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">make_cell_metadata</span><span class="p">(</span><span class="n">sample_meta</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">cluster_meta</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Make cell metadata table with sample and cluster metadata.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.dataset.Dataset.get_meta_cell_adata_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_meta_cell_adata_path</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;metadata&#39;</span><span class="p">,</span> <span class="n">subset_name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the path to the meta cell adata file.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.dataset.Dataset.get_meta_cell_adata" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_meta_cell_adata</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;metadata&#39;</span><span class="p">,</span> <span class="n">subset_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">backed</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the meta cell adata object.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>kind</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The kind of meta cell adata file to get:
+- "metadata": metadata and embedding only
+- "gene": gene expression data
+- "peak": peak count data
+- "cell": cell level metadata and embedding only</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;metadata&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>subset_name</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The name of the subset to get. If None, return the full dataset.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>backed</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If not None, load the adata in backed mode. This is useful for large datasets.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="anndata.AnnData">AnnData</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The meta cell adata object.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.dataset.Dataset.get_meta_cell_parquet_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_meta_cell_parquet_path</span><span class="p">(</span><span class="n">kind</span><span class="p">,</span> <span class="n">subset_name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the path to the meta cell parquet dataset dir.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.dataset.Dataset.get_meta_cell_pseudobulk_records_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_meta_cell_pseudobulk_records_path</span><span class="p">(</span><span class="n">target_coverage</span><span class="p">,</span> <span class="n">subset_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pseudobulk_type</span><span class="o">=</span><span class="s1">&#39;condition&#39;</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the path to the meta cell pseudobulk records file.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>target_coverage</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The target_coverage of meta cell pseudobulk records file to get:
+- 5000000: pseudobulk records with 5000000 target coverage
+- 25000000: pseudobulk records with 25000000 target coverage</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>subset_name</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The name of the subset to get. If None, return the full dataset.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>pseudobulk_type</code>
+            </td>
+            <td>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The type of pseudobulk to get. Must be one of ['embedding', 'condition', 'metadata'].
+Embedding: pseudobulk grouped based on embedding, containing embedding information only.
+Condition: pseudobulk grouped based on embedding, containing embedding and condition information.
+Metadata: pseudobulk grouped based on metadata, containing embedding and condition information.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;condition&#39;</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The path to the meta cell pseudobulk records file.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.dataset.Dataset.get_reference_bigwig_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_reference_bigwig_path</span><span class="p">(</span><span class="n">subset_name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the path to the reference bigwig file.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.dataset.Dataset.get_meta_cell_cond_pseudobulk_records_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_meta_cell_cond_pseudobulk_records_path</span><span class="p">(</span><span class="n">target_coverage</span><span class="p">,</span> <span class="n">subset_name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the path to the meta cell condition pseudobulk records file.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.dataset.Dataset.get_meta_cell_metadata_pseudobulk_records_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_meta_cell_metadata_pseudobulk_records_path</span><span class="p">(</span><span class="n">target_coverage</span><span class="p">,</span> <span class="n">subset_name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the path to the meta cell metadata pseudobulk records file.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.dataset.Dataset.get_pseudobulk_gene_data_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_pseudobulk_gene_data_path</span><span class="p">(</span><span class="n">subset_name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the path to the pseudobulk gene data file.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.dataset.Dataset.get_pseudobulk_hvg_list_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_pseudobulk_hvg_list_path</span><span class="p">(</span><span class="n">subset_name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the path to the pseudobulk hvg list file.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.dataset.Dataset.get_dataset_reference_gene_log1pcpm_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_dataset_reference_gene_log1pcpm_path</span><span class="p">(</span><span class="n">subset_name</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the path to the dataset reference gene log1pcpm file.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="bolerodata.dataset.Datasets" class="doc doc-heading">
+            <code>bolerodata.dataset.Datasets</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.dataset.Datasets.get_datasets" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_datasets</span><span class="p">(</span><span class="n">species</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">genome</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the datasets with the given species and genome.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.dataset.Datasets.get_datasets_and_subset_names" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_datasets_and_subset_names</span><span class="p">(</span><span class="n">species</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">genome</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the datasets and subset names with the given species and genome.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="models">Models</h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="bolerodata.model.BoleroModel" class="doc doc-heading">
+            <code>bolerodata.model.BoleroModel</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.model.BoleroModel.ckpt_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ckpt_path</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Local checkpoint path (downloaded from HuggingFace on first access).</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.model.BoleroModel.dataset" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">dataset</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+      <small class="doc doc-label doc-label-writable"><code>writable</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the dataset for the model.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.model.BoleroModel.pred_batch_size" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">pred_batch_size</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Batch size for prediction tasks.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.model.BoleroModel.attr_batch_size" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">attr_batch_size</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Batch size for attribution tasks.</p>
+
+    </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.model.BoleroModel.get_default_p0_meta_cells" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_default_p0_meta_cells</span><span class="p">(</span><span class="n">subset_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get up to 1000 meta cells for creating fixed p0 meta cells.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.model.BoleroModel.create_predictor" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">create_predictor</span><span class="p">(</span><span class="n">subset_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pseudobulk_records_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pseudobulk_ids</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">target_cov</span><span class="o">=</span><span class="mi">5000000</span><span class="p">,</span> <span class="n">pseudobulk_type</span><span class="o">=</span><span class="s1">&#39;condition&#39;</span><span class="p">,</span> <span class="n">sample_n_pseudobulks</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">peak_bed_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nosignal</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">use_ref_bw</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">embedding_only_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Create a predictor for the model.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>subset_name</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The name of the subset to create the predictor for.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>pseudobulk_records_path</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The path to the pseudobulk records file, if None, will use the dataset's default pseudobulk records file.
+If a dict, will use the pseudobulk records from the dict.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>pseudobulk_ids</code>
+            </td>
+            <td>
+                  <code><span title="list">list</span>[<span title="str">str</span>]</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The list of pseudobulk ids to use. If None, will use all pseudobulk ids in the pseudobulk records file.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>peak_bed_path</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The path to the peak bed file. If None, will use the dataset's default peak bed file.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>pseudobulk_type</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The type of dataset's default pseudobulk file to use. Must be one of ['condition', 'metadata'].</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;condition&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>sample_n_pseudobulks</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The number of pseudobulks to sample.</p>
+              </div>
+            </td>
+            <td>
+                  <code>100</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>target_cov</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The target coverage to use for the default pseudobulk records file.</p>
+              </div>
+            </td>
+            <td>
+                  <code>5000000</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>nosignal</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Whether to use the DNA only (no signal) model.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>use_ref_bw</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Whether to use the reference bigwig file to represent the reference signal.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>embedding_only_mode</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Whether to use the embedding only mode to create the predictor.
+If True, will skip ytrue data preparation and skip all the metrics calculation.</p>
+              </div>
+            </td>
+            <td>
+                  <code>False</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="bolero.tl.predict.predictor.GenericPredictor">GenericPredictor</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>The predictor for the model.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="bolerodata.model.Models" class="doc doc-heading">
+            <code>bolerodata.model.Models</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.model.Models.__init__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Models is a singleton class that contains all the models.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="qtl-collections">QTL collections</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<h2 id="bolerodata.qtl" class="doc doc-heading">
+            <code>bolerodata.qtl</code>
+
+
+</h2>
+
+    <div class="doc doc-contents first">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="bolerodata.qtl.QTLCollection" class="doc doc-heading">
+            <code>QTLCollection</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="bolerodata.qtl.QTLCollection.qtl_path_table" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">qtl_path_table</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>QTL path table.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h4 id="bolerodata.qtl.QTLCollection.tissue_list" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">tissue_list</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Tissue list.</p>
+
+    </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="bolerodata.qtl.QTLCollection.get_qtl_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_qtl_path</span><span class="p">(</span><span class="n">key</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the QTL path (localized: downloaded from HuggingFace if off-lab).</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="bolerodata.qtl.QTLCollection.get_qtl_table" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_qtl_table</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the QTL data.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="bolerodata.qtl.GTExQTLCollection" class="doc doc-heading">
+            <code>GTExQTLCollection</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="QTLCollection (bolerodata.qtl.QTLCollection)" href="#bolerodata.qtl.QTLCollection">QTLCollection</a></code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="bolerodata.qtl.GTExQTLCollection.get_qtl_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_qtl_path</span><span class="p">(</span><span class="n">tissue</span><span class="p">,</span> <span class="n">gene_sel</span><span class="o">=</span><span class="s1">&#39;protein_coding&#39;</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the QTL path.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="bolerodata.qtl.GTExQTLCollection.get_qtl_training_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_qtl_training_path</span><span class="p">(</span><span class="n">tissue</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the QTL path for training QTL models.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="bolerodata.qtl.GTExEQTLCatalogCollection" class="doc doc-heading">
+            <code>GTExEQTLCatalogCollection</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="QTLCollection (bolerodata.qtl.QTLCollection)" href="#bolerodata.qtl.QTLCollection">QTLCollection</a></code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="bolerodata.qtl.GTExEQTLCatalogCollection.get_qtl_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_qtl_path</span><span class="p">(</span><span class="n">tissue</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the QTL path for GTEx eQTL catalog data.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>tissue</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Tissue identifier (e.g., 'uterus', 'muscle', 'prostate').</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to the QTL data file. All GTEx eQTL catalog data uses the
+'all_gene' gene selection.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="bolerodata.qtl.Zeng2024QTLCollection" class="doc doc-heading">
+            <code>Zeng2024QTLCollection</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="QTLCollection (bolerodata.qtl.QTLCollection)" href="#bolerodata.qtl.QTLCollection">QTLCollection</a></code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="bolerodata.qtl.Zeng2024QTLCollection.get_qtl_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_qtl_path</span><span class="p">(</span><span class="n">cell_type</span><span class="p">,</span> <span class="n">all_pair</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the QTL path.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="bolerodata.qtl.Onek1kQTLCollection" class="doc doc-heading">
+            <code>Onek1kQTLCollection</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="QTLCollection (bolerodata.qtl.QTLCollection)" href="#bolerodata.qtl.QTLCollection">QTLCollection</a></code></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h4 id="bolerodata.qtl.Onek1kQTLCollection.get_qtl_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_qtl_path</span><span class="p">(</span><span class="n">cell_type</span><span class="p">)</span></code>
+
+</h4>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the QTL path for OneK1K eQTL catalog data.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>cell_type</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Cell type identifier (e.g., 'CD16+_monocyte', 'NK_cell', 'B_cell').</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to the QTL data file.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div><h2 id="data-resolution-caching">Data resolution &amp; caching</h2>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="bolerodata._sync.localize"></a>
+    <div class="doc doc-contents first">
+
+        <p>Resolve a bolerodata artifact to a concrete local path.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>path</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span> or <span title="os.PathLike">PathLike</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>An absolute lab path (as stored in the registry tables / joblib dicts)
+or a repo-relative logical path.</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>allow_download</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>False</code>, never hit the network; raise if the artifact is not
+already present locally (useful for strict offline runs).</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>desc</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Human-readable label used in error messages.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pathlib.Path">Path</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A path that exists on the local filesystem.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="bolerodata._sync.FileNotAvailableError" href="#bolerodata._sync.FileNotAvailableError">FileNotAvailableError</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the artifact is unknown, marked not-shared, or (with
+<code>allow_download=False</code>) simply not cached.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="bolerodata._sync.prefetch"></a>
+    <div class="doc doc-contents first">
+
+        <p>Pre-download shared artifacts matching the given filters into the cache.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>tier</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Only fetch entries whose <code>tier</code> equals this (e.g. <code>"core"</code>, <code>"eval"</code>).</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>category</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Only fetch entries whose <code>category</code> equals this.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>datasets</code>
+            </td>
+            <td>
+                  <code>iterable of str</code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Keep an entry only if one of these substrings appears in its logical path.</p>
+              </div>
+            </td>
+            <td>
+                  <code>None</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>allow_download</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Passed through to the downloader; if <code>False</code> this is a no-op sanity pass.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="dict">dict</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p><code>{"downloaded": int, "errors": [(logical, message), ...]}</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="bolerodata._sync.sync"></a>
+    <div class="doc doc-contents first">
+
+        <p>Download all shared artifacts (optionally filtered). Alias of :func:<code>prefetch</code>.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="bolerodata._sync.cache_root"></a>
+    <div class="doc doc-contents first">
+
+        <p>Return the local cache directory for downloaded bolerodata artifacts.</p>
+<p>Resolution order: <code>$BOLERODATA_HOME</code> → <code>$BOLERO_HOME</code> →
+:func:<code>platformdirs.user_cache_dir</code> → <code>~/.cache/bolero</code>.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="bolerodata._sync.manifest"></a>
+    <div class="doc doc-contents first">
+
+        <p>Load the bundled HuggingFace manifest.</p>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="dict">dict</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Mapping <code>logical_path -&gt; {kind, share, category, tier, size, sha256,
+repo_id, repo_type, repo_path, pack}</code>. Empty dict if the manifest has
+not been built/shipped yet (authors do not need it).</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<a id="bolerodata._sync.FileNotAvailableError"></a>
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="RuntimeError">RuntimeError</span></code></p>
+
+
+
+        <p>Raised when an artifact is not available locally and cannot be fetched.</p>
+
+
+
+
+
+
+
+
+
+    </div>
+
+</div><h2 id="differential-analysis-optional-diff-extra">Differential analysis (optional <code>diff</code> extra)</h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="bolerodata.diff_analysis.DiffRecords" class="doc doc-heading">
+            <code>bolerodata.diff_analysis.DiffRecords</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents first">
+
+
+
+        <p>A single pair-wise differential analysis record.</p>
+
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.diff_analysis.DiffRecords.gene_diff_table" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">gene_diff_table</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Gene differential analysis table.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.diff_analysis.DiffRecords.peak_diff_table" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">peak_diff_table</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Peak differential analysis table.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.diff_analysis.DiffRecords.group1_bw_handle" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">group1_bw_handle</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>BigWig file handle for group 1.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.diff_analysis.DiffRecords.group2_bw_handle" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">group2_bw_handle</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>BigWig file handle for group 2.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="bolerodata.diff_analysis.DiffRecords.dataset_peak_scan" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">dataset_peak_scan</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get dataset peak scan values for Group1 and Group2.</p>
+
+    </div>
+
+</div>
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.diff_analysis.DiffRecords.__init__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">gene_rec</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">peak_rec</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lfc_cutoff</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">igv_base_dir</span><span class="o">=</span><span class="s1">&#39;igv&#39;</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initialize the DiffRecords object with gene and/or peak records.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.diff_analysis.DiffRecords.get_bw_values" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_bw_values</span><span class="p">(</span><span class="n">region</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get Group1 and Group2 bigwig values for a given region.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.diff_analysis.DiffRecords.get_bw_stats" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_bw_stats</span><span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="n">stat_type</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get Group1 and Group2 bigwig stats for a given region.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.diff_analysis.DiffRecords.scan_peaks" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">scan_peaks</span><span class="p">(</span><span class="n">regions</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Scan peaks on Group1 and Group2 bigwig files.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.diff_analysis.DiffRecords.dump_sig_peak_bed" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">dump_sig_peak_bed</span><span class="p">(</span><span class="n">output_dir</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Dump significant peak bed files for IGV browser.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.diff_analysis.DiffRecords.setup_igv_tracks" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">setup_igv_tracks</span><span class="p">()</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Create IGV tracks table for IGV browser.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.diff_analysis.DiffRecords.igv_browser" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">igv_browser</span><span class="p">(</span><span class="n">locus</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Open IGV browser for the differential analysis record.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
