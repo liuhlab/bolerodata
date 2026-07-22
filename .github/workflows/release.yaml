@@ -17,6 +17,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write # mint the OIDC token for PyPI Trusted Publishing
 
     steps:
       # build python package and deploy to pypi
@@ -33,6 +36,4 @@ jobs:
         run: python -m build
       - name: Publish package
         uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          user: __token__
-          password: ${{ secrets.PYPI_API_TOKEN_ALL_PROJECT }}
+        # Auth via GitHub OIDC (PyPI Trusted Publishing) — no stored token.
