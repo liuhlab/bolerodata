@@ -4,8 +4,8 @@ from typing import TYPE_CHECKING
 
 import joblib
 import pandas as pd
-import torch
 
+from ._sync import localize
 from .data import metadata
 from .dataset import DATASETS, Dataset
 
@@ -48,6 +48,8 @@ def determin_batch_size(gb_per_sample: int) -> int:
     """
     Determine the batch size based on the available GPU memory.
     """
+    import torch  # local import: torch is only needed for GPU-sizing, not to browse the registry
+
     gpu_mem = 0
     if torch.cuda.is_available():
         for i in range(torch.cuda.device_count()):
@@ -81,15 +83,18 @@ class BoleroModel:
         _model_dict.update(additional_model_metadata)
 
         self.model_metadata = _model_dict
-        self.config_path = (
-            pathlib.Path(self.model_metadata["ConfigPath"]).absolute().resolve()
+        # Config is a small JSON — localize (download if off-lab) and load eagerly.
+        self.config_path = localize(
+            self.model_metadata["ConfigPath"], desc=f"config for {model_key}"
         )
         with open(self.config_path) as f:
             self.model_config = json.load(f)
 
-        self.ckpt_path = (
-            pathlib.Path(self.model_metadata["CkptPath"]).absolute().resolve()
-        )
+        # Checkpoints are multi-GB. Keep the path raw here and localize lazily in the
+        # ``ckpt_path`` property, so constructing ``MODELS[key]`` never downloads a
+        # checkpoint — only building a predictor (which reads ``ckpt_path``) does.
+        self._ckpt_path_raw = self.model_metadata["CkptPath"]
+        self._ckpt_path = None
         self._has_gene_count_head = self.model_metadata["Gene Count Head"]
         self._tf_score_input = self.model_metadata["Score Input"]
 
@@ -97,6 +102,15 @@ class BoleroModel:
 
         self.default_dataset = self.model_metadata["DefaultDataset"]
         self._current_dataset = None
+
+    @property
+    def ckpt_path(self) -> pathlib.Path:
+        """Local checkpoint path (downloaded from HuggingFace on first access)."""
+        if self._ckpt_path is None:
+            self._ckpt_path = localize(
+                self._ckpt_path_raw, desc=f"checkpoint for {self.model_key}"
+            )
+        return self._ckpt_path
 
     @property
     def dataset(self) -> "Dataset":
@@ -219,7 +233,7 @@ class BoleroModel:
 
         if peak_bed_path is None:
             peak_bed_path = self.dataset.peak_bed_path
-        kwargs["peak_bed_path"] = peak_bed_path
+        kwargs["peak_bed_path"] = str(localize(peak_bed_path))
 
         if use_ref_bw:
             ref_bw_path = self.dataset.get_reference_bigwig_path(

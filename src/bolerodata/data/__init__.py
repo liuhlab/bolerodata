@@ -4,24 +4,20 @@ import pathlib
 import joblib
 import pandas as pd
 
+from bolerodata._sync import localize
+
 from ._path_patch import PATH_PATCH_DICT
 
 DEFAULT_STANDARD_DIR = "/large_storage/zhoulab/hanliu/wmb/standard"
 
 
-try:
-    STANDARD_DIR = pathlib.Path(os.environ["STANDARD_DIR"])
-    assert (
-        STANDARD_DIR.exists()
-    ), f"Standard directory from $STANDARD_DIR does not exist at {STANDARD_DIR}."
-except KeyError:
-    # If the environment variable is not set, use the default directory
-    # and check if it exists.
-    STANDARD_DIR = pathlib.Path(DEFAULT_STANDARD_DIR)
-    assert STANDARD_DIR.exists(), (
-        "Standard directory does not exist. ",
-        "Please set environment variable STANDARD_DIR to a valid path.",
-    )
+# STANDARD_DIR is the lab data-lake root. On lab machines it exists and files are
+# read straight from it. Off-lab it does not exist; the paths built from it below
+# become *logical keys* that ``bolerodata._sync.localize()`` maps to a HuggingFace
+# download into the local cache. We therefore do NOT assert it exists at import
+# time — that assert used to make ``import bolerodata`` fail on any machine
+# without the data lake (e.g. CI, or any external user).
+STANDARD_DIR = pathlib.Path(os.environ.get("STANDARD_DIR", DEFAULT_STANDARD_DIR))
 
 
 STANDARD_CELL_METADATA_DIR = STANDARD_DIR / "cell_metadata"
@@ -147,7 +143,9 @@ class Metadata:
     def get_sample_snap_files(self, dataset_name):
         """Get the sample snap files table."""
         if "sample_snap_table" not in self._cache:
-            self._cache["sample_snap_table"] = pd.read_csv(self.SAMPLE_SNAP_TABLE_PATH)
+            self._cache["sample_snap_table"] = pd.read_csv(
+                localize(self.SAMPLE_SNAP_TABLE_PATH)
+            )
         snap_table = self._cache["sample_snap_table"]
         use_snap_table = snap_table[snap_table["dataset"] == dataset_name].copy()
         return use_snap_table
@@ -162,7 +160,9 @@ class Metadata:
         try:
             path_dict = self._cache[path_attr]
         except KeyError:
-            d = joblib.load(getattr(self, path_attr))
+            # The joblib path-dict itself lives under STANDARD_DIR; localize it so
+            # external users fetch it from HuggingFace before looking keys up.
+            d = joblib.load(localize(getattr(self, path_attr)))
 
             # any spatial patch for non-standard datasets
             patch = PATH_PATCH_DICT.get(path_attr, {})
@@ -172,7 +172,9 @@ class Metadata:
             path_dict = self._cache[path_attr]
 
         try:
-            return path_dict[key]
+            # The dict value is an absolute lab path (or logical key); localize it
+            # to a concrete local file, downloading from HuggingFace if needed.
+            return localize(path_dict[key])
         except KeyError:
             startswith = [k for k in path_dict.keys() if k.startswith(key)]
             raise KeyError(
@@ -230,7 +232,9 @@ class Metadata:
         """
         Get the peak motif scan path.
         """
-        return STANDARD_DIR / f"motif_scan/{dataset_name}.JASPAR_motif_hit.feather"
+        return localize(
+            STANDARD_DIR / f"motif_scan/{dataset_name}.JASPAR_motif_hit.feather"
+        )
 
 
 metadata = Metadata()

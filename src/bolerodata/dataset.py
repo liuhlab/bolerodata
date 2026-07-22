@@ -1,6 +1,7 @@
 import anndata
 import pandas as pd
 
+from ._sync import localize
 from .data import metadata
 
 
@@ -55,8 +56,10 @@ class Dataset:
         """
         if "standard_cell_metadata" not in self._cache:
             self._cache["standard_cell_metadata"] = pd.read_feather(
-                metadata.STANDARD_CELL_METADATA_DIR
-                / f"{self.name}.cell_metadata.feather"
+                localize(
+                    metadata.STANDARD_CELL_METADATA_DIR
+                    / f"{self.name}.cell_metadata.feather"
+                )
             )
         return self._cache["standard_cell_metadata"]
 
@@ -110,8 +113,10 @@ class Dataset:
         """
         if "sample_metadata" not in self._cache:
             self._cache["sample_metadata"] = pd.read_feather(
-                metadata.STANDARD_SAMPLE_METADATA_DIR
-                / f"{self.name}.sample_metadata.feather"
+                localize(
+                    metadata.STANDARD_SAMPLE_METADATA_DIR
+                    / f"{self.name}.sample_metadata.feather"
+                )
             )
         return self._cache["sample_metadata"]
 
@@ -133,8 +138,10 @@ class Dataset:
         """
         if "cluster_metadata" not in self._cache:
             self._cache["cluster_metadata"] = pd.read_feather(
-                metadata.STANDARD_CLUSTER_METADATA_DIR
-                / f"{self.name}.cluster_metadata.feather"
+                localize(
+                    metadata.STANDARD_CLUSTER_METADATA_DIR
+                    / f"{self.name}.cluster_metadata.feather"
+                )
             )
         return self._cache["cluster_metadata"]
 
@@ -159,7 +166,7 @@ class Dataset:
         """
         if "cell_metadata" not in self._cache:
             self._cache["cell_metadata"] = pd.read_feather(
-                self.metadata["cell_metadata"]
+                localize(self.metadata["cell_metadata"])
             )
         return self._cache["cell_metadata"]
 
@@ -170,7 +177,7 @@ class Dataset:
         """
         if "within_dataset_cell_embedding" not in self._cache:
             self._cache["within_dataset_cell_embedding"] = pd.read_feather(
-                self.metadata["within_dataset_cell_embedding"]
+                localize(self.metadata["within_dataset_cell_embedding"])
             )
         return self._cache["within_dataset_cell_embedding"]
 
@@ -206,7 +213,7 @@ class Dataset:
                 {mid: motif.name for mid, motif in motif_db.motif_id_dict.items()}
             )
 
-            adata = anndata.read_h5ad(chromvar_path)
+            adata = anndata.read_h5ad(localize(chromvar_path))
             adata.var["motif_name"] = motif_names
 
             self._cache["chromvar_adata"] = adata
@@ -223,7 +230,7 @@ class Dataset:
                     f"Dataset {self.name} does not have cross dataset chromvar data. "
                     "Please check the dataset metadata."
                 )
-            adata = anndata.read_h5ad(chromvar_path)
+            adata = anndata.read_h5ad(localize(chromvar_path))
             self._cache["cross_dataset_chromvar_adata"] = adata
         return adata
 

@@ -43,6 +43,10 @@ rune/*
 **/*.joblib
 **/*.ckpt
 
+# ...but keep the generated HuggingFace manifest: it is a source artifact, ships in
+# the wheel, and is consumed by bolerodata._sync.localize().
+!src/bolerodata/data/hf_manifest.json
+
 # images
 **/*.jpg
 

@@ -1,5 +1,6 @@
 import pandas as pd
 
+from ._sync import localize
 from .data import metadata
 
 QTL_TRAINING_PATH_DIR = (
@@ -23,8 +24,8 @@ class QTLCollection:
         return self._path_table["TissueORCellType"].unique().tolist()
 
     def get_qtl_path(self, key: str) -> str:
-        """Get the QTL path."""
-        return self._path_table.loc[key, "FilePath"]
+        """Get the QTL path (localized: downloaded from HuggingFace if off-lab)."""
+        return localize(self._path_table.loc[key, "FilePath"])
 
     def get_qtl_table(self, *args, **kwargs) -> pd.DataFrame:
         """Get the QTL data."""
@@ -42,23 +43,28 @@ class GTExQTLCollection(QTLCollection):
     def get_qtl_training_path(self, tissue: str) -> str:
         """Get the QTL path for training QTL models."""
         path = f"{QTL_TRAINING_PATH_DIR}/{tissue}.qtl_model_regions.feather"
-        return path
-    
+        return localize(path)
+
+
 class GTExEQTLCatalogCollection(QTLCollection):
     def get_qtl_path(self, tissue: str) -> str:
-        """Get the QTL path for GTEx eQTL catalog data.
-        
-        Args:
-            tissue: Tissue identifier (e.g., 'uterus', 'muscle', 'prostate')
-            
-        Returns:
-            Path to the QTL data file
-            
-        Note:
-            All GTEx eQTL catalog data uses 'all_gene' gene selection.
+        """
+        Get the QTL path for GTEx eQTL catalog data.
+
+        Parameters
+        ----------
+        tissue : str
+            Tissue identifier (e.g., 'uterus', 'muscle', 'prostate').
+
+        Returns
+        -------
+        str
+            Path to the QTL data file. All GTEx eQTL catalog data uses the
+            'all_gene' gene selection.
         """
         key = f"GTEx.{tissue}"
         return super().get_qtl_path(key)
+
 
 class Zeng2024QTLCollection(QTLCollection):
     def get_qtl_path(self, cell_type: str, all_pair: bool = False) -> pd.DataFrame:
@@ -67,20 +73,25 @@ class Zeng2024QTLCollection(QTLCollection):
         if all_pair:
             key += ".all_pair"
         return super().get_qtl_path(key)
-    
+
+
 class Onek1kQTLCollection(QTLCollection):
     def get_qtl_path(self, cell_type: str) -> str:
-        """Get the QTL path for OneK1K eQTL catalog data.
-        
-        Args:
-            cell_type: Cell type identifier (e.g., 'CD16+_monocyte', 'NK_cell', 'B_cell')
-            
-        Returns:
-            Path to the QTL data file
+        """
+        Get the QTL path for OneK1K eQTL catalog data.
+
+        Parameters
+        ----------
+        cell_type : str
+            Cell type identifier (e.g., 'CD16+_monocyte', 'NK_cell', 'B_cell').
+
+        Returns
+        -------
+        str
+            Path to the QTL data file.
         """
         key = f"Onek1k.{cell_type}"
         return super().get_qtl_path(key)
-
 
 
 GTEx = GTExQTLCollection("GTEx")

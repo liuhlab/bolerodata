@@ -11,6 +11,13 @@ plugins:
       handlers:
         python:
           paths: [src]
+          options:
+            docstring_style: numpy
+            show_source: false
 
 nav:
   - Home: index.md
+  - Installation: install.md
+  - Data setup & caching: data-setup.md
+  - Sharing (maintainers): sharing.md
+  - API reference: api.md

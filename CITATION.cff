@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use bolerodata, please cite the Bolero paper."
+title: "bolerodata: dataset, model-zoo and metadata registry for Bolero"
+authors:
+  - family-names: Liu
+    given-names: Hanqing
+    email: hanqingliu@fas.harvard.edu
+license: MIT
+repository-code: "https://github.com/liuhlab/bolerodata"
+url: "https://liuhlab.github.io/bolerodata/"
+keywords:
+  - single-cell
+  - ATAC-seq
+  - gene regulation
+  - deep learning
+  - genomics
+preferred-citation:
+  type: article
+  title: "Bolero: predicting cell-state-specific gene regulation from DNA sequence"
+  authors:
+    - family-names: Liu
+      given-names: Hanqing
+  year: 2026

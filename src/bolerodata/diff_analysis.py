@@ -1,16 +1,35 @@
 import os
 import pathlib
 
-import numpy as np
 import pandas as pd
-import pyBigWig
-import pyranges as pr
-import pysam
-from bolero.pl.igv import Browser
-from bolero.utils import understand_regions
 
 from bolerodata import DATASETS
+from bolerodata._sync import localize
 from bolerodata.data import metadata
+
+
+def _require_diff():
+    """
+    Import the optional heavy dependencies for differential analysis.
+
+    Differential analysis needs pyBigWig / pyranges / pysam (the ``diff`` extra)
+    and the companion ``bolero`` package. They are imported lazily so that merely
+    importing :mod:`bolerodata` (or this module) does not pull them in; the check
+    runs when a :class:`DiffRecords` is constructed.
+    """
+    try:
+        import numpy  # noqa: F401
+        import pyBigWig  # noqa: F401
+        import pyranges  # noqa: F401
+        import pysam  # noqa: F401
+        from bolero.pl.igv import Browser  # noqa: F401
+        from bolero.utils import understand_regions  # noqa: F401
+    except ImportError as e:
+        raise ImportError(
+            "bolerodata.diff_analysis requires the optional 'diff' dependencies "
+            "(pyBigWig, pyranges, pysam) and the companion `bolero` package. "
+            "Install with: pip install 'bolerodata[diff]' (and install bolero)."
+        ) from e
 
 
 def _parse_region(region: str | tuple[str, int, int]):
@@ -34,6 +53,7 @@ class DiffRecords:
         """
         Initialize the DiffRecords object with gene and/or peak records.
         """
+        _require_diff()
         assert (peak_rec is not None) or (gene_rec is not None)
         _rec = gene_rec if gene_rec is not None else peak_rec
         self.da_key = _rec.name[0]
@@ -71,7 +91,7 @@ class DiffRecords:
         if self.gene_diff_path is None:
             return None
         if "gene_diff_table" not in self._caches:
-            table = pd.read_feather(self.gene_diff_path)
+            table = pd.read_feather(localize(self.gene_diff_path))
             table.index = table.pop("gene").astype(str)
             self._caches["gene_diff_table"] = self._filter_by_lfc_cutoff(table)
         return self._caches["gene_diff_table"]
@@ -84,7 +104,7 @@ class DiffRecords:
         if self.peak_diff_path is None:
             return None
         if "peak_diff_table" not in self._caches:
-            table = pd.read_feather(self.peak_diff_path)
+            table = pd.read_feather(localize(self.peak_diff_path))
             table.index = table.pop("gene").astype(str)
             self._caches["peak_diff_table"] = self._filter_by_lfc_cutoff(table)
         return self._caches["peak_diff_table"]
@@ -95,7 +115,9 @@ class DiffRecords:
         BigWig file handle for group 1.
         """
         if "bw1_handle" not in self._caches:
-            self._caches["bw1_handle"] = pyBigWig.open(str(self.group1_bw_path))
+            import pyBigWig
+
+            self._caches["bw1_handle"] = pyBigWig.open(str(localize(self.group1_bw_path)))
         return self._caches["bw1_handle"]
 
     @property
@@ -104,7 +126,9 @@ class DiffRecords:
         BigWig file handle for group 2.
         """
         if "bw2_handle" not in self._caches:
-            self._caches["bw2_handle"] = pyBigWig.open(str(self.group2_bw_path))
+            import pyBigWig
+
+            self._caches["bw2_handle"] = pyBigWig.open(str(localize(self.group2_bw_path)))
         return self._caches["bw2_handle"]
 
     def get_bw_values(self, region: str | tuple[str, int, int]):
@@ -151,6 +175,8 @@ class DiffRecords:
         """
         Scan peaks on Group1 and Group2 bigwig files.
         """
+        from bolero.utils import understand_regions
+
         regions = understand_regions(regions, as_df=True)
         if "Name" not in regions.columns:
             regions["Name"] = (
@@ -174,21 +200,26 @@ class DiffRecords:
         """
         Get dataset peak scan values for Group1 and Group2.
         """
+        import numpy as np
+        import pyranges as pr
+
         g1_bw_path = self.group1_bw_path
         g2_bw_path = self.group2_bw_path
-        peaks_path = str(g1_bw_path.parent / "peaks/peaks.bed")
+        peaks_path = str(localize(g1_bw_path.parent / "peaks/peaks.bed"))
         if peaks_path not in self._caches:
             peaks_bed = pr.read_bed(peaks_path, as_df=True)
             self._caches[peaks_path] = peaks_bed
         else:
             peaks_bed = self._caches[peaks_path]
 
-        peak_scan_path = g1_bw_path.parent / f"peaks/{g1_bw_path.name[:-3]}.npz"
+        peak_scan_path = localize(
+            g1_bw_path.parent / f"peaks/{g1_bw_path.name[:-3]}.npz"
+        )
         g1_values = np.load(peak_scan_path)["data"]
         g1_values = pd.Series(g1_values, index=peaks_bed["Name"].values)
-        g2_values = np.load(g2_bw_path.parent / f"peaks/{g2_bw_path.name[:-3]}.npz")[
-            "data"
-        ]
+        g2_values = np.load(
+            localize(g2_bw_path.parent / f"peaks/{g2_bw_path.name[:-3]}.npz")
+        )["data"]
         g2_values = pd.Series(g2_values, index=peaks_bed["Name"].values)
         values = pd.DataFrame(
             {
@@ -201,6 +232,10 @@ class DiffRecords:
         return values
 
     def _dump_regions(self, regions, output_bed_path):
+        import pyranges as pr
+        import pysam
+        from bolero.utils import understand_regions
+
         bed = pr.PyRanges(understand_regions(regions)).sort()
         bed.to_bed(output_bed_path)
 
@@ -249,13 +284,14 @@ class DiffRecords:
         if not self.igv_dir.exists():
             self.igv_dir.mkdir(parents=True)
 
-        # soft link bigwig to igv dir
+        # soft link bigwig to igv dir (localize first so external users link the
+        # cached download rather than a non-existent lab path)
         g1_bw = self.igv_dir / self.group1_bw_path.name
         if not g1_bw.exists():
-            os.symlink(self.group1_bw_path, g1_bw)
+            os.symlink(localize(self.group1_bw_path), g1_bw)
         g2_bw = self.igv_dir / self.group2_bw_path.name
         if not g2_bw.exists():
-            os.symlink(self.group2_bw_path, g2_bw)
+            os.symlink(localize(self.group2_bw_path), g2_bw)
         tracks = [
             {
                 "name": self.group1,
@@ -296,6 +332,8 @@ class DiffRecords:
         """
         Open IGV browser for the differential analysis record.
         """
+        from bolero.pl.igv import Browser
+
         tracks = self.setup_igv_tracks()
         browser = Browser(genome=self.genome, locus=locus)
         browser.load_track_table(tracks, windowFunction="mean")

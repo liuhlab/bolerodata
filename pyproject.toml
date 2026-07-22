@@ -16,17 +16,26 @@ maintainers = [
 urls.Documentation = "https://liuhlab.github.io/bolerodata/"
 urls.Source = "https://github.com/liuhlab/bolerodata"
 urls.Home-page = "https://github.com/liuhlab/bolerodata"
-# Kept deliberately minimal: bolerodata is a thin registry layer that is meant to
-# run *inside* the `bolero` environment (it imports `bolero` lazily). It does not
-# declare `bolero` (that would be circular) nor bolero's heavy GPU stack.
+# Kept deliberately lean: bolerodata is a thin registry layer. The core deps are
+# enough to browse the registry and auto-download shared artifacts from HuggingFace.
+# It does NOT declare `bolero` (circular) nor bolero's heavy GPU stack (`torch` is
+# imported lazily, only when sizing batches / building a predictor). Heavy
+# bioinformatics deps used only by `diff_analysis` live in the `diff` extra.
 dependencies = [
     "anndata",
     "joblib",
+    "numpy",             # used directly by diff_analysis; also a core scientific dep
     "pandas",
-    "tqdm",
+    "pyarrow",           # required by pandas.read_feather (the registry is feather-based)
+    "huggingface_hub",   # auto-download of checkpoints / data from HuggingFace
+    "platformdirs",      # resolve the per-user cache directory
 ]
 
 [project.optional-dependencies]
+# Differential-accessibility analysis (bolerodata.diff_analysis). Also needs the
+# companion `bolero` package, which is not declared here (installed separately).
+diff = ["pyBigWig", "pyranges", "pysam"]
+full = ["bolerodata[diff]"]
 dev = ["pre-commit", "twine>=4.0.2"]
 doc = [
     "mkdocs",
@@ -109,6 +118,8 @@ convention = "numpy"
 [tool.ruff.lint.per-file-ignores]
 "docs/*" = ["I"]
 "tests/*" = ["D"]
+"scripts/*" = ["D"]          # build/review tooling, not library API
+"hatch_build.py" = ["D"]     # build hook
 "*/__init__.py" = ["F401"]
 
 [tool.hatch.version]
@@ -120,6 +131,15 @@ source = "vcs"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/bolerodata"]
+
+# Rewrite lab absolute paths in the shipped tables to portable logical paths, in
+# the wheel only (git-committed tables keep absolute paths for the author fast path).
+[tool.hatch.build.targets.wheel.hooks.custom]
+path = "hatch_build.py"
+
+# Ship the build hook in the sdist so `sdist -> wheel` builds can run it too.
+[tool.hatch.build.targets.sdist]
+include = ["src", "hatch_build.py", "README.md", "LICENSE", "CHANGELOG.md", "huggingface_digest.md"]
 
 # ---------------------------------------------------------------------------
 # pixi
@@ -140,8 +160,17 @@ python = "3.11.*"
 pip = "*"
 anndata = "*"
 joblib = "*"
+numpy = "*"
 pandas = "*"
-tqdm = "*"
+pyarrow = "*"
+huggingface_hub = "*"
+platformdirs = "*"
+
+# Optional differential-analysis stack (bioconda). Enable with `-e diff`.
+[tool.pixi.feature.diff.dependencies]
+pybigwig = "*"
+pyranges = "*"
+pysam = "*"
 
 # Standalone `docs` env (the doc feature is pypi-only), kept CUDA-free.
 [tool.pixi.feature.doc.dependencies]
@@ -161,4 +190,5 @@ test = "coverage run -m pytest -v --color=yes"
 [tool.pixi.environments]
 default = { solve-group = "default" }
 dev = { features = ["dev", "test"], solve-group = "default" }
+diff = { features = ["diff"], solve-group = "default" } # + differential-analysis deps
 docs = { features = ["doc"], no-default-feature = true } # lightweight: docs only

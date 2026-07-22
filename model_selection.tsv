@@ -1,0 +1,157 @@
+model_key	ModelGroup	DefaultDataset	CkptDate	CkptSizeGB	CkptExists	Share
+EE-MultiHead	BorzoiMultihead	EE	250718	0.7	yes	
+HumanBrainDev-MultiHead	BorzoiMultihead	HumanBrainDev	250718	0.7	yes	
+Li2023Science+Exc-MultiHead	BorzoiMultihead	Li2023Science	250718	0.7	yes	
+Li2023Science+NonN-MultiHead	BorzoiMultihead	Li2023Science	250718	0.8	yes	
+MouseAging-MultiHead	BorzoiMultihead	MouseAging	250718	0.7	yes	
+MultiSpeciesMacaque-MultiHead	BorzoiMultihead	MultiSpeciesMacaque	250718	0.7	yes	
+MultiSpeciesMarmoset-MultiHead	BorzoiMultihead	MultiSpeciesMarmoset	250718	0.7	yes	
+Zhang2021Cell-MultiHead	BorzoiMultihead	Zhang2021Cell	250718	0.8	yes	
+Zu2023Nature+CTXGlut-MultiHead	BorzoiMultihead	Zu2023Nature	250718	0.8	yes	
+Zu2023Nature+NonN-MultiHead	BorzoiMultihead	Zu2023Nature	250718	0.8	yes	
+EE+AP1	BorzoiSignalMultiDS	EE	251103	12.1	yes	
+EE+AP1-Gene	BorzoiSignalMultiDS	EE	251103	12.1	yes	
+EE+JASPAR306	BorzoiSignalMultiDS	EE	251103	12.1	yes	
+EE+JASPAR306-Gene	BorzoiSignalMultiDS	EE	251103	12.1	yes	
+EE+Control+AP1	BorzoiSignalMultiDS	EE	251103	12.1	yes	
+EE+Control+AP1-Gene	BorzoiSignalMultiDS	EE	251103	12.1	yes	
+EE+Control+JASPAR306	BorzoiSignalMultiDS	EE	251103	12.1	yes	
+EE+Control+JASPAR306-Gene	BorzoiSignalMultiDS	EE	251103	12.1	yes	
+Unscaled-EE+Control+AP1	BorzoiSignalMultiDS	EE	251103	12.1	yes	
+Unscaled-EE+AP1	BorzoiSignalMultiDS	EE	251103	12.1	yes	
+Unscaled-EE+Control+JASPAR306	BorzoiSignalMultiDS	EE	251103	12.1	yes	
+Unscaled-EE+JASPAR306	BorzoiSignalMultiDS	EE	251103	12.1	yes	
+Fear+AP1	BorzoiSignalMultiDS	Fear	251103	12.1	yes	
+Fear+AP1-Gene	BorzoiSignalMultiDS	Fear	251103	12.1	yes	
+Fear+JASPAR306	BorzoiSignalMultiDS	Fear	251103	12.1	yes	
+Fear+JASPAR306-Gene	BorzoiSignalMultiDS	Fear	251103	12.1	yes	
+Fear+Control+AP1	BorzoiSignalMultiDS	Fear	251103	12.1	yes	
+Fear+Control+AP1-Gene	BorzoiSignalMultiDS	Fear	251103	12.1	yes	
+Fear+Control+JASPAR306	BorzoiSignalMultiDS	Fear	251103	12.1	yes	
+Fear+Control+JASPAR306-Gene	BorzoiSignalMultiDS	Fear	251103	12.1	yes	
+Unscaled-Fear+Control+AP1	BorzoiSignalMultiDS	Fear	251103	12.1	yes	
+Unscaled-Fear+AP1	BorzoiSignalMultiDS	Fear	251103	12.1	yes	
+Unscaled-Fear+Control+JASPAR306	BorzoiSignalMultiDS	Fear	251103	12.1	yes	
+Unscaled-Fear+JASPAR306	BorzoiSignalMultiDS	Fear	251103	12.1	yes	
+Bolero10M-HumanKidney	BorzoiSignalMultiDS	HumanKidney_CSC2025	260121	12.2	yes	
+Bolero10M-NDDRNA-Gene	BorzoiSignalMultiDS	nan			no	
+FourSpecies	BorzoiSignalMultiDS	nan	250826	12.1	yes	
+Borzoi10M-250909	BorzoiSignalMultiDS	nan	250909	12.2	yes	
+Borzoi10M-Gene-250909	BorzoiSignalMultiDS	nan	250909	12.2	yes	
+WholeHuman-250909	BorzoiSignalMultiDS	nan	250909	12.1	yes	
+WholeHuman-Gene-250909	BorzoiSignalMultiDS	nan	250909	12.1	yes	
+WholeMouse-250909	BorzoiSignalMultiDS	nan	250909	12.1	yes	
+WholeMouse-Gene-250909	BorzoiSignalMultiDS	nan	250909	12.2	yes	
+Unscaled-WholeMouse+AP1	BorzoiSignalMultiDS	nan	250924	12.2	yes	
+FourSpecies-Gene	BorzoiSignalMultiDS	nan	250930	12.1	yes	
+WholeHuman	BorzoiSignalMultiDS	nan	251028	12.1	yes	yes
+WholeHuman-Gene	BorzoiSignalMultiDS	nan	251028	12.2	yes	yes
+Borzoi10M	BorzoiSignalMultiDS	nan	251103	12.2	yes	yes
+Borzoi10M-Gene	BorzoiSignalMultiDS	nan	251103	12.2	yes	yes
+WholeMouse	BorzoiSignalMultiDS	nan	251103	12.2	yes	yes
+WholeMouse-Gene	BorzoiSignalMultiDS	nan	251103	12.2	yes	yes
+WholeMouse+AP1	BorzoiSignalMultiDS	nan	251103	12.2	yes	yes
+WholeMouse+AP1-Gene	BorzoiSignalMultiDS	nan	251103	12.2	yes	yes
+WholeMouse+JASPAR306	BorzoiSignalMultiDS	nan	251103	12.2	yes	
+WholeMouse+JASPAR306-Gene	BorzoiSignalMultiDS	nan	251103	12.2	yes	
+WholeHuman+AP1	BorzoiSignalMultiDS	nan	251103	12.1	yes	yes
+WholeHuman+AP1-Gene	BorzoiSignalMultiDS	nan	251103	12.2	yes	yes
+WholeHuman+JASPAR306	BorzoiSignalMultiDS	nan	251103	12.1	yes	
+WholeHuman+JASPAR306-Gene	BorzoiSignalMultiDS	nan	251103	12.2	yes	
+Bolero10M+AP1	BorzoiSignalMultiDS	nan	251103	12.2	yes	yes
+Bolero10M+AP1-Gene	BorzoiSignalMultiDS	nan	251103	12.2	yes	yes
+Bolero10M+JASPAR306	BorzoiSignalMultiDS	nan	251103	12.2	yes	
+Bolero10M+JASPAR306-Gene	BorzoiSignalMultiDS	nan	251103	12.2	yes	
+WholeMouseS2G+AP1	BorzoiSignalMultiDS	nan	251103	12.2	yes	
+WholeMouseTGO+AP1	BorzoiSignalMultiDS	nan	251103	4.5	yes	
+Bolero10M+CTCF+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+EGR+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+KLF-SP+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+bHLH-CACATG+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+bHLH-CAGCTG+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+bHLH-CAGATG+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+bHLH-CATATG+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+bHLH-CACCTG+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+NR-Super+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+NR4A+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+NR3C+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+AP1+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+PAR-bZip+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+ETS+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+FOX+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+IRF+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+MEF2+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+NF-I+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+POU-Domain-TFs+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+RAR-NR2F+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+RFX+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+SOX+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+Homeobox+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+Homeobox-GGATTA+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+TALE-Homeobox+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+Bolero10M+TBX-Homeobox+260104	BorzoiSignalMultiDS	nan	260102	12.2	yes	
+AIBSDev	BorzoiSignalSingleDS	AIBSDev	250823	12.1	yes	
+AIBSDev-Gene	BorzoiSignalSingleDS	AIBSDev	250904	12.1	yes	
+CBDevEvoBonobo	BorzoiSignalSingleDS	CBDevEvoBonobo	250823	12.1	yes	
+CBDevEvoHuman	BorzoiSignalSingleDS	CBDevEvoHuman	250823	12.1	yes	
+CBDevEvoMacaque	BorzoiSignalSingleDS	CBDevEvoMacaque	250823	12.1	yes	
+CBDevEvoMarmoset	BorzoiSignalSingleDS	CBDevEvoMarmoset	250823	12.1	yes	
+CBDevEvoMouse	BorzoiSignalSingleDS	CBDevEvoMouse	250823	12.1	yes	
+CBDevEvoOpossum	BorzoiSignalSingleDS	CBDevEvoOpossum	250823	12.1	yes	
+CZIBodyAtlas	BorzoiSignalSingleDS	CZIBodyAtlas	250823	12.1	yes	
+ChromiumPBMC	BorzoiSignalSingleDS	ChromiumPBMC	250823	12.0	yes	
+ChromiumPBMC-Gene	BorzoiSignalSingleDS	ChromiumPBMC	251011	12.0	yes	
+EE	BorzoiSignalSingleDS	EE	250823	12.1	yes	
+EncodeHumanAtlas	BorzoiSignalSingleDS	EncodeHumanAtlas	250823	12.1	yes	
+EncodeHumanAtlas-Gene	BorzoiSignalSingleDS	EncodeHumanAtlas	250904	12.1	yes	
+Fear	BorzoiSignalSingleDS	Fear	250823	12.1	yes	
+HMBABasalGangliaHuman	BorzoiSignalSingleDS	HMBABasalGangliaHuman	250823	12.1	yes	
+HMBABasalGangliaMacaque	BorzoiSignalSingleDS	HMBABasalGangliaMacaque	250823	12.1	yes	
+HMBABasalGangliaMarmoset	BorzoiSignalSingleDS	HMBABasalGangliaMarmoset	250823	12.1	yes	
+Harris2025Nature	BorzoiSignalSingleDS	Harris2025Nature	250823	12.1	yes	
+HumanBodyDev	BorzoiSignalSingleDS	HumanBodyDev	250823	12.1	yes	
+HumanBodyDev-Gene	BorzoiSignalSingleDS	HumanBodyDev	250904	12.1	yes	
+HumanBrainAging	BorzoiSignalSingleDS	HumanBrainAging	250823	12.1	yes	
+HumanBrainDev	BorzoiSignalSingleDS	HumanBrainDev	250822	12.1	yes	
+HumanBrainDev-Gene	BorzoiSignalSingleDS	HumanBrainDev	250904	12.1	yes	
+HumanCBDev	BorzoiSignalSingleDS	HumanCBDev	250823	12.1	yes	
+HumanFirstTriBrain	BorzoiSignalSingleDS	HumanFirstTriBrain	250823	12.1	yes	
+HumanFirstTriBrain-Gene	BorzoiSignalSingleDS	HumanFirstTriBrain	250904	12.1	yes	
+KA	BorzoiSignalSingleDS	KA	250823	12.1	yes	
+Li2023Science+Exc	BorzoiSignalSingleDS	Li2023Science	250924	12.0	yes	
+Li2023Science+Inh	BorzoiSignalSingleDS	Li2023Science	250924	12.0	yes	
+Li2023Science+NonN	BorzoiSignalSingleDS	Li2023Science	250924		no	
+MouseAging	BorzoiSignalSingleDS	MouseAging	250823	12.1	yes	
+MouseBodyAtlas	BorzoiSignalSingleDS	MouseBodyAtlas	250823	12.1	yes	
+MultiSpeciesHuman	BorzoiSignalSingleDS	MultiSpeciesHuman	250823	12.1	yes	
+MultiSpeciesHuman-Gene	BorzoiSignalSingleDS	MultiSpeciesHuman	250904	12.1	yes	
+MultiSpeciesMacaque	BorzoiSignalSingleDS	MultiSpeciesMacaque	250823	12.1	yes	
+MultiSpeciesMacaque-Gene	BorzoiSignalSingleDS	MultiSpeciesMacaque	250904	12.1	yes	
+MultiSpeciesMarmoset	BorzoiSignalSingleDS	MultiSpeciesMarmoset	250823	12.1	yes	
+MultiSpeciesMarmoset-Gene	BorzoiSignalSingleDS	MultiSpeciesMarmoset	250904	12.1	yes	
+MultiSpeciesMouse	BorzoiSignalSingleDS	MultiSpeciesMouse	250823	12.1	yes	
+MultiSpeciesMouse-Gene	BorzoiSignalSingleDS	MultiSpeciesMouse	250904	12.1	yes	
+MultipleSclerosis	BorzoiSignalSingleDS	MultipleSclerosis	250823	12.1	yes	
+NeurIPSBMMC	BorzoiSignalSingleDS	NeurIPSBMMC	250823	12.0	yes	
+NeurIPSBMMC-Gene	BorzoiSignalSingleDS	NeurIPSBMMC	251011	12.0	yes	
+Stress	BorzoiSignalSingleDS	Stress	250823	12.1	yes	
+Torpor	BorzoiSignalSingleDS	Torpor	250823	12.1	yes	
+Zhang2021Cell	BorzoiSignalSingleDS	Zhang2021Cell	250823	12.1	yes	
+Zu2023Nature+CB	BorzoiSignalSingleDS	Zu2023Nature	250823	12.1	yes	
+Zu2023Nature+CNU	BorzoiSignalSingleDS	Zu2023Nature	250823	12.1	yes	
+Zu2023Nature+CTXGaba	BorzoiSignalSingleDS	Zu2023Nature	250823	12.1	yes	
+Zu2023Nature+HB	BorzoiSignalSingleDS	Zu2023Nature	250823	12.1	yes	
+Zu2023Nature+IB	BorzoiSignalSingleDS	Zu2023Nature	250823	12.1	yes	
+Zu2023Nature+MB	BorzoiSignalSingleDS	Zu2023Nature	250823	12.1	yes	
+Zu2023Nature+NonN	BorzoiSignalSingleDS	Zu2023Nature	250823	12.1	yes	
+Zu2023Nature+CTXGlut	BorzoiSignalSingleDS	Zu2023Nature	250910	12.1	yes	
+EE-Scooby	Scooby	EE	250620	0.9	yes	
+HumanBrainDev-Scooby	Scooby	HumanBrainDev	250620	0.9	yes	
+Li2023Science+Exc-Scooby	Scooby	Li2023Science	250620	0.9	yes	
+Li2023Science+NonN-Scooby	Scooby	Li2023Science	250620	0.9	yes	
+MouseAging-Scooby	Scooby	MouseAging	250620	0.9	yes	
+MultiSpeciesMacaque-Scooby	Scooby	MultiSpeciesMacaque	250620	0.9	yes	
+MultiSpeciesMarmoset-Scooby	Scooby	MultiSpeciesMarmoset	250620	0.9	yes	
+Zhang2021Cell-Scooby	Scooby	Zhang2021Cell	250620	0.9	yes	
+Zu2023Nature+CTXGlut-Scooby	Scooby	Zu2023Nature	250620	0.9	yes	
+Zu2023Nature+NonN-Scooby	Scooby	Zu2023Nature	250620	0.9	yes	
