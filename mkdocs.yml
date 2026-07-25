@@ -25,3 +25,12 @@ nav:
   - Installation: install.md
   - Data setup & caching: data-setup.md
   - API reference: api.md
+
+# Google Analytics 4 — shared Liu Lab org property. The same tag is used
+# across every liuhlab GitHub Pages site so traffic lands in one GA4
+# property, separated by page path. gtag.js is GFW-blocked, so
+# mainland-China readers are counted host-side (Tencent Cloud) instead.
+extra:
+  analytics:
+    provider: google
+    property: G-6M1CJF9WXY
