@@ -20619,15 +20619,22 @@
  "projects/260102-ScoreModel/model/260102-Bolero10M_AP1_atac_fold0.config.json": {
   "category": "model-configs",
   "kind": "file",
-  "share": false,
-  "size": 22396,
+  "repo_id": "arcinstitute/bolero-models",
+  "repo_path": "BorzoiSignalMultiDS/Bolero10M+AP1+260104/config.json",
+  "repo_type": "model",
+  "share": true,
+  "size": 15835,
   "tier": "core"
  },
  "projects/260102-ScoreModel/model/260102-Bolero10M_AP1_atac_fold0.lora.best_checkpoint.pt": {
   "category": "model-checkpoints",
   "kind": "file",
-  "share": false,
+  "repo_id": "arcinstitute/bolero-models",
+  "repo_path": "BorzoiSignalMultiDS/Bolero10M+AP1+260104/checkpoint.pt",
+  "repo_type": "model",
+  "share": true,
   "size": 4843901919,
+  "slimmed": true,
   "tier": "core"
  },
  "projects/260102-ScoreModel/model/260102-Bolero10M_CTCF_atac_fold0.config.json": {
@@ -20803,6 +20810,16 @@
   "kind": "file",
   "share": false,
   "size": 22420,
+  "tier": "core"
+ },
+ "projects/260102-ScoreModel/score_data/AP1.chromvar_score.scale.joblib.gz": {
+  "category": "score-data",
+  "kind": "file",
+  "repo_id": "arcinstitute/bolero-data",
+  "repo_path": "score_data/AP1.chromvar_score.scale.joblib.gz",
+  "repo_type": "dataset",
+  "share": true,
+  "size": 467158,
   "tier": "core"
  },
  "projects/260121-KidneyModel/model/260121-AddKidney_atac_fold0.config.json": {
