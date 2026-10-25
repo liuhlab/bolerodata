@@ -36,6 +36,10 @@
       show_root_heading: true
       members_order: source
 
+## Reference annotations
+
+::: bolerodata.gtf.get_gtf_path
+
 ## Data resolution & caching
 
 ::: bolerodata._sync.localize
