@@ -91,7 +91,10 @@ Single top-level package `src/bolerodata/`. Unlike `bolero` (scverse `pp`/`tl`/`
 `bolerodata` is flat. The package `__init__` curates the public API:
 
 ```python
-from bolerodata import metadata, DATASETS, MODELS, GTEx, Zeng2024, GTEx_eqtl_catalog, Onek1k
+from bolerodata import (
+    metadata, DATASETS, MODELS, GTEx, Zeng2024, GTEx_eqtl_catalog, Onek1k,
+    get_gtf_path, get_flashzoi_checkpoint,
+)
 ```
 
 `DA` (differential analysis) is **not** re-exported — import it explicitly with
