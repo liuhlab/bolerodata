@@ -48,6 +48,12 @@ PSEUDOBULK_GENE_AND_HVG_PATH_DICT = (
     STANDARD_DIR / "file_path_table/pseudobulk.gene_and_hvg_data.joblib"
 )
 
+# Per-motif chromVAR score files, the score input of the score models
+# (``Score Input`` column of the model zoo). Only the AP-1 file is published.
+SCORE_DATA_DIR = pathlib.Path(
+    "/large_storage/zhoulab/hanliu/260102-ScoreModel/score_data"
+)
+
 
 class Metadata:
     def __init__(self):
@@ -234,6 +240,30 @@ class Metadata:
         """
         return localize(
             STANDARD_DIR / f"motif_scan/{dataset_name}.JASPAR_motif_hit.feather"
+        )
+
+    def get_chromvar_score_path(self, motif="AP1"):
+        """
+        Get the chromVAR score file for a motif, the input of its score model.
+
+        The file is a joblib dict of DataFrames, one per dataset (or
+        ``dataset+subset``), holding the scaled chromVAR deviation of each
+        pseudobulk. Only the AP-1 file is published.
+
+        Parameters
+        ----------
+        motif : str
+            Motif cluster name, as in the model zoo ``Score Input`` column.
+
+        Returns
+        -------
+        pathlib.Path
+            Local path to ``{motif}.chromvar_score.scale.joblib.gz``, downloaded
+            from HuggingFace if it is not on the local filesystem.
+        """
+        return localize(
+            SCORE_DATA_DIR / f"{motif}.chromvar_score.scale.joblib.gz",
+            desc=f"{motif} chromVAR score file",
         )
 
 

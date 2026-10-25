@@ -77,6 +77,7 @@ dataset repo **`arcinstitute/bolero-data`** · visibility **public**.
 | raw-fragments | Raw ATAC fragment stores (`fragment_files`, `//hms-*`) | raw | noshare | — |
 | raw-snap | SnapATAC `.snap` files (`snap_files`) | raw | noshare | — |
 | snap-index | `file_path_table/sample_snap_file_path.csv` (points at raw snaps) | raw | share | — |
+| score-data | AP-1 chromVAR score file `AP1.chromvar_score.scale.joblib.gz`, the score input of `Bolero10M+AP1+260104` (other motifs' files are not listed) | core | share | bolero-data |
 
 ## Notes
 
