@@ -10,7 +10,7 @@ import huggingface_hub
 import pytest
 
 from bolerodata import MODELS, metadata
-from bolerodata._sync import HF_DATA_REPO, HF_MODELS_REPO, manifest
+from bolerodata._sync import HF_DATA_REPO, HF_MODELS_REPO, _to_logical, manifest
 from bolerodata.data import SCORE_DATA_DIR
 
 AP1_SCORE_MODEL = "Bolero10M+AP1+260104"
@@ -74,8 +74,6 @@ def test_ap1_score_model_resolves_from_bolero_models(fake_hub):
 def test_only_the_ap1_score_model_is_shared():
     zoo = metadata.MODEL_ZOO
     man = manifest()
-    from bolerodata._sync import _to_logical
-
     motif_rows = zoo[zoo.index.str.endswith("+260104")]
     assert len(motif_rows) == 26
     for key, row in motif_rows.iterrows():
@@ -88,11 +86,7 @@ def test_only_the_ap1_score_model_is_shared():
 
 
 def test_other_motif_score_files_are_not_shared():
-    shared = [
-        k
-        for k, e in manifest().items()
-        if e["share"] and "chromvar_score" in k
-    ]
+    shared = [k for k, e in manifest().items() if e["share"] and "chromvar_score" in k]
     assert shared == [f"projects/260102-ScoreModel/score_data/{AP1_SCORE_FILE}"]
 
 
