@@ -75,7 +75,8 @@ def get_flashzoi_checkpoint(fold=0, *, allow_download=True):
     FileNotAvailableError
         If the file is not cached and ``allow_download`` is ``False``.
     """
-    if type(fold) is not int or fold not in FLASHZOI_FOLDS:
+    is_int = isinstance(fold, int) and not isinstance(fold, bool)
+    if not is_int or fold not in FLASHZOI_FOLDS:
         raise ValueError(
             f"Unsupported Flashzoi fold {fold!r}; choose one of {FLASHZOI_FOLDS}."
         )
@@ -113,9 +114,7 @@ def _download_and_rename(fold, out):
     )
     state = torch.load(src, map_location="cpu", weights_only=True)
     renamed = {
-        _to_bolero_key(k): v
-        for k, v in state.items()
-        if k.split(".")[0] not in _HEADS
+        _to_bolero_key(k): v for k, v in state.items() if k.split(".")[0] not in _HEADS
     }
     tmp = out.with_name(out.name + ".tmp")
     torch.save(renamed, tmp)
