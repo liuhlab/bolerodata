@@ -65,6 +65,10 @@ def get_gtf_path(genome, db=True):
             f"Known genomes: {', '.join(GTF_FILES)}."
         )
     repo_path = _repo_path(genome, db)
-    entry = {"repo_id": _sync.HF_DATA_REPO, "repo_type": "dataset",
-             "repo_path": repo_path, "kind": "file"}
+    entry = {
+        "repo_id": _sync.HF_DATA_REPO,
+        "repo_type": "dataset",
+        "repo_path": repo_path,
+        "kind": "file",
+    }
     return _sync._download(repo_path, entry)
