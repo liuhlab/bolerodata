@@ -16,6 +16,7 @@ returns them as pandas / AnnData objects and ready-to-use file paths.
 | `DATASETS` | Per-dataset accessor (`DATASETS.HumanBrainDev`): cell/sample/cluster metadata, meta-cell AnnData, pseudobulks, reference bigwigs, motif scans |
 | `MODELS` | The model zoo (`MODELS["<key>"]`): resolves checkpoints + configs and builds a `bolero` predictor |
 | `GTEx`, `Zeng2024`, `GTEx_eqtl_catalog`, `Onek1k` | QTL evaluation collections (variant-effect eval sets) |
+| `get_gtf_path` | Reference gene annotation (GTF, or its prebuilt gffutils database) for a genome name, downloaded on first use |
 | `diff_analysis.DA` | Differential-accessibility records + IGV browsing (optional `diff` extra) |
 
 ```python
