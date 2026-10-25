@@ -134,3 +134,23 @@ def test_files_expected_outside_the_manifest_are_checked_too():
     assert report.ok == [(DATA, gtf)]
     assert report.sha256_mismatch == [(DATA, db, SHA_A, SHA_B)]
     assert report.extra == []
+
+
+def test_excluded_dataset_names_match_whole_names_not_substrings():
+    # "NonTorpor" contains "Torpor" but is another dataset: an unexpected upload of
+    # it is extra, not withheld. A path segment or a "+"-joined name does match.
+    live = {
+        DATA: {
+            "metadata/cell/NonTorpor.cell_metadata.feather": {"size": 1, "sha256": None},
+            "pseudobulk/condition/HumanBrainDev+Torpor.tar": {"size": 1, "sha256": None},
+            "peak_adata/Torpor/peak_adata.tar": {"size": 1, "sha256": None},
+        }
+    }
+
+    report = verify_upload.verify({}, live)
+
+    assert report.extra == [(DATA, "metadata/cell/NonTorpor.cell_metadata.feather")]
+    assert [row[1] for row in report.withheld] == [
+        "peak_adata/Torpor/peak_adata.tar",
+        "pseudobulk/condition/HumanBrainDev+Torpor.tar",
+    ]

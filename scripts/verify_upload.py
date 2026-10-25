@@ -182,12 +182,29 @@ def _withheld_paths(manifest):
     return out
 
 
+def _name_tokens(path):
+    """
+    Return the dataset-name tokens of a repo path.
+
+    Each path segment is split on ``+`` (``HumanBrainDev+Torpor``), and each
+    part is cut at its first ``.`` (``Torpor.cell_metadata.feather``) and at
+    its first ``-`` (``Torpor-MetaCell-32bp``), the separators dataset names
+    are joined with in the repo.
+    """
+    tokens = set()
+    for segment in path.split("/"):
+        for part in segment.split("+"):
+            tokens |= {part, part.split(".", 1)[0], part.split("-", 1)[0]}
+    return tokens
+
+
 def _withheld_reason(path, withheld_paths):
     """Return why an unexpected upload is withheld material, or ``None``."""
     if path in withheld_paths:
         return withheld_paths[path]
+    tokens = _name_tokens(path)
     for name in EXCLUDED_DATASETS:
-        if name in path:
+        if name in tokens:
             return f"excluded dataset {name}"
     return None
 
