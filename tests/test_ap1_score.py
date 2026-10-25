@@ -93,3 +93,9 @@ def test_other_motif_score_files_are_not_shared():
 def test_manifest_has_no_lab_paths():
     text = json.dumps(manifest())
     assert "/large_storage" not in text
+
+
+def test_unpublished_motif_score_file_raises_naming_the_published_ones(fake_hub):
+    with pytest.raises(ValueError, match="AP1"):
+        metadata.get_chromvar_score_path("CTCF")
+    assert fake_hub == []

@@ -4,7 +4,7 @@ import pathlib
 import joblib
 import pandas as pd
 
-from bolerodata._sync import localize
+from bolerodata._sync import _to_lab_abs, localize
 
 from ._path_patch import PATH_PATCH_DICT
 
@@ -49,10 +49,12 @@ PSEUDOBULK_GENE_AND_HVG_PATH_DICT = (
 )
 
 # Per-motif chromVAR score files, the score input of the score models
-# (``Score Input`` column of the model zoo). Only the AP-1 file is published.
-SCORE_DATA_DIR = pathlib.Path(
-    "/large_storage/zhoulab/hanliu/260102-ScoreModel/score_data"
-)
+# (``Score Input`` column of the model zoo). The lab path comes from the logical
+# key, so the lab root is written down once, in ``_sync``.
+SCORE_DATA_DIR = _to_lab_abs("projects/260102-ScoreModel/score_data")
+
+#: Motifs whose score file is published; the other motifs' files stay withheld.
+PUBLISHED_SCORE_MOTIFS = ("AP1",)
 
 
 class Metadata:
@@ -260,7 +262,17 @@ class Metadata:
         pathlib.Path
             Local path to ``{motif}.chromvar_score.scale.joblib.gz``, downloaded
             from HuggingFace if it is not on the local filesystem.
+
+        Raises
+        ------
+        ValueError
+            If ``motif`` is not in :data:`PUBLISHED_SCORE_MOTIFS`.
         """
+        if motif not in PUBLISHED_SCORE_MOTIFS:
+            raise ValueError(
+                f"The {motif!r} chromVAR score file is not published. "
+                f"Published motifs: {', '.join(PUBLISHED_SCORE_MOTIFS)}."
+            )
         return localize(
             SCORE_DATA_DIR / f"{motif}.chromvar_score.scale.joblib.gz",
             desc=f"{motif} chromVAR score file",
