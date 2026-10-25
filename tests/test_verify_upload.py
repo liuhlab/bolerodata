@@ -118,18 +118,16 @@ def test_tar_packed_directory_is_found_and_size_checked_loosely():
     assert report.missing == report.extra == []
 
 
-def test_files_expected_outside_the_manifest_are_checked_too():
-    # reference_gtf/ files are not in the manifest; get_gtf_path names them and a
-    # sha256sum file of the staged copies gives their checksums.
+def test_checksums_file_adds_sha256_to_manifest_entries():
+    # The manifest has no sha256 for these; a sha256sum file of the staged copies
+    # (keyed by repo path) supplies it.
     gtf = "reference_gtf/hg38/gencode.v30.annotation.gtf"
     db = "reference_gtf/hg38/gencode.v30.annotation.gffutils.db"
-    extra = verify_upload.with_checksums(
-        {(DATA, gtf): {}, (DATA, db): {}},
-        f"{SHA_A}  {gtf}\n{SHA_A}  {db}\n",
-    )
+    manifest = {"g": _shared(gtf, 7), "d": _shared(db, 9)}
+    checksums = verify_upload.parse_checksums(f"{SHA_A}  {gtf}\n{SHA_A}  ./{db}\n")
     live = {DATA: {gtf: {"size": 7, "sha256": SHA_A}, db: {"size": 9, "sha256": SHA_B}}}
 
-    report = verify_upload.verify({}, live, extra_expected=extra)
+    report = verify_upload.verify(manifest, live, checksums=checksums)
 
     assert report.ok == [(DATA, gtf)]
     assert report.sha256_mismatch == [(DATA, db, SHA_A, SHA_B)]

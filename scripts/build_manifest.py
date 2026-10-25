@@ -23,7 +23,9 @@ Usage
     python scripts/build_manifest.py [--hash] [--out DIR]
 
 ``--hash`` additionally computes sha256 for shared files (slow on TB-scale
-checkpoints; off by default).
+checkpoints; off by default). Set ``$BOLERO_GTF_STAGE_DIR`` to the reference-GTF
+stage dir so the GTF entries take the staged copies' sizes (the monDom5.split
+database is a rebuild, not the lab file).
 """
 
 from __future__ import annotations
@@ -32,6 +34,7 @@ import argparse
 import concurrent.futures
 import hashlib
 import json
+import os
 import pathlib
 import subprocess
 import sys
@@ -45,10 +48,12 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))  # for slim_che
 sys.path.insert(0, str(SRC))
 
 import bolerodata.data as dm  # noqa: E402
+from bolerodata import gtf  # noqa: E402
 from bolerodata._sync import (  # noqa: E402
     EXCLUDED_DATASETS,
     HF_DATA_REPO,
     HF_MODELS_REPO,
+    _to_lab_abs,
     _to_logical,
 )
 from bolerodata.data._path_patch import PATH_PATCH_DICT  # noqa: E402
@@ -415,6 +420,10 @@ def enumerate_refs():
     # score input of Bolero10M+AP1+260104). Other motifs' files stay unlisted.
     add("score-data", dm.SCORE_DATA_DIR / "AP1.chromvar_score.scale.joblib.gz")
 
+    # reference annotations: each genome's GTF + gffutils database (bolerodata.gtf)
+    for logical in _GTF_REPO_PATHS:
+        add("reference-gtf", _to_lab_abs(logical))
+
     # snap file table (index of raw snaps)
     snap_csv = getattr(dm, "SAMPLE_SNAP_TABLE_PATH", None)
     if snap_csv is not None:
@@ -530,8 +539,24 @@ DATA_LAYOUT = {
 MODEL_FILENAME = {"model-checkpoints": "checkpoint.pt", "model-configs": "config.json"}
 
 
+#: reference-gtf logical -> ``reference_gtf/<genome>/<file>``. The lab layout differs
+#: per genome, so these repo paths come from :mod:`bolerodata.gtf`, not a prefix.
+_GTF_REPO_PATHS = {
+    gtf.logical_path(genome, db): gtf.repo_path(genome, db)
+    for genome in gtf.GTF_FILES
+    for db in (False, True)
+}
+
+#: Staged copies to upload instead of the lab GTF files, laid out by repo path
+#: (``<dir>/reference_gtf/<genome>/<file>``). The lab monDom5.split database is
+#: an aborted build, so its rebuilt copy is staged; other files are plain copies.
+GTF_STAGE_DIR = os.environ.get("BOLERO_GTF_STAGE_DIR")
+
+
 def _data_repo_path(category, logical):
     """Clean by-type repo_path for a data-repo entry (see :data:`DATA_LAYOUT`)."""
+    if category == "reference-gtf" and logical in _GTF_REPO_PATHS:
+        return _GTF_REPO_PATHS[logical]
     top, prefix = DATA_LAYOUT.get(category, (category, None))
     tail = logical[len(prefix):] if prefix and logical.startswith(prefix) else logical
     return f"{top}/{tail}".replace("//", "/")
@@ -650,6 +675,11 @@ def build(do_hash=False, out_dir=None):
         # model configs: sanitize lab paths + drop excluded-dataset records
         elif share and category == "model-configs":
             local_src, size = _scrub_config(src, out_dir / "staging")
+        # reference GTFs: upload the staged copy when a stage dir is given
+        elif category == "reference-gtf" and GTF_STAGE_DIR:
+            staged = pathlib.Path(GTF_STAGE_DIR) / _GTF_REPO_PATHS[logical]
+            if staged.exists():
+                local_src, exists, size = staged, True, staged.stat().st_size
 
         if size is None:
             if exists and kind == "file":

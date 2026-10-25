@@ -8,6 +8,7 @@ import huggingface_hub
 import pytest
 
 import bolerodata
+from bolerodata._sync import FileNotAvailableError, manifest
 
 
 @pytest.fixture
@@ -58,6 +59,23 @@ def test_unknown_genome_raises_keyerror_naming_known_genomes(fake_hub):
                    "panPan3", "rheMac10"):
         assert genome in msg
     assert fake_hub == []
+
+
+def test_allow_download_false_raises_when_not_cached(fake_hub):
+    with pytest.raises(FileNotAvailableError):
+        bolerodata.get_gtf_path("hg38", allow_download=False)
+    assert fake_hub == []
+
+
+def test_manifest_shares_every_gtf_and_database_under_reference_gtf():
+    gtf = [e for e in manifest().values() if e.get("category") == "reference-gtf"]
+
+    assert len(gtf) == 14
+    assert all(e["share"] and e["repo_id"] == "arcinstitute/bolero-data" for e in gtf)
+    assert all(e["size"] > 0 for e in gtf)
+    assert "reference_gtf/rheMac10/rheMac10.ensGene.gffutils.db" in {
+        e["repo_path"] for e in gtf
+    }
 
 
 def test_import_pulls_in_no_bolero():

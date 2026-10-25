@@ -2,12 +2,8 @@
 Check the live HuggingFace repos against the manifest's shared entries.
 
 Lists every file in bolero-data and bolero-models (path, size, LFS sha256) and
-compares the listing with what should be there:
-
-- every ``share = True`` manifest entry (a tar-packed directory as
-  ``<repo_path>.tar``);
-- files the package fetches outside the manifest: the ``reference_gtf/`` files
-  named by :mod:`bolerodata.gtf` (when that module is present).
+compares the listing with what should be there: every ``share = True``
+manifest entry (a tar-packed directory as ``<repo_path>.tar``).
 
 It reports files that are missing, mismatched (size, or sha256 where an
 expected checksum is known), withheld (an uploaded file that is a
@@ -106,55 +102,26 @@ def expected_from_manifest(manifest):
     return out
 
 
-def gtf_expected():
+def parse_checksums(sha256sum_text):
     """
-    Return the ``reference_gtf/`` files :mod:`bolerodata.gtf` downloads.
-
-    Returns
-    -------
-    dict
-        ``(repo_id, repo_path) -> {}`` for each genome's GTF and gffutils
-        database; empty if this checkout has no ``bolerodata.gtf``.
-    """
-    try:
-        from bolerodata import gtf
-    except ImportError:
-        return {}
-    return {
-        (HF_DATA_REPO, gtf._repo_path(genome, db)): {}
-        for genome in gtf.GTF_FILES
-        for db in (False, True)
-    }
-
-
-def with_checksums(expected, sha256sum_text):
-    """
-    Add sha256 values from ``sha256sum`` output to the expected files.
+    Parse ``sha256sum`` output keyed by repo path.
 
     Parameters
     ----------
-    expected : dict
-        ``(repo_id, repo_path) -> info``.
     sha256sum_text : str
-        Lines ``<sha256>  <repo_path>``; paths with no expected file are ignored.
+        Lines ``<sha256>  <repo_path>``.
 
     Returns
     -------
     dict
-        A copy of ``expected`` with ``sha256`` set where a line names the path.
+        ``repo_path -> sha256``.
     """
     sums = {}
     for line in sha256sum_text.splitlines():
         if line.strip():
             sha, path = line.split(maxsplit=1)
             sums[path.lstrip("*").removeprefix("./")] = sha
-    out = {}
-    for (repo_id, path), info in expected.items():
-        info = dict(info)
-        if path in sums:
-            info["sha256"] = sums[path]
-        out[(repo_id, path)] = info
-    return out
+    return sums
 
 
 # ---------------------------------------------------------------------------
@@ -209,7 +176,7 @@ def _withheld_reason(path, withheld_paths):
     return None
 
 
-def verify(manifest, live, extra_expected=None):
+def verify(manifest, live, checksums=None):
     """
     Compare a live repo listing with the expected files.
 
@@ -219,17 +186,18 @@ def verify(manifest, live, extra_expected=None):
         ``logical_path -> entry`` as in ``hf_manifest.json``.
     live : dict
         ``repo_id -> {repo_path: {"size": int, "sha256": str or None}}``.
-    extra_expected : dict, optional
-        More expected files, ``(repo_id, repo_path) -> {"size"?, "sha256"?}``,
-        e.g. :func:`gtf_expected`. They override manifest-derived values.
+    checksums : dict, optional
+        ``repo_path -> sha256`` (see :func:`parse_checksums`); overrides the
+        manifest's sha256 for those paths.
 
     Returns
     -------
     Report
     """
     expected = expected_from_manifest(manifest)
-    for key, info in (extra_expected or {}).items():
-        expected[key] = {**expected.get(key, {}), **info}
+    for (_repo_id, path), info in expected.items():
+        if checksums and path in checksums:
+            info["sha256"] = checksums[path]
 
     report = Report()
     for (repo_id, path), info in sorted(expected.items()):
@@ -362,12 +330,9 @@ def main(argv=None):
     args = ap.parse_args(argv)
 
     manifest = json.loads(pathlib.Path(args.manifest).read_text())
-    extra = gtf_expected()
+    text = "".join(pathlib.Path(p).read_text() for p in args.checksums)
     live = list_live(revision=args.revision)
-    if args.checksums:
-        text = "".join(pathlib.Path(p).read_text() for p in args.checksums)
-        extra = with_checksums({**expected_from_manifest(manifest), **extra}, text)
-    report = verify(manifest, live, extra_expected=extra)
+    report = verify(manifest, live, checksums=parse_checksums(text))
 
     md = render(report, live)
     if args.out:
