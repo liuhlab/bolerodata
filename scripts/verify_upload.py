@@ -42,7 +42,8 @@ REPO_META_FILES = {".gitattributes", "README.md"}
 
 #: A tar's size differs from its directory's ``du -sb`` size by tar headers and
 #: padding (up) and directory inode sizes (down); allow this fraction plus 1 MiB.
-TAR_SIZE_REL_TOL = 0.02
+#: The 77 uploaded tars measured 0.00%-0.08% larger than their directories.
+TAR_SIZE_REL_TOL = 0.005
 
 #: repo_id -> repo_type of the repos to check.
 REPOS = {HF_DATA_REPO: "dataset", HF_MODELS_REPO: "model"}
