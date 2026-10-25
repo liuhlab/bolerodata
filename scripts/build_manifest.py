@@ -411,6 +411,10 @@ def enumerate_refs():
                 cat = base_cat
             add(cat, p)
 
+    # score-model input: only the AP-1 chromVAR score file is published (the
+    # score input of Bolero10M+AP1+260104). Other motifs' files stay unlisted.
+    add("score-data", dm.SCORE_DATA_DIR / "AP1.chromvar_score.scale.joblib.gz")
+
     # snap file table (index of raw snaps)
     snap_csv = getattr(dm, "SAMPLE_SNAP_TABLE_PATH", None)
     if snap_csv is not None:
@@ -519,6 +523,7 @@ DATA_LAYOUT = {
     "qtl-zeng2024":             ("qtl/zeng2024",             "zeng2024/"),
     "path-table-index":         ("index",                    "standard/file_path_table/"),
     "snap-index":               ("index",                    "standard/file_path_table/"),
+    "score-data":               ("score_data",               "projects/260102-ScoreModel/score_data/"),
 }
 
 # Clean, uniform on-repo filenames for the model repo (one dir per model_key).
@@ -579,10 +584,19 @@ def build(do_hash=False, out_dir=None):
     rules = parse_digest()
     print(f"  {len(refs)} logical paths, {len(unmapped)} unmapped", file=sys.stderr)
 
-    # model naming: first model_key wins per checkpoint (matches slim task list)
+    # per-model selection (model_selection.tsv) + checkpoint slim locations
+    from slim_checkpoint import SLIM_DIR, model_records, read_selection
+
+    selection = read_selection()
+
+    # model naming: first model_key wins per checkpoint, shared keys first, so a
+    # checkpoint mapped by several rows is named after the row that publishes it
+    # (matches `slim_checkpoint.py plan --selected-only`).
     zoo = dm.metadata.MODEL_ZOO
+    sel = selection or {}
     ckpt_owner = {}  # logical -> (ModelGroup, model_key)
-    for key, row in zoo.iterrows():
+    for key in sorted(zoo.index, key=lambda k: not sel.get(k, False)):
+        row = zoo.loc[key]
         grp = row.get("ModelGroup")
         for col in ("CkptPath", "ConfigPath"):
             for p in iter_paths(row.get(col)):
@@ -590,10 +604,6 @@ def build(do_hash=False, out_dir=None):
                 if lg:
                     ckpt_owner.setdefault(lg, (grp, key))
 
-    # per-model selection (model_selection.tsv) + checkpoint slim locations
-    from slim_checkpoint import SLIM_DIR, model_records, read_selection
-
-    selection = read_selection()
     ckpt_models, config_model = {}, {}
     for r in model_records():
         if r["ckpt_logical"]:
