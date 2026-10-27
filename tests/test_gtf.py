@@ -8,6 +8,7 @@ import huggingface_hub
 import pytest
 
 import bolerodata
+from bolerodata import _sync
 from bolerodata._sync import FileNotAvailableError, manifest
 
 
@@ -25,6 +26,8 @@ def fake_hub(tmp_path, monkeypatch):
 
     monkeypatch.setenv("BOLERODATA_HOME", str(tmp_path / "home"))
     monkeypatch.setattr(huggingface_hub, "hf_hub_download", _fake)
+    # Pretend the lab filesystem is absent, as for an external user.
+    monkeypatch.setattr(_sync, "_lab_roots", lambda: [])
     return calls
 
 
