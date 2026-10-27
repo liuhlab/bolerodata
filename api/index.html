@@ -571,6 +571,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.get_chromvar_score_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_chromvar_score_path
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1238,6 +1249,72 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference annotations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata.gtf.get_gtf_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_gtf_path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#score-model-inputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Score-model inputs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.get_chromvar_score_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_chromvar_score_path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flashzoi-backbone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flashzoi backbone
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata.flashzoi.get_flashzoi_checkpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_flashzoi_checkpoint
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1711,6 +1788,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.get_chromvar_score_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_chromvar_score_path
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2378,6 +2466,72 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference-annotations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference annotations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata.gtf.get_gtf_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_gtf_path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#score-model-inputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Score-model inputs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata.data.Metadata.get_chromvar_score_path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_chromvar_score_path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flashzoi-backbone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flashzoi backbone
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bolerodata.flashzoi.get_flashzoi_checkpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_flashzoi_checkpoint
+      
+    </span>
+  </a>
   
 </li>
       
@@ -2984,6 +3138,105 @@
     <div class="doc doc-contents ">
 
         <p>Get the peak motif scan path.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="bolerodata.data.Metadata.get_chromvar_score_path" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_chromvar_score_path</span><span class="p">(</span><span class="n">motif</span><span class="o">=</span><span class="s1">&#39;AP1&#39;</span><span class="p">)</span></code>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the chromVAR score file for a motif, the input of its score model.</p>
+<p>The file is a joblib dict of DataFrames, one per dataset (or
+<code>dataset+subset</code>), holding the scaled chromVAR deviation of each
+pseudobulk. Only the AP-1 file is published.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>motif</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Motif cluster name, as in the model zoo <code>Score Input</code> column.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;AP1&#39;</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pathlib.Path">Path</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Local path to <code>{motif}.chromvar_score.scale.joblib.gz</code>, downloaded
+from HuggingFace if it is not on the local filesystem.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="ValueError">ValueError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>motif</code> is not in :data:<code>PUBLISHED_SCORE_MOTIFS</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
     </div>
@@ -4803,6 +5056,364 @@ If True, will skip ytrue data preparation and skip all the metrics calculation.<
 
 
   </div>
+
+    </div>
+
+</div><h2 id="reference-annotations">Reference annotations</h2>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="bolerodata.gtf.get_gtf_path"></a>
+    <div class="doc doc-contents first">
+
+        <p>Return a local path to a genome's reference annotation.</p>
+<p>On the lab filesystem the lab copy is returned. Elsewhere the file is
+downloaded from the bolero-data HuggingFace repo on first use and served
+from the local cache afterwards.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>genome</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Genome name, one of :data:<code>GTF_FILES</code> (e.g. <code>"hg38"</code>, <code>"mm10"</code>).</p>
+              </div>
+            </td>
+            <td>
+                <em>required</em>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>db</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>True</code> (default), return the prebuilt gffutils database, which
+<code>bolero.pp.gtf.load_gtf</code> opens directly. If <code>False</code>, return the
+raw <code>.gtf</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>allow_download</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>False</code>, never hit the network; raise if the file is not local.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pathlib.Path">Path</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Path to the local file.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="KeyError">KeyError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>genome</code> has no registered annotation.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="FileNotAvailableError">FileNotAvailableError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the file is not local and <code>allow_download</code> is <code>False</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div><h2 id="score-model-inputs">Score-model inputs</h2>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="bolerodata.data.Metadata.get_chromvar_score_path"></a>
+    <div class="doc doc-contents first">
+
+        <p>Get the chromVAR score file for a motif, the input of its score model.</p>
+<p>The file is a joblib dict of DataFrames, one per dataset (or
+<code>dataset+subset</code>), holding the scaled chromVAR deviation of each
+pseudobulk. Only the AP-1 file is published.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>motif</code>
+            </td>
+            <td>
+                  <code><span title="str">str</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Motif cluster name, as in the model zoo <code>Score Input</code> column.</p>
+              </div>
+            </td>
+            <td>
+                  <code>&#39;AP1&#39;</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pathlib.Path">Path</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Local path to <code>{motif}.chromvar_score.scale.joblib.gz</code>, downloaded
+from HuggingFace if it is not on the local filesystem.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="ValueError">ValueError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>motif</code> is not in :data:<code>PUBLISHED_SCORE_MOTIFS</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    </div>
+
+</div><h2 id="flashzoi-backbone">Flashzoi backbone</h2>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<a id="bolerodata.flashzoi.get_flashzoi_checkpoint"></a>
+    <div class="doc doc-contents first">
+
+        <p>Return a local path to Flashzoi weights that bolero's <code>Borzoi</code> loads.</p>
+<p>On first use the public <code>johahi/flashzoi-replicate-{fold}</code> weights are
+downloaded from HuggingFace (pinned commit), their keys renamed to bolero's
+<code>Borzoi</code> module names, the output heads dropped, and the result saved to
+the bolerodata cache. Later calls return the cached file. On the lab
+filesystem the lab's own renamed checkpoint is returned instead.</p>
+
+
+<p><span class="doc-section-title">Parameters:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Default</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                <code>fold</code>
+            </td>
+            <td>
+                  <code><span title="int">int</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>Flashzoi replicate, one of :data:<code>FLASHZOI_FOLDS</code>.</p>
+              </div>
+            </td>
+            <td>
+                  <code>0</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>allow_download</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>False</code>, never hit the network; raise if the file is not cached.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <p><span class="doc-section-title">Returns:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="pathlib.Path">Path</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>A <code>torch.save</code> state dict for <code>Borzoi.load_state_dict(strict=True)</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
+
+<p><span class="doc-section-title">Raises:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="ValueError">ValueError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>fold</code> is not a published fold.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><a class="autorefs autorefs-internal" title="bolerodata._sync.FileNotAvailableError" href="#bolerodata._sync.FileNotAvailableError">FileNotAvailableError</a></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the file is not cached and <code>allow_download</code> is <code>False</code>.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
+
 
     </div>
 
