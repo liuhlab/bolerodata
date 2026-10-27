@@ -100,3 +100,15 @@ def test_unsupported_fold_raises(fake_hub, fold):
     with pytest.raises(ValueError, match="fold"):
         bolerodata.get_flashzoi_checkpoint(fold)
     assert fake_hub == []
+
+
+def test_localize_maps_config_backbone_path(fake_hub, monkeypatch):
+    # Published model configs name the backbone by its lab path's logical form.
+    from bolerodata import _sync
+
+    monkeypatch.setattr(_sync, "_lab_roots", lambda: [])
+    path = _sync.localize("wmb/model/Borzoi/flashzoi_checkpoints/fold_1.renamed.pt")
+
+    assert path == bolerodata.get_flashzoi_checkpoint(1)
+    with open(path, "rb") as f:
+        assert pickle.load(f) == BOLERO_STATE
