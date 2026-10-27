@@ -23,6 +23,7 @@ code path:
 import json
 import os
 import pathlib
+import re
 import shutil
 import tarfile
 import tempfile
@@ -240,6 +241,12 @@ def _store_root():
 # ---------------------------------------------------------------------------
 # The public seam
 # ---------------------------------------------------------------------------
+#: Logical path of the Flashzoi backbone named in published model configs.
+_FLASHZOI_LOGICAL = re.compile(
+    r"wmb/model/Borzoi/flashzoi_checkpoints/fold_(\d)\.renamed\.pt"
+)
+
+
 def localize(path, *, allow_download=True, desc=None):
     """
     Resolve a bolerodata artifact to a concrete local path.
@@ -284,6 +291,13 @@ def localize(path, *, allow_download=True, desc=None):
 
     if logical is None:
         raise FileNotAvailableError(_msg_unknown(s, None, desc))
+
+    # The Flashzoi backbone is not hosted here; it is rebuilt from public weights.
+    m = _FLASHZOI_LOGICAL.fullmatch(logical)
+    if m is not None:
+        from .flashzoi import get_flashzoi_checkpoint
+
+        return get_flashzoi_checkpoint(int(m.group(1)), allow_download=allow_download)
 
     entry = manifest().get(logical)
     if entry is None:
