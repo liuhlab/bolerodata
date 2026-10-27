@@ -20619,15 +20619,22 @@
  "projects/260102-ScoreModel/model/260102-Bolero10M_AP1_atac_fold0.config.json": {
   "category": "model-configs",
   "kind": "file",
-  "share": false,
-  "size": 22396,
+  "repo_id": "arcinstitute/bolero-models",
+  "repo_path": "BorzoiSignalMultiDS/Bolero10M+AP1+260104/config.json",
+  "repo_type": "model",
+  "share": true,
+  "size": 15835,
   "tier": "core"
  },
  "projects/260102-ScoreModel/model/260102-Bolero10M_AP1_atac_fold0.lora.best_checkpoint.pt": {
   "category": "model-checkpoints",
   "kind": "file",
-  "share": false,
+  "repo_id": "arcinstitute/bolero-models",
+  "repo_path": "BorzoiSignalMultiDS/Bolero10M+AP1+260104/checkpoint.pt",
+  "repo_type": "model",
+  "share": true,
   "size": 4843901919,
+  "slimmed": true,
   "tier": "core"
  },
  "projects/260102-ScoreModel/model/260102-Bolero10M_CTCF_atac_fold0.config.json": {
@@ -20803,6 +20810,16 @@
   "kind": "file",
   "share": false,
   "size": 22420,
+  "tier": "core"
+ },
+ "projects/260102-ScoreModel/score_data/AP1.chromvar_score.scale.joblib.gz": {
+  "category": "score-data",
+  "kind": "file",
+  "repo_id": "arcinstitute/bolero-data",
+  "repo_path": "score_data/AP1.chromvar_score.scale.joblib.gz",
+  "repo_type": "dataset",
+  "share": true,
+  "size": 467158,
   "tier": "core"
  },
  "projects/260121-KidneyModel/model/260121-AddKidney_atac_fold0.config.json": {
@@ -32175,6 +32192,160 @@
   "repo_type": "dataset",
   "share": true,
   "size": 12745778,
+  "tier": "core"
+ },
+ "wmb/ref/calJac4/ncbiRefSeq.gffutils.db": {
+  "category": "reference-gtf",
+  "kind": "file",
+  "repo_id": "arcinstitute/bolero-data",
+  "repo_path": "reference_gtf/calJac4/ncbiRefSeq.gffutils.db",
+  "repo_type": "dataset",
+  "sha256": "68c1dceffb721a5d3637eeb1e7a6fb5ab691f96bae4c1345831c126b6d6e8aa8",
+  "share": true,
+  "size": 1577963520,
+  "tier": "core"
+ },
+ "wmb/ref/calJac4/ncbiRefSeq.gtf": {
+  "category": "reference-gtf",
+  "kind": "file",
+  "repo_id": "arcinstitute/bolero-data",
+  "repo_path": "reference_gtf/calJac4/ncbiRefSeq.gtf",
+  "repo_type": "dataset",
+  "sha256": "9c064cb06588bfd3c37b75623d69f52247468dcd28d5b93b799c1eee3b2f4633",
+  "share": true,
+  "size": 485424033,
+  "tier": "core"
+ },
+ "wmb/ref/hg38/gtf/gencode.v30.annotation.gffutils.db": {
+  "category": "reference-gtf",
+  "kind": "file",
+  "repo_id": "arcinstitute/bolero-data",
+  "repo_path": "reference_gtf/hg38/gencode.v30.annotation.gffutils.db",
+  "repo_type": "dataset",
+  "sha256": "fcc86597159f19e93e25f1960ff9eab40dc935334ed066f6d5b82b26e8f3cc55",
+  "share": true,
+  "size": 2572361728,
+  "tier": "core"
+ },
+ "wmb/ref/hg38/gtf/gencode.v30.annotation.gtf": {
+  "category": "reference-gtf",
+  "kind": "file",
+  "repo_id": "arcinstitute/bolero-data",
+  "repo_path": "reference_gtf/hg38/gencode.v30.annotation.gtf",
+  "repo_type": "dataset",
+  "sha256": "05340c079ba19b5878ee260f582924a3f20388c6f3a696a49d5166ee20319d7e",
+  "share": true,
+  "size": 1228965783,
+  "tier": "core"
+ },
+ "wmb/ref/mCalJac1.pat.X/gtf/Callithrix_jacchus.mCalJac1.pat.X.114.chr.gffutils.db": {
+  "category": "reference-gtf",
+  "kind": "file",
+  "repo_id": "arcinstitute/bolero-data",
+  "repo_path": "reference_gtf/mCalJac1.pat.X/Callithrix_jacchus.mCalJac1.pat.X.114.chr.gffutils.db",
+  "repo_type": "dataset",
+  "sha256": "a274fa827144adecb9c4fd501156e5fbd89f574f28b63a91ca5fd93b103811f8",
+  "share": true,
+  "size": 1226293248,
+  "tier": "core"
+ },
+ "wmb/ref/mCalJac1.pat.X/gtf/Callithrix_jacchus.mCalJac1.pat.X.114.chr.gtf": {
+  "category": "reference-gtf",
+  "kind": "file",
+  "repo_id": "arcinstitute/bolero-data",
+  "repo_path": "reference_gtf/mCalJac1.pat.X/Callithrix_jacchus.mCalJac1.pat.X.114.chr.gtf",
+  "repo_type": "dataset",
+  "sha256": "3722e6b3a1fed976db79ceabe94f113ed1d680fa7fc6de7ab18e79de9537cc56",
+  "share": true,
+  "size": 550599864,
+  "tier": "core"
+ },
+ "wmb/ref/mm10/gtf/biccn/modified_gencode.vM23.primary_assembly.annotation.gffutils.db": {
+  "category": "reference-gtf",
+  "kind": "file",
+  "repo_id": "arcinstitute/bolero-data",
+  "repo_path": "reference_gtf/mm10/modified_gencode.vM23.primary_assembly.annotation.gffutils.db",
+  "repo_type": "dataset",
+  "sha256": "7d699df0a0fbf70c45c6953bfc6519706c8bc43f855c3627f4bfa6e911786a64",
+  "share": true,
+  "size": 1993232384,
+  "tier": "core"
+ },
+ "wmb/ref/mm10/gtf/biccn/modified_gencode.vM23.primary_assembly.annotation.gtf": {
+  "category": "reference-gtf",
+  "kind": "file",
+  "repo_id": "arcinstitute/bolero-data",
+  "repo_path": "reference_gtf/mm10/modified_gencode.vM23.primary_assembly.annotation.gtf",
+  "repo_type": "dataset",
+  "sha256": "da2d076221e0278bbcc04be985022f0303907c89b27ecbf493622db9323230c0",
+  "share": true,
+  "size": 1001298171,
+  "tier": "core"
+ },
+ "wmb/ref/monDom5/gtf/monDom5_evodevoCerebellum_extended_codingOverlapsRM.gffutils.db": {
+  "category": "reference-gtf",
+  "kind": "file",
+  "repo_id": "arcinstitute/bolero-data",
+  "repo_path": "reference_gtf/monDom5.split/monDom5_evodevoCerebellum_extended_codingOverlapsRM.gffutils.db",
+  "repo_type": "dataset",
+  "sha256": "8246453592c34c2805817add854b7a979d60c321c9d40382d394f20fd97eb607",
+  "share": true,
+  "size": 577581056,
+  "tier": "core"
+ },
+ "wmb/ref/monDom5/gtf/monDom5_evodevoCerebellum_extended_codingOverlapsRM.gtf": {
+  "category": "reference-gtf",
+  "kind": "file",
+  "repo_id": "arcinstitute/bolero-data",
+  "repo_path": "reference_gtf/monDom5.split/monDom5_evodevoCerebellum_extended_codingOverlapsRM.gtf",
+  "repo_type": "dataset",
+  "sha256": "34b3241c0ad4ea8f658bdefa8a0ba1a4dd1d735129c511d1f84715d9be49de33",
+  "share": true,
+  "size": 207388828,
+  "tier": "core"
+ },
+ "wmb/ref/panPan3/gtf/ncbiRefSeq.gffutils.db": {
+  "category": "reference-gtf",
+  "kind": "file",
+  "repo_id": "arcinstitute/bolero-data",
+  "repo_path": "reference_gtf/panPan3/ncbiRefSeq.gffutils.db",
+  "repo_type": "dataset",
+  "sha256": "42cfdca34f0ef93dd315cda23f1d16d5b0601a9ae928033efc3578e62723bc49",
+  "share": true,
+  "size": 1158279168,
+  "tier": "core"
+ },
+ "wmb/ref/panPan3/gtf/ncbiRefSeq.gtf": {
+  "category": "reference-gtf",
+  "kind": "file",
+  "repo_id": "arcinstitute/bolero-data",
+  "repo_path": "reference_gtf/panPan3/ncbiRefSeq.gtf",
+  "repo_type": "dataset",
+  "sha256": "4d8e7b8790695176267c734d053e7b5f56a3ef213bdc21f9b3c42154bb2e9c16",
+  "share": true,
+  "size": 354509671,
+  "tier": "core"
+ },
+ "wmb/ref/rheMac10/rheMac10.ensGene.gffutils.db": {
+  "category": "reference-gtf",
+  "kind": "file",
+  "repo_id": "arcinstitute/bolero-data",
+  "repo_path": "reference_gtf/rheMac10/rheMac10.ensGene.gffutils.db",
+  "repo_type": "dataset",
+  "sha256": "fce3009b0876a48e298b9ded722da76205fb0056c819d1c2214f22c3f561b41c",
+  "share": true,
+  "size": 898260992,
+  "tier": "core"
+ },
+ "wmb/ref/rheMac10/rheMac10.ensGene.gtf": {
+  "category": "reference-gtf",
+  "kind": "file",
+  "repo_id": "arcinstitute/bolero-data",
+  "repo_path": "reference_gtf/rheMac10/rheMac10.ensGene.gtf",
+  "repo_type": "dataset",
+  "sha256": "2dd5bd8454fc7603041be1f4c9f15f7c85a15a126684549b0eadddadf4c2e407",
+  "share": true,
+  "size": 282503248,
   "tier": "core"
  },
  "zeng2024/Zeng2024Science.Glia.all_caqtl.fine_mapped.feather": {

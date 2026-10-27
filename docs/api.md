@@ -36,6 +36,18 @@
       show_root_heading: true
       members_order: source
 
+## Reference annotations
+
+::: bolerodata.gtf.get_gtf_path
+
+## Score-model inputs
+
+::: bolerodata.data.Metadata.get_chromvar_score_path
+
+## Flashzoi backbone
+
+::: bolerodata.flashzoi.get_flashzoi_checkpoint
+
 ## Data resolution & caching
 
 ::: bolerodata._sync.localize

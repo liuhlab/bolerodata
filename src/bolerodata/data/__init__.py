@@ -4,7 +4,7 @@ import pathlib
 import joblib
 import pandas as pd
 
-from bolerodata._sync import localize
+from bolerodata._sync import _to_lab_abs, localize
 
 from ._path_patch import PATH_PATCH_DICT
 
@@ -47,6 +47,14 @@ META_CELL_METADATA_PSEUDOBULK_RECORDS_PATH_DICT = (
 PSEUDOBULK_GENE_AND_HVG_PATH_DICT = (
     STANDARD_DIR / "file_path_table/pseudobulk.gene_and_hvg_data.joblib"
 )
+
+# Per-motif chromVAR score files, the score input of the score models
+# (``Score Input`` column of the model zoo). The lab path comes from the logical
+# key, so the lab root is written down once, in ``_sync``.
+SCORE_DATA_DIR = _to_lab_abs("projects/260102-ScoreModel/score_data")
+
+#: Motifs whose score file is published; the other motifs' files stay withheld.
+PUBLISHED_SCORE_MOTIFS = ("AP1",)
 
 
 class Metadata:
@@ -234,6 +242,40 @@ class Metadata:
         """
         return localize(
             STANDARD_DIR / f"motif_scan/{dataset_name}.JASPAR_motif_hit.feather"
+        )
+
+    def get_chromvar_score_path(self, motif="AP1"):
+        """
+        Get the chromVAR score file for a motif, the input of its score model.
+
+        The file is a joblib dict of DataFrames, one per dataset (or
+        ``dataset+subset``), holding the scaled chromVAR deviation of each
+        pseudobulk. Only the AP-1 file is published.
+
+        Parameters
+        ----------
+        motif : str
+            Motif cluster name, as in the model zoo ``Score Input`` column.
+
+        Returns
+        -------
+        pathlib.Path
+            Local path to ``{motif}.chromvar_score.scale.joblib.gz``, downloaded
+            from HuggingFace if it is not on the local filesystem.
+
+        Raises
+        ------
+        ValueError
+            If ``motif`` is not in :data:`PUBLISHED_SCORE_MOTIFS`.
+        """
+        if motif not in PUBLISHED_SCORE_MOTIFS:
+            raise ValueError(
+                f"The {motif!r} chromVAR score file is not published. "
+                f"Published motifs: {', '.join(PUBLISHED_SCORE_MOTIFS)}."
+            )
+        return localize(
+            SCORE_DATA_DIR / f"{motif}.chromvar_score.scale.joblib.gz",
+            desc=f"{motif} chromVAR score file",
         )
 
 
