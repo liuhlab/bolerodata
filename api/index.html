@@ -3148,7 +3148,7 @@
 
 
 <h3 id="bolerodata.data.Metadata.get_chromvar_score_path" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">get_chromvar_score_path</span><span class="p">(</span><span class="n">motif</span><span class="o">=</span><span class="s1">&#39;AP1&#39;</span><span class="p">)</span></code>
+            <code class="highlight language-python"><span class="n">get_chromvar_score_path</span><span class="p">(</span><span class="n">motif</span><span class="o">=</span><span class="s1">&#39;AP1&#39;</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">allow_download</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
 
 </h3>
 
@@ -3186,6 +3186,22 @@ pseudobulk. Only the AP-1 file is published.</p>
             </td>
             <td>
                   <code>&#39;AP1&#39;</code>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>allow_download</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>False</code>, never hit the network; raise if the file is not cached.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
             </td>
           </tr>
       </tbody>
@@ -3232,6 +3248,16 @@ from HuggingFace if it is not on the local filesystem.</p>
             <td>
               <div class="doc-md-description">
                 <p>If <code>motif</code> is not in :data:<code>PUBLISHED_SCORE_MOTIFS</code>.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="FileNotAvailableError">FileNotAvailableError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the file is not cached and <code>allow_download</code> is <code>False</code>.</p>
               </div>
             </td>
           </tr>
@@ -5241,6 +5267,22 @@ pseudobulk. Only the AP-1 file is published.</p>
                   <code>&#39;AP1&#39;</code>
             </td>
           </tr>
+          <tr class="doc-section-item">
+            <td>
+                <code>allow_download</code>
+            </td>
+            <td>
+                  <code><span title="bool">bool</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If <code>False</code>, never hit the network; raise if the file is not cached.</p>
+              </div>
+            </td>
+            <td>
+                  <code>True</code>
+            </td>
+          </tr>
       </tbody>
     </table>
 
@@ -5288,6 +5330,16 @@ from HuggingFace if it is not on the local filesystem.</p>
               </div>
             </td>
           </tr>
+          <tr class="doc-section-item">
+            <td>
+                  <code><span title="FileNotAvailableError">FileNotAvailableError</span></code>
+            </td>
+            <td>
+              <div class="doc-md-description">
+                <p>If the file is not cached and <code>allow_download</code> is <code>False</code>.</p>
+              </div>
+            </td>
+          </tr>
       </tbody>
     </table>
 
@@ -5310,6 +5362,8 @@ downloaded from HuggingFace (pinned commit), their keys renamed to bolero's
 <code>Borzoi</code> module names, the output heads dropped, and the result saved to
 the bolerodata cache. Later calls return the cached file. On the lab
 filesystem the lab's own renamed checkpoint is returned instead.</p>
+<p>Building the cached file needs <code>torch</code> and <code>huggingface_hub</code>, which
+the bolero environment provides.</p>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -5407,7 +5461,8 @@ filesystem the lab's own renamed checkpoint is returned instead.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>If the file is not cached and <code>allow_download</code> is <code>False</code>.</p>
+                <p>If the file is not cached and <code>allow_download</code> is <code>False</code>, or
+<code>torch</code> or <code>huggingface_hub</code> is not installed.</p>
               </div>
             </td>
           </tr>
