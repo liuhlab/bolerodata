@@ -13,6 +13,7 @@ import pytest
 
 import bolerodata
 from bolerodata import flashzoi
+from bolerodata._sync import FileNotAvailableError
 
 # A miniature of the public johahi/flashzoi-replicate-* state dict: one key per
 # kind the rename has to handle (plain, transformer sub-layer, output heads).
@@ -82,6 +83,24 @@ def test_second_call_uses_cache(fake_hub):
 
     assert first == second
     assert len(fake_hub) == 1
+
+
+def test_new_pinned_revision_is_downloaded_despite_warm_cache(fake_hub, monkeypatch):
+    # A later release re-pins fold 0; the old cached weights must not be reused.
+    monkeypatch.setitem(flashzoi.REVISIONS, 0, "a" * 40)
+    old = bolerodata.get_flashzoi_checkpoint(0)
+    monkeypatch.setitem(flashzoi.REVISIONS, 0, "b" * 40)
+    new = bolerodata.get_flashzoi_checkpoint(0)
+
+    assert new != old
+    assert [rev for _, _, rev in fake_hub] == ["a" * 40, "b" * 40]
+
+
+@pytest.mark.parametrize("module", ["torch", "huggingface_hub"])
+def test_missing_dependency_raises_with_install_hint(fake_hub, monkeypatch, module):
+    monkeypatch.setitem(sys.modules, module, None)  # makes ``import module`` fail
+    with pytest.raises(FileNotAvailableError, match=f"install {module}"):
+        bolerodata.get_flashzoi_checkpoint(0)
 
 
 def test_lab_checkpoint_used_when_present(fake_hub, tmp_path, monkeypatch):

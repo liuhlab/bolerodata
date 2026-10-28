@@ -56,6 +56,9 @@ def get_flashzoi_checkpoint(fold=0, *, allow_download=True):
     the bolerodata cache. Later calls return the cached file. On the lab
     filesystem the lab's own renamed checkpoint is returned instead.
 
+    Building the cached file needs ``torch`` and ``huggingface_hub``, which
+    the bolero environment provides.
+
     Parameters
     ----------
     fold : int
@@ -73,7 +76,8 @@ def get_flashzoi_checkpoint(fold=0, *, allow_download=True):
     ValueError
         If ``fold`` is not a published fold.
     FileNotAvailableError
-        If the file is not cached and ``allow_download`` is ``False``.
+        If the file is not cached and ``allow_download`` is ``False``, or
+        ``torch`` or ``huggingface_hub`` is not installed.
     """
     is_int = isinstance(fold, int) and not isinstance(fold, bool)
     if not is_int or fold not in FLASHZOI_FOLDS:
@@ -85,7 +89,8 @@ def get_flashzoi_checkpoint(fold=0, *, allow_download=True):
     if lab.exists():
         return lab
 
-    out = cache_root() / "flashzoi" / f"fold_{fold}.renamed.pt"
+    # The revision is in the name so a re-pinned fold never reuses old weights.
+    out = cache_root() / "flashzoi" / f"fold_{fold}.{REVISIONS[fold][:12]}.renamed.pt"
     if out.exists():
         return out
     if not allow_download:
@@ -103,8 +108,14 @@ def get_flashzoi_checkpoint(fold=0, *, allow_download=True):
 
 def _download_and_rename(fold, out):
     """Download one public fold, rename its keys, and write it to ``out``."""
-    import torch
-    from huggingface_hub import hf_hub_download
+    try:
+        import torch
+        from huggingface_hub import hf_hub_download
+    except ModuleNotFoundError as e:
+        raise FileNotAvailableError(
+            f"{e.name} is required to build the Flashzoi checkpoint. "
+            f"Install it with: pip install {e.name}"
+        ) from e
 
     src = hf_hub_download(
         repo_id=_REPO.format(fold=fold),

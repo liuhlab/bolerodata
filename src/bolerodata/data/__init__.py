@@ -244,7 +244,7 @@ class Metadata:
             STANDARD_DIR / f"motif_scan/{dataset_name}.JASPAR_motif_hit.feather"
         )
 
-    def get_chromvar_score_path(self, motif="AP1"):
+    def get_chromvar_score_path(self, motif="AP1", *, allow_download=True):
         """
         Get the chromVAR score file for a motif, the input of its score model.
 
@@ -256,6 +256,8 @@ class Metadata:
         ----------
         motif : str
             Motif cluster name, as in the model zoo ``Score Input`` column.
+        allow_download : bool
+            If ``False``, never hit the network; raise if the file is not cached.
 
         Returns
         -------
@@ -267,6 +269,8 @@ class Metadata:
         ------
         ValueError
             If ``motif`` is not in :data:`PUBLISHED_SCORE_MOTIFS`.
+        FileNotAvailableError
+            If the file is not cached and ``allow_download`` is ``False``.
         """
         if motif not in PUBLISHED_SCORE_MOTIFS:
             raise ValueError(
@@ -275,6 +279,7 @@ class Metadata:
             )
         return localize(
             SCORE_DATA_DIR / f"{motif}.chromvar_score.scale.joblib.gz",
+            allow_download=allow_download,
             desc=f"{motif} chromVAR score file",
         )
 
