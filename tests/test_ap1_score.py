@@ -10,7 +10,13 @@ import huggingface_hub
 import pytest
 
 from bolerodata import MODELS, metadata
-from bolerodata._sync import HF_DATA_REPO, HF_MODELS_REPO, _to_logical, manifest
+from bolerodata._sync import (
+    HF_DATA_REPO,
+    HF_MODELS_REPO,
+    FileNotAvailableError,
+    _to_logical,
+    manifest,
+)
 from bolerodata.data import SCORE_DATA_DIR
 
 AP1_SCORE_MODEL = "Bolero10M+AP1+260104"
@@ -53,6 +59,15 @@ def test_ap1_score_path_downloads_from_bolero_data(fake_hub):
             "filename": f"score_data/{AP1_SCORE_FILE}",
         }
     ]
+
+
+def test_ap1_score_path_offline_raises_when_not_cached(fake_hub):
+    if _is_lab_file(pathlib.Path(SCORE_DATA_DIR) / AP1_SCORE_FILE):
+        pytest.skip("lab file present: the getter returns it without downloading")
+
+    with pytest.raises(FileNotAvailableError, match="allow_download=False"):
+        metadata.get_chromvar_score_path("AP1", allow_download=False)
+    assert fake_hub == []
 
 
 def test_ap1_score_model_resolves_from_bolero_models(fake_hub):
