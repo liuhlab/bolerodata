@@ -43,4 +43,19 @@ Inputs (pseudobulk records, peaks, reference bigwigs) come from
 
 ## Citation
 
-Liu H. *Bolero: predicting cell-state-specific gene regulation from DNA sequence.* 2026.
+Liu H, Mao S, Gallent T, Chen Y, Yan Z, Vogel I, Traunmuller L, Zhang R,
+Buenrostro JD, Zhou J, Greenberg ME. *Predicting cell-state-specific gene regulation
+from DNA across species.* bioRxiv (2026).
+[doi:10.64898/2026.10.19.760026](https://doi.org/10.64898/2026.10.19.760026)
+
+```bibtex
+@article{liu2026bolero,
+  title   = {Predicting cell-state-specific gene regulation from DNA across species},
+  author  = {Liu, H. and Mao, S. and Gallent, T. and Chen, Y. and Yan, Z. and
+             Vogel, I. and Traunmuller, L. and Zhang, R. and Buenrostro, J. D. and
+             Zhou, J. and Greenberg, M. E.},
+  journal = {bioRxiv},
+  year    = {2026},
+  doi     = {10.64898/2026.10.19.760026}
+}
+```
