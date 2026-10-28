@@ -112,9 +112,10 @@ def _download_and_rename(fold, out):
         import torch
         from huggingface_hub import hf_hub_download
     except ModuleNotFoundError as e:
+        pkg = (e.name or "torch").split(".")[0]  # torch._C -> torch
         raise FileNotAvailableError(
-            f"{e.name} is required to build the Flashzoi checkpoint. "
-            f"Install it with: pip install {e.name}"
+            f"{pkg} is required to build the Flashzoi checkpoint. "
+            f"Install it with: pip install {pkg}"
         ) from e
 
     src = hf_hub_download(
